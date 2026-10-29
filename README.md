@@ -1,6 +1,6 @@
 # Kačeny
 
-Working title. Portrait arcade shooter for iOS and Android (Flutter + Flame):
+Portrait arcade shooter for iOS and Android (Flutter + Flame):
 ducks fly down the screen, tap them out of the sky in 90 seconds. Plan and
 rationale: `Prompts/00-KACENY_PLAN.md`.
 
@@ -33,7 +33,6 @@ target was tested after lag compensation (yellow). Adjust `hitboxScale`,
 
 ## Still open
 
-- Final name / repo (`lioilsources/<name>`), bundle id is `com.ol1n.kaceny`.
 - Real art per `assets/SPRITES.md`; real SFX under the names in `SfxCatalog`.
 - Leaderboard IDs: `GamesServicesLeaderboard.iosLeaderboardId` (App Store
   Connect, placeholder `kaceny.alltime`), `androidLeaderboardId` and
