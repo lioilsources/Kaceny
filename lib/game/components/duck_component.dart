@@ -39,7 +39,7 @@ class DuckComponent extends TargetComponent {
   final GameConfig config;
   final DuckPainter painter;
 
-  /// The skin's duck pictures (head at the bottom): one per wing-beat frame,
+  /// The skin's duck pictures (head at the bottom): one wing beat in order,
   /// or a single one that gets squashed. Null = vector duck.
   final List<Image>? sprites;
 
@@ -137,8 +137,12 @@ class DuckComponent extends TargetComponent {
     final sprites = this.sprites;
     if (sprites == null) {
       painter.paint(canvas, frame, opacity: _opacity.clamp(0, 1));
-    } else if (sprites.length == DuckPainter.frames) {
-      _paintSprite(canvas, sprites[frame]);
+    } else if (sprites.length > 1) {
+      // A whole beat takes as long as the vector duck's three frames.
+      final beat = state == DuckState.falling
+          ? sprites.length ~/ 2
+          : ((_age + _flapOffset) * _flapRate * sprites.length / DuckPainter.frames).floor() % sprites.length;
+      _paintSprite(canvas, sprites[beat]);
     } else {
       canvas.scale(_spriteFlap[frame], 1);
       _paintSprite(canvas, sprites.first);

@@ -9,7 +9,7 @@ class Skin {
     required this.packId,
     required this.packTitle,
     required this.free,
-    this.animated = false,
+    this.frames = 1,
   });
 
   final String id;
@@ -21,9 +21,11 @@ class Skin {
   /// everything is unlocked).
   final bool free;
 
-  /// Has three wing-beat frames (`<id>_0..2.png`); otherwise one picture
-  /// that the game squashes to fake the beat.
-  final bool animated;
+  /// Wing-beat frames (`<id>_0.png` …), one full beat in order; 1 = a single
+  /// picture that the game squashes to fake the beat.
+  final int frames;
+
+  bool get animated => frames > 1;
 
   static const vector = Skin(id: 'vector', name: 'Původní', packId: 'base', packTitle: 'Původní', free: true);
 
@@ -35,9 +37,9 @@ class Skin {
   String get duckAsset => 'skins/duck/$id.png';
   String get backgroundAsset => 'skins/bg/$id.jpg';
 
-  /// The sprites the game flies: frames 0 (up), 1 (level), 2 (down), or
-  /// the single picture.
-  List<String> get duckFrameAssets => animated ? [for (var i = 0; i < 3; i++) 'skins/duck/${id}_$i.png'] : [duckAsset];
+  /// The sprites the game flies: one beat of frames, or the single picture.
+  List<String> get duckFrameAssets =>
+      animated ? [for (var i = 0; i < frames; i++) 'skins/duck/${id}_$i.png'] : [duckAsset];
 
   static Skin byId(String id) => all.firstWhere((s) => s.id == id, orElse: () => vector);
 }
