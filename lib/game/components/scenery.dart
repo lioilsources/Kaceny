@@ -67,6 +67,30 @@ class Background extends Component with HasGameReference<KacenyGame> {
   }
 }
 
+/// A skin's background picture, scaled to cover the screen and anchored at
+/// the bottom so its horizon sits above the reeds.
+class PictureBackground extends Component with HasGameReference<KacenyGame> {
+  PictureBackground(this.image) : super(priority: -100);
+
+  final Image image;
+  final _paint = Paint()..filterQuality = FilterQuality.medium;
+
+  @override
+  void render(Canvas canvas) {
+    final w = game.size.x;
+    final h = game.size.y;
+    final scale = math.max(w / image.width, h / image.height);
+    final dw = image.width * scale;
+    final dh = image.height * scale;
+    canvas.drawImageRect(
+      image,
+      Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()),
+      Rect.fromLTWH((w - dw) / 2, h - dh, dw, dh),
+      _paint,
+    );
+  }
+}
+
 /// Slow clouds drifting sideways, wrapping around.
 class Clouds extends Component with HasGameReference<KacenyGame> {
   Clouds(this.random) : super(priority: -90);

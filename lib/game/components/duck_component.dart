@@ -6,6 +6,7 @@ import 'package:flame/components.dart';
 import '../../config/game_config.dart';
 import '../logic/flight_path.dart';
 import '../render/duck_painter.dart';
+import '../render/palette.dart';
 import 'target_component.dart';
 
 enum DuckState { flying, falling, escaping }
@@ -19,6 +20,7 @@ class DuckComponent extends TargetComponent {
     required this.path,
     required this.config,
     required math.Random random,
+    this.sprites,
   }) : _flapRate = 7 + random.nextDouble() * 3,
        _flapOffset = random.nextDouble() * 3,
        painter = DuckPainter(height: spec.heightPt, haze: _haze[kind]!),
@@ -36,6 +38,13 @@ class DuckComponent extends TargetComponent {
   final FlightPath path;
   final GameConfig config;
   final DuckPainter painter;
+
+  /// The skin's duck pictures (head at the bottom): one per wing-beat frame,
+  /// or a single one that gets squashed. Null = vector duck.
+  final List<Image>? sprites;
+
+  /// Fake wing beat for single-frame sprites: horizontal squash per frame.
+  static const _spriteFlap = [0.78, 1.0, 0.9];
 
   final double _flapRate;
   final double _flapOffset;
@@ -125,7 +134,33 @@ class DuckComponent extends TargetComponent {
     canvas.save();
     canvas.translate(size.x / 2, size.y / 2);
     final frame = state == DuckState.falling ? 1 : ((_age + _flapOffset) * _flapRate).floor() % DuckPainter.frames;
-    painter.paint(canvas, frame, opacity: _opacity.clamp(0, 1));
+    final sprites = this.sprites;
+    if (sprites == null) {
+      painter.paint(canvas, frame, opacity: _opacity.clamp(0, 1));
+    } else if (sprites.length == DuckPainter.frames) {
+      _paintSprite(canvas, sprites[frame]);
+    } else {
+      canvas.scale(_spriteFlap[frame], 1);
+      _paintSprite(canvas, sprites.first);
+    }
     canvas.restore();
+  }
+
+  void _paintSprite(Canvas canvas, Image sprite) {
+    final h = spec.heightPt;
+    final paint = Paint()
+      ..filterQuality = FilterQuality.medium
+      ..color = Color.fromRGBO(255, 255, 255, _opacity.clamp(0, 1));
+    // Half the vector haze: a sky-blue veil fights dark or busy skin backgrounds.
+    final haze = _haze[kind]! * 0.5;
+    if (haze > 0) {
+      paint.colorFilter = ColorFilter.mode(Palette.skyBottom.withValues(alpha: haze), BlendMode.srcATop);
+    }
+    canvas.drawImageRect(
+      sprite,
+      Rect.fromLTWH(0, 0, sprite.width.toDouble(), sprite.height.toDouble()),
+      Rect.fromCenter(center: Offset.zero, width: h, height: h),
+      paint,
+    );
   }
 }

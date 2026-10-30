@@ -8,7 +8,8 @@ class Settings extends ChangeNotifier {
       _haptics = _prefs.getBool(_kHaptics) ?? true,
       _autoReload = _prefs.getBool(_kAutoReload) ?? false,
       _debugOverlay = kDebugMode && (_prefs.getBool(_kDebug) ?? false),
-      _initials = _prefs.getString(_kInitials) ?? '';
+      _initials = _prefs.getString(_kInitials) ?? '',
+      _skin = _prefs.getString(_kSkin) ?? 'vector';
 
   static Future<Settings> load() async => Settings._(await SharedPreferences.getInstance());
 
@@ -17,6 +18,7 @@ class Settings extends ChangeNotifier {
   static const _kAutoReload = 'settings.autoReload';
   static const _kDebug = 'settings.debugOverlay';
   static const _kInitials = 'settings.initials';
+  static const _kSkin = 'settings.skin';
 
   final SharedPreferences _prefs;
 
@@ -25,6 +27,7 @@ class Settings extends ChangeNotifier {
   bool _autoReload;
   bool _debugOverlay;
   String _initials;
+  String _skin;
 
   bool get sound => _sound;
   bool get haptics => _haptics;
@@ -39,6 +42,9 @@ class Settings extends ChangeNotifier {
   /// Last initials typed for the leaderboard, to prefill the next time.
   String get initials => _initials;
 
+  /// Id of the chosen [Skin]; 'vector' is the original hand-drawn look.
+  String get skin => _skin;
+
   set sound(bool v) => _set(_kSound, v, () => _sound = v);
   set haptics(bool v) => _set(_kHaptics, v, () => _haptics = v);
   set autoReload(bool v) => _set(_kAutoReload, v, () => _autoReload = v);
@@ -47,6 +53,12 @@ class Settings extends ChangeNotifier {
   set initials(String v) {
     _initials = v;
     _prefs.setString(_kInitials, v);
+    notifyListeners();
+  }
+
+  set skin(String v) {
+    _skin = v;
+    _prefs.setString(_kSkin, v);
     notifyListeners();
   }
 

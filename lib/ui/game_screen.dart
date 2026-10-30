@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../app_services.dart';
 import '../config/game_config.dart';
 import '../game/kaceny_game.dart';
+import '../game/skins/skin.dart';
 import 'game_over_overlay.dart';
 import 'hud.dart';
 import 'leaderboard_screen.dart';
@@ -38,6 +39,7 @@ class _GameScreenState extends State<GameScreen> {
       autoReload: s.autoReload,
       debugOverlay: s.debugOverlay,
       onRoundFinished: (result) => services.online.submit(result.score),
+      skin: Skin.byId(s.skin),
     );
     s.addListener(_applySettings);
     // Leaving the app mid-round pauses it.

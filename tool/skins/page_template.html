@@ -1,0 +1,261 @@
+<title>Kačeny skiny</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky reed-green control bar over a pond-paper contact sheet, grouped by skin pack. */
+:root{
+  --paper:#f3f4ec; --card:#ffffff; --ink:#1c2420; --muted:#5f6b63; --line:#d9ddd0;
+  --reed:#2f5d46; --bill:#e07b1f; --keep:#2f8a57; --rej:#c24135; --free:#2c6bc4;
+  --chip:#e8ebe0;
+  --display:"Bricolage Grotesque",ui-rounded,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121714; --card:#1b221e; --ink:#e7ece6; --muted:#9aa69e; --line:#2c3630;
+  --reed:#244a37; --bill:#f0943f; --keep:#4fb37c; --rej:#e0675b; --free:#5b93e6; --chip:#232c27; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121714; --card:#1b221e; --ink:#e7ece6; --muted:#9aa69e; --line:#2c3630;
+  --reed:#244a37; --bill:#f0943f; --keep:#4fb37c; --rej:#e0675b; --free:#5b93e6; --chip:#232c27; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--reed)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--reed);color:#f4f1e6;
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+h1{font:800 22px/1 var(--display);margin:0;letter-spacing:-.01em}
+h1 span{color:var(--bill)}
+nav{display:flex;flex-wrap:wrap;gap:4px}
+nav button{font:600 13px var(--body);border:0;border-radius:999px;padding:6px 12px;cursor:pointer;background:rgba(255,255,255,.12);color:inherit}
+nav button.on{background:#f4f1e6;color:#1c2420}
+.ctrl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+select,.tool{font:13px var(--body);padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.18);color:inherit}
+select option{color:#1c2420;background:#fff}
+.tool{cursor:pointer}
+.sync{font:500 11px var(--mono);letter-spacing:.04em;text-transform:uppercase;opacity:.8}
+main{padding-block:16px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1400px;margin:0 auto}
+.stats{font:500 12px var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:8px}
+.stats b{color:var(--ink)}
+.intro{color:var(--muted);max-width:70ch;margin:0 0 8px}
+.packhead{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:28px 0 10px}
+.packhead h2{font:800 20px/1.1 var(--display);margin:0;text-wrap:balance}
+.tier{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--muted)}
+.tier.paid{background:var(--bill);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.grid.tall{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.card{background:var(--card);border:2px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card.keep{border-color:var(--keep)}
+.card.rej{opacity:.38}
+.shot{display:block;width:100%;max-width:100%;aspect-ratio:1;object-fit:cover;background:var(--chip);cursor:zoom-in;border:0;padding:0}
+.tall .shot{aspect-ratio:585/1024}
+.pair{position:relative;width:100%;max-width:100%;aspect-ratio:585/1024;background:var(--chip) center/cover;cursor:zoom-in}
+.pair img{position:absolute;border-radius:50%;mix-blend-mode:multiply;pointer-events:none}
+.pair .a{width:46%;left:27%;top:34%}.pair .b{width:26%;left:62%;top:12%}.pair .c{width:18%;left:12%;top:20%}
+.meta{padding:8px 10px 10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.name{font-weight:700;line-height:1.2}
+.sub{color:var(--muted);font-size:12px;line-height:1.35;overflow-wrap:anywhere}
+.tally{font:500 11px var(--mono);color:var(--muted);min-height:1em}
+.tally .k{color:var(--keep)}.tally .r{color:var(--rej)}.tally .f{color:var(--free)}
+.btns{display:flex;gap:4px}
+.btns button{flex:1;font:600 13px var(--body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:6px;padding:5px 4px;cursor:pointer}
+.btns .k.on{background:var(--keep);border-color:var(--keep);color:#fff}
+.btns .r.on{background:var(--rej);border-color:var(--rej);color:#fff}
+.btns .f.on{background:var(--free);border-color:var(--free);color:#fff}
+button:focus-visible,select:focus-visible{outline:2px solid var(--bill);outline-offset:2px}
+.empty{color:var(--muted);padding:24px 0}
+#plan{max-width:72ch}
+#plan h2{font:800 26px/1.15 var(--display);margin:8px 0 12px;text-wrap:balance}
+#plan h3{font:800 18px/1.2 var(--display);margin:24px 0 6px}
+#plan .tw{overflow-x:auto}
+#plan table{border-collapse:collapse;width:100%;margin:8px 0;font-size:14px}
+#plan td,#plan th{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+#plan th{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+#plan code{font:13px var(--mono);background:var(--chip);padding:1px 4px;border-radius:4px;overflow-wrap:anywhere}
+#zoom{position:fixed;inset:0;background:rgba(10,14,12,.88);place-items:center;z-index:20;cursor:zoom-out;padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px)}
+#zoom:not([hidden]){display:grid}
+#zoom img{max-width:100%;max-height:92vh;border-radius:8px}
+#copybox{width:100%;min-height:160px;font:12px var(--mono);margin-top:8px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+@media (max-width:560px){.grid,.grid.tall{grid-template-columns:repeat(2,minmax(0,1fr))}h1{font-size:19px}}
+@media (prefers-reduced-motion:no-preference){.card{transition:opacity .15s,border-color .15s}}
+</style>
+
+<header>
+  <h1>Kačeny <span>skiny</span></h1>
+  <nav id="tabs" aria-label="Sekce">
+    <button data-t="skins" class="on">Skiny</button><button data-t="duck">Kachny</button><button data-t="bg">Pozadí</button><button data-t="target">Co střílet</button><button data-t="plan">Monetizace</button>
+  </nav>
+  <div class="ctrl" id="filters">
+    <select id="pack" aria-label="Balíček"><option value="">Všechny balíčky</option></select>
+    <select id="status" aria-label="Stav"><option value="">Vše</option><option value="keep">Ponechané</option><option value="none">Nerozhodnuté</option><option value="rej">Vyřazené</option><option value="free">Zdarma</option><option value="team">Ponechané týmem</option></select>
+    <button class="tool" id="copy">Kopírovat výběr</button>
+  </div>
+  <span class="sync" id="sync">Ukládá se jen v tomto prohlížeči</span>
+</header>
+<main>
+  <div class="stats" id="stats"></div>
+  <div id="view"></div>
+  <textarea id="copybox" hidden readonly aria-label="Výběr jako JSON"></textarea>
+</main>
+<div id="zoom" hidden><img alt=""></div>
+
+<script>
+const ITEMS = __MANIFEST__;
+const PLAN_HTML = __PLAN__;
+const KEY = 'kaceny-curation-v1';
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let picks = {};               // this viewer: "kind/id" -> {s:'keep'|'rej', free:bool}
+let team = {};                // everyone's docs: userId -> picks
+let me = null, db = null, tab = 'skins', saveTimer = null;
+try { picks = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+
+const packs = [...new Map(ITEMS.filter(i => i.pack).map(i => [i.pack, [i.pack_title, i.tier]])).entries()];
+packs.forEach(([id, [t]]) => $('#pack').insertAdjacentHTML('beforeend', `<option value="${id}">${esc(t)}</option>`));
+const bgById = Object.fromEntries(ITEMS.filter(i => i.kind === 'bg').map(i => [i.id, i]));
+const pk = key => picks[key] || {};
+
+function tally(key) {
+  let k = 0, r = 0, f = 0;
+  for (const [uid, p] of Object.entries(team)) {
+    if (uid === me) continue;
+    const v = p[key]; if (!v) continue;
+    if (v.s === 'keep') k++; if (v.s === 'rej') r++; if (v.free) f++;
+  }
+  const mine = pk(key);
+  if (mine.s === 'keep') k++; if (mine.s === 'rej') r++; if (mine.free) f++;
+  return { k, r, f };
+}
+function tallyHtml(key) {
+  if (!Object.keys(team).length) return '';
+  const t = tally(key);
+  if (!t.k && !t.r && !t.f) return '<div class="tally">bez hlasů</div>';
+  return `<div class="tally" title="Hlasy celého týmu včetně tvých">${t.k ? `<span class="k">✓ ${t.k}</span> ` : ''}${t.r ? `<span class="r">✕ ${t.r}</span> ` : ''}${t.f ? `<span class="f">zdarma ${t.f}</span>` : ''}</div>`;
+}
+function btns(key, withFree) {
+  const p = pk(key);
+  return `<div class="btns" data-key="${key}"><button class="k ${p.s === 'keep' ? 'on' : ''}" data-a="keep" aria-label="Ponechat">✓</button><button class="r ${p.s === 'rej' ? 'on' : ''}" data-a="rej" aria-label="Vyřadit">✕</button>${withFree ? `<button class="f ${p.free ? 'on' : ''}" data-a="free">zdarma</button>` : ''}</div>`;
+}
+function passes(key, pack) {
+  const f = $('#pack').value, s = $('#status').value, p = pk(key);
+  if (f && pack !== f) return false;
+  if (s === 'free') return !!p.free;
+  if (s === 'none') return !p.s;
+  if (s === 'team') return tally(key).k > 0;
+  return !s || p.s === s;
+}
+const cls = key => ({ keep: 'keep', rej: 'rej' })[pk(key).s] || '';
+const shot = (file, alt) => `<img class="shot" loading="lazy" src="${file}" alt="${esc(alt)}" data-zoom="${file}">`;
+
+function render() {
+  const v = $('#view');
+  $('#filters').hidden = tab === 'plan';
+  $('#copybox').hidden = true;
+  if (tab === 'plan') { v.innerHTML = `<div id="plan">${PLAN_HTML}</div>`; return stats(); }
+  if (tab === 'target') {
+    const all = ITEMS.filter(i => i.kind === 'target');
+    const list = all.filter(i => passes('target/' + i.id, null));
+    v.innerHTML = `<p class="intro">${all.length} nápadů, co střílet místo kachen. Každý může být samostatný placený balíček s vlastní mechanikou.</p>` +
+      (list.length ? `<div class="grid">${list.map(i => `<div class="card ${cls('target/' + i.id)}">${shot(i.file, i.name)}<div class="meta"><div class="name">${esc(i.name)}</div><div class="sub">${esc(i.why)}</div>${tallyHtml('target/' + i.id)}${btns('target/' + i.id, false)}</div></div>`).join('')}</div>` : '<p class="empty">Žádný cíl neodpovídá filtru.</p>');
+    return stats();
+  }
+  const kind = tab === 'skins' ? 'skin' : tab;
+  let h = '';
+  for (const [pid, [title, tier]] of packs) {
+    const styles = ITEMS.filter(i => i.kind === 'duck' && i.pack === pid);
+    const vis = styles.filter(d => passes(kind + '/' + d.id, pid));
+    if (!vis.length) continue;
+    h += `<div class="packhead"><h2>${esc(title)}</h2><span class="tier ${tier === 'free' ? '' : 'paid'}">${tier === 'free' ? 'zdarma' : 'placený balíček'}</span><span class="tier">${styles.length} stylů</span></div><div class="grid ${tab === 'duck' ? '' : 'tall'}">`;
+    for (const d of vis) {
+      const b = bgById[d.id], key = kind + '/' + d.id;
+      const body = tab === 'duck' ? shot(d.file, d.name) : tab === 'bg' ? shot(b.file, d.name)
+        : `<div class="pair" role="img" aria-label="${esc(d.name)}" data-zoom="${b.file}" style="background-image:url('${b.file}')"><img class="a" src="${d.file}" alt=""><img class="b" src="${d.file}" alt=""><img class="c" src="${d.file}" alt=""></div>`;
+      const sub = tab === 'bg' ? b.scene : d.style;
+      h += `<div class="card ${cls(key)}">${body}<div class="meta"><div class="name">${esc(d.name)}</div><div class="sub">${esc(sub)}</div>${tallyHtml(key)}${btns(key, tab !== 'target')}</div></div>`;
+    }
+    h += '</div>';
+  }
+  v.innerHTML = h || '<p class="empty">Nic neodpovídá filtru.</p>';
+  stats();
+}
+function stats() {
+  const n = k => Object.entries(picks).filter(([key, v]) => key.startsWith(k + '/') && v.s === 'keep').length;
+  const free = Object.entries(picks).filter(([k, v]) => k.startsWith('skin/') && v.free).length;
+  const voters = Object.keys(team).length;
+  $('#stats').innerHTML = `<span>Tvůj výběr: skiny <b>${n('skin')}</b> (zdarma <b>${free}</b>)</span><span>kachny <b>${n('duck')}</b></span><span>pozadí <b>${n('bg')}</b></span><span>cíle <b>${n('target')}</b></span>${voters ? `<span>hlasujících <b>${voters}</b></span>` : ''}`;
+}
+
+function persist() {
+  try { localStorage.setItem(KEY, JSON.stringify(picks)); } catch (e) {}
+  if (!db || !me) return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    try { await db.doc('picks/' + me).set({ p: picks, at: new Date().toISOString() }); $('#sync').textContent = 'Uloženo pro tým'; }
+    catch (e) { $('#sync').textContent = 'Uložení selhalo, výběr zůstal v prohlížeči'; }
+  }, 700);
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button,[data-zoom],#zoom');
+  if (!t) return;
+  if (t.id === 'zoom') { t.hidden = true; return; }
+  if (t.dataset.t) { tab = t.dataset.t; document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b === t)); window.scrollTo(0, 0); return render(); }
+  if (t.dataset.a) {
+    const key = t.parentElement.dataset.key, p = { ...pk(key) };
+    if (t.dataset.a === 'free') p.free = !p.free; else p.s = p.s === t.dataset.a ? undefined : t.dataset.a;
+    if (!p.s) delete p.s; if (!p.free) delete p.free;
+    if (Object.keys(p).length) picks[key] = p; else delete picks[key];
+    if (me) team[me] = picks;
+    persist(); return render();
+  }
+  if (t.id === 'copy') return copySelection();
+  if (t.dataset.zoom) { $('#zoom img').src = t.dataset.zoom; $('#zoom').hidden = false; }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('#zoom').hidden = true; });
+$('#pack').onchange = $('#status').onchange = render;
+
+function selection() {
+  const out = { skins: [], free: [], ducks: [], backgrounds: [], targets: [] };
+  for (const [k, v] of Object.entries(picks)) {
+    const [kind, id] = k.split('/');
+    if (v.free && kind === 'skin') out.free.push(id);
+    if (v.s === 'keep') ({ skin: out.skins, duck: out.ducks, bg: out.backgrounds, target: out.targets })[kind].push(id);
+  }
+  return JSON.stringify(out, null, 2);
+}
+async function copySelection() {
+  const text = selection(), box = $('#copybox');
+  box.value = text; box.hidden = false;
+  try { await navigator.clipboard.writeText(text); $('#copy').textContent = 'Zkopírováno'; }
+  catch (e) { box.select(); $('#copy').textContent = 'Označeno, zkopíruj ručně'; }
+  setTimeout(() => { $('#copy').textContent = 'Kopírovat výběr'; }, 2500);
+}
+
+render();
+
+(async () => {
+  if (!window.claude?.use) return;
+  const [d, u] = await Promise.all([claude.use('db'), claude.use('user')]);
+  if (!d || !u) return;
+  const id = await u.id();
+  if (!id) return;
+  db = d; me = id;
+  $('#sync').textContent = 'Načítám hlasy týmu…';
+  let first = true;
+  db.collection('picks').onSnapshot(snap => {
+    const next = {};
+    for (const doc of snap.docs) next[doc.id] = (doc.data() || {}).p || {};
+    if (first) {
+      first = false;
+      if (next[me]) picks = { ...next[me] };            // the server copy wins on load
+      else if (Object.keys(picks).length) persist();     // carry over picks made before sync
+      $('#sync').textContent = 'Uloženo pro tým';
+    }
+    next[me] = picks;
+    team = next;
+    render();
+  }, () => { $('#sync').textContent = 'Hlasy týmu nejsou dostupné'; });
+})();
+</script>
