@@ -8,6 +8,7 @@ import '../game/render/palette.dart';
 import 'game_screen.dart';
 import 'leaderboard_screen.dart';
 import 'settings_screen.dart';
+import 'skins_screen.dart';
 import 'theme.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -70,6 +71,11 @@ class MenuScreen extends StatelessWidget {
                   FilledButton(
                     onPressed: () => _open(context, GameScreen(services: services)),
                     child: const Text('HRÁT'),
+                  ),
+                  const SizedBox(height: 14),
+                  OutlinedButton(
+                    onPressed: () => _open(context, SkinsScreen(services: services)),
+                    child: const Text('Skiny'),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(

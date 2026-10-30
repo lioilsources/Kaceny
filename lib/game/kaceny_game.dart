@@ -22,6 +22,7 @@ import 'logic/magazine.dart';
 import 'logic/reload_swipe.dart';
 import 'logic/score_keeper.dart';
 import 'logic/spawner.dart';
+import 'skins/skin.dart';
 
 enum RoundPhase { playing, paused, over }
 
@@ -51,6 +52,7 @@ class KacenyGame extends FlameGame {
     this.autoReload = false,
     bool debugOverlay = false,
     this.onRoundFinished,
+    this.skin = Skin.vector,
     math.Random? random,
   }) : random = random ?? math.Random(),
        _debugEnabled = debugOverlay;
@@ -62,7 +64,11 @@ class KacenyGame extends FlameGame {
   final Sfx sfx;
   final Haptics haptics;
   final math.Random random;
+  final Skin skin;
   bool autoReload;
+
+  /// The skin's duck pictures (wing-beat frames or one); null for the vector skin.
+  List<Image>? _duckSprites;
   void Function(RoundResult result)? onRoundFinished;
 
   late final hud = HudState(
@@ -134,7 +140,15 @@ class KacenyGame extends FlameGame {
   @override
   Future<void> onLoad() async {
     camera.viewfinder.anchor = Anchor.topLeft;
-    world.addAll([Background(), Clouds(random), Reeds(random.nextInt(1 << 30))]);
+    if (skin.isVector) {
+      world.addAll([Background(), Clouds(random)]);
+    } else {
+      images.prefix = 'assets/';
+      final background = images.load(skin.backgroundAsset);
+      _duckSprites = await Future.wait(skin.duckFrameAssets.map(images.load));
+      world.add(PictureBackground(await background));
+    }
+    world.add(Reeds(random.nextInt(1 << 30)));
     debugEnabled = _debugEnabled;
     startRound();
   }
@@ -238,7 +252,9 @@ class KacenyGame extends FlameGame {
         minX: r,
         maxX: size.x - r,
       );
-      world.add(DuckComponent(kind: kind, spec: spec, path: path, config: config, random: random));
+      world.add(
+        DuckComponent(kind: kind, spec: spec, path: path, config: config, random: random, sprites: _duckSprites),
+      );
     }
     if (plan.edgeDuck) {
       world.add(_edgeDuck = EdgeDuckComponent(spec: config.edge, config: config, random: random));

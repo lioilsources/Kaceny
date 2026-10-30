@@ -46,3 +46,6 @@ app.*.map.json
 
 # Kotlin daemon state
 android/.kotlin/
+
+# Skin curation output (generated)
+tool/skins/out/
