@@ -79,7 +79,10 @@ class _GameScreenState extends State<GameScreen> {
     final config = widget.config;
     return Scaffold(
       backgroundColor: Colors.black,
+      // expand: the HUD below shrinks to nothing outside a round, and a loose
+      // Stack would shrink with it, taking the game and its overlays to 0×0.
       body: Stack(
+        fit: StackFit.expand,
         children: [
           // Every touch-down is a shot, straight from the pointer stream —
           // no gesture arena, no waiting for the finger to lift (§3.1).
