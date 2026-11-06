@@ -34,8 +34,9 @@ BUNDLE = "com.ol1n.kaceny"
 ISSUER = "edeaacd0-9ce8-4fae-91b7-e451efabc799"
 KEY_ID = os.environ.get("ASC_KEY_ID", "YBT496SW43")
 KEY = (Path.home() / f"Dev/Distribution/Apple/_Keys/AuthKey_{KEY_ID}.p8").read_text()
-PRIVACY_URL = "https://olin.now/kaceny-privacy"
-SUPPORT_URL = "https://olin.now/kaceny"
+PRIVACY_URL = "https://lioilsources.github.io/Kaceny/privacy.html"
+SUPPORT_URL = "https://lioilsources.github.io/Kaceny/support.html"
+MARKETING_URL = "https://olin.now/kaceny"
 LISTING = json.loads((ROOT / "store/listing.json").read_text())
 LANGS = [k for k in LISTING if not k.startswith("_")]
 ASC_LOCALE = {lang: LISTING["_locales"][lang][0] for lang in LANGS}
@@ -150,7 +151,7 @@ def step_listing(app):
                          {"appStoreVersion": rel("appStoreVersions", version)}, {
         ASC_LOCALE[lang]: {"description": LISTING[lang]["description"], "keywords": LISTING[lang]["keywords"],
                            "promotionalText": LISTING[lang]["promo"], "supportUrl": SUPPORT_URL,
-                           "marketingUrl": SUPPORT_URL}
+                           "marketingUrl": MARKETING_URL}
         for lang in LANGS})
 
 

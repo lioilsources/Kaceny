@@ -82,7 +82,7 @@ class Edit:
 def step_listing():
     with Edit() as edit:
         api("PATCH", f"{edit.base}/details", {"defaultLanguage": PLAY_LOCALE["en"],
-                                              "contactWebsite": "https://olin.now/kaceny",
+                                              "contactWebsite": "https://lioilsources.github.io/Kaceny/",
                                               "contactEmail": "business@olin.now"})
         for lang in LANGS:
             entry = LISTING[lang]
