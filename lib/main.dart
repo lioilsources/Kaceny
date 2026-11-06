@@ -39,7 +39,7 @@ Future<void> main() async {
 }
 
 /// Store screenshots (tool/store_screenshots.sh): a debug build opens the
-/// screen named by the `shots.screen` preference ('game' or 'skins') instead
+/// screen named by the `shots.screen` preference ('game', 'skins' or 'store') instead
 /// of the menu, so a simulator can be shot without tapping through.
 Future<String?> _shotsScreen() async => (await SharedPreferences.getInstance()).getString('shots.screen');
 
@@ -91,6 +91,7 @@ class KacenyApp extends StatelessWidget {
       home: switch (start) {
         'game' => GameScreen(services: services),
         'skins' => SkinsScreen(services: services),
+        'store' => SkinsScreen(services: services, scrollToPack: SkinStore.paidPacks.first),
         _ => MenuScreen(services: services),
       },
     );

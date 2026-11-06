@@ -57,8 +57,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsAutoReload => 'Automatické přebíjení';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Jinak přebiješ přejetím prstu dolů nebo ťuknutím na náboje.';
+  String get settingsAutoReloadHint => 'Jinak přebiješ přejetím prstu dolů nebo ťuknutím na náboje.';
 
   @override
   String get settingsDebug => 'Debug: hitboxy a výstřely';
@@ -84,8 +83,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Výsledky všech hráčů v Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Výsledky všech hráčů v Game Center / Play Games.';
 
   @override
   String get leaderboardSignInInfo => 'Přihlas se a porovnej se s ostatními.';
@@ -149,19 +147,15 @@ class AppLocalizationsCs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count skinů, každý s kachnou a vlastním pozadím. Navždy tvoje, na všech tvých zařízeních.',
-      few:
-          '$count skiny, každý s kachnou a vlastním pozadím. Navždy tvoje, na všech tvých zařízeních.',
-      one:
-          '$count skin: kachna a její vlastní pozadí. Navždy tvůj, na všech tvých zařízeních.',
+      other: '$count skinů, každý s kachnou a vlastním pozadím. Navždy tvoje, na všech tvých zařízeních.',
+      few: '$count skiny, každý s kachnou a vlastním pozadím. Navždy tvoje, na všech tvých zařízeních.',
+      one: '$count skin: kachna a její vlastní pozadí. Navždy tvůj, na všech tvých zařízeních.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'Obchod teď není dostupný. Zkus to později.';
+  String get skinsStoreUnavailable => 'Obchod teď není dostupný. Zkus to později.';
 
   @override
   String get skinsRestore => 'Obnovit nákupy';

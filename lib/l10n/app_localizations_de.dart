@@ -57,8 +57,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsAutoReload => 'Automatisch nachladen';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Sonst lädst du nach, indem du nach unten wischst oder auf die Patronen tippst.';
+  String get settingsAutoReloadHint => 'Sonst lädst du nach, indem du nach unten wischst oder auf die Patronen tippst.';
 
   @override
   String get settingsDebug => 'Debug: Hitboxen und Schüsse';
@@ -84,12 +83,10 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Ergebnisse aller Spieler in Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Ergebnisse aller Spieler in Game Center / Play Games.';
 
   @override
-  String get leaderboardSignInInfo =>
-      'Melde dich an und miss dich mit anderen.';
+  String get leaderboardSignInInfo => 'Melde dich an und miss dich mit anderen.';
 
   @override
   String get leaderboardOpen => 'Öffnen';
@@ -150,17 +147,14 @@ class AppLocalizationsDe extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count Skins, jeder eine Ente mit eigenem Hintergrund. Für immer deine, auf all deinen Geräten.',
-      one:
-          '$count Skin: eine Ente mit eigenem Hintergrund. Für immer deins, auf all deinen Geräten.',
+      other: '$count Skins, jeder eine Ente mit eigenem Hintergrund. Für immer deine, auf all deinen Geräten.',
+      one: '$count Skin: eine Ente mit eigenem Hintergrund. Für immer deins, auf all deinen Geräten.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'Der Store ist gerade nicht erreichbar. Versuch es später noch mal.';
+  String get skinsStoreUnavailable => 'Der Store ist gerade nicht erreichbar. Versuch es später noch mal.';
 
   @override
   String get skinsRestore => 'Käufe wiederherstellen';

@@ -57,8 +57,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsAutoReload => 'Rechargement auto';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Sinon, recharge en glissant vers le bas ou en touchant les cartouches.';
+  String get settingsAutoReloadHint => 'Sinon, recharge en glissant vers le bas ou en touchant les cartouches.';
 
   @override
   String get settingsDebug => 'Debug : hitbox et tirs';
@@ -84,8 +83,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Scores de tous les joueurs sur Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Scores de tous les joueurs sur Game Center / Play Games.';
 
   @override
   String get leaderboardSignInInfo => 'Connecte-toi et mesure-toi aux autres.';
@@ -149,17 +147,14 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count skins, chacun avec un canard et son propre décor. À toi pour toujours, sur tous tes appareils.',
-      one:
-          '$count skin : un canard et son propre décor. À toi pour toujours, sur tous tes appareils.',
+      other: '$count skins, chacun avec un canard et son propre décor. À toi pour toujours, sur tous tes appareils.',
+      one: '$count skin : un canard et son propre décor. À toi pour toujours, sur tous tes appareils.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'La boutique n’est pas disponible pour le moment. Réessaie plus tard.';
+  String get skinsStoreUnavailable => 'La boutique n’est pas disponible pour le moment. Réessaie plus tard.';
 
   @override
   String get skinsRestore => 'Restaurer les achats';

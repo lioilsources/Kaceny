@@ -14,9 +14,12 @@ import 'theme.dart';
 /// grouped by pack. Paid packs show locked until bought; tapping a locked
 /// skin offers its pack.
 class SkinsScreen extends StatefulWidget {
-  const SkinsScreen({super.key, required this.services});
+  const SkinsScreen({super.key, required this.services, this.scrollToPack});
 
   final AppServices services;
+
+  /// Pack to scroll to on open (the in-app purchase review screenshot).
+  final String? scrollToPack;
 
   @override
   State<SkinsScreen> createState() => _SkinsScreenState();
@@ -28,17 +31,37 @@ class _SkinsScreenState extends State<SkinsScreen> {
   /// Skin to select once its pack is bought (the one tapped to buy it).
   Skin? _wanted;
 
+  final _packKey = GlobalKey();
+  final _scroll = ScrollController();
+
   AppServices get services => widget.services;
 
   @override
   void initState() {
     super.initState();
     _outcomes = services.store.outcomes.listen(_onOutcome);
+    if (widget.scrollToPack != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToPack());
+    }
+  }
+
+  /// The pack sits below the fold, so its header isn't built yet: step down
+  /// until it is, then bring it to the top.
+  Future<void> _scrollToPack() async {
+    for (var i = 0; i < 40 && _scroll.hasClients && _packKey.currentContext == null; i++) {
+      _scroll.jumpTo(_scroll.offset + 400);
+      await WidgetsBinding.instance.endOfFrame;
+    }
+    final pack = _packKey.currentContext;
+    if (pack != null && pack.mounted) {
+      await Scrollable.ensureVisible(pack);
+    }
   }
 
   @override
   void dispose() {
     _outcomes.cancel();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -142,11 +165,13 @@ class _SkinsScreenState extends State<SkinsScreen> {
       body: ListenableBuilder(
         listenable: Listenable.merge([settings, store]),
         builder: (context, _) => CustomScrollView(
+          controller: _scroll,
           slivers: [
             for (final MapEntry(key: packId, value: skins) in packs.entries) ...[
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
                 sliver: SliverToBoxAdapter(
+                  key: packId == widget.scrollToPack ? _packKey : null,
                   child: Row(
                     children: [
                       Flexible(

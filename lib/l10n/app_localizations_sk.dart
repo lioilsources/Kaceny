@@ -57,8 +57,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get settingsAutoReload => 'Automatické nabíjanie';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Inak nabiješ potiahnutím prsta dole alebo ťuknutím na náboje.';
+  String get settingsAutoReloadHint => 'Inak nabiješ potiahnutím prsta dole alebo ťuknutím na náboje.';
 
   @override
   String get settingsDebug => 'Debug: hitboxy a výstrely';
@@ -84,8 +83,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Výsledky všetkých hráčov v Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Výsledky všetkých hráčov v Game Center / Play Games.';
 
   @override
   String get leaderboardSignInInfo => 'Prihlás sa a porovnaj sa s ostatnými.';
@@ -149,19 +147,15 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count skinov, každý s kačicou a vlastným pozadím. Navždy tvoje, na všetkých tvojich zariadeniach.',
-      few:
-          '$count skiny, každý s kačicou a vlastným pozadím. Navždy tvoje, na všetkých tvojich zariadeniach.',
-      one:
-          '$count skin: kačica a jej vlastné pozadie. Navždy tvoj, na všetkých tvojich zariadeniach.',
+      other: '$count skinov, každý s kačicou a vlastným pozadím. Navždy tvoje, na všetkých tvojich zariadeniach.',
+      few: '$count skiny, každý s kačicou a vlastným pozadím. Navždy tvoje, na všetkých tvojich zariadeniach.',
+      one: '$count skin: kačica a jej vlastné pozadie. Navždy tvoj, na všetkých tvojich zariadeniach.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'Obchod teraz nie je dostupný. Skús to neskôr.';
+  String get skinsStoreUnavailable => 'Obchod teraz nie je dostupný. Skús to neskôr.';
 
   @override
   String get skinsRestore => 'Obnoviť nákupy';
