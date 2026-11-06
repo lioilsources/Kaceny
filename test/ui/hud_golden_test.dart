@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaceny/config/game_config.dart';
 import 'package:kaceny/game/hud_state.dart';
+import 'package:kaceny/l10n/app_localizations.dart';
 import 'package:kaceny/ui/hud.dart';
 import 'package:kaceny/ui/theme.dart';
 
@@ -23,6 +24,10 @@ Future<void> pumpHud(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
+      // Czech, as the goldens were drawn.
+      locale: const Locale('cs'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Builder(
         builder: (context) {
           final p = MediaQuery.paddingOf(context);

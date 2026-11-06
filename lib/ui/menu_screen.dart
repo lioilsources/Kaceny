@@ -9,6 +9,7 @@ import 'game_screen.dart';
 import 'leaderboard_screen.dart';
 import 'settings_screen.dart';
 import 'skins_screen.dart';
+import '../l10n/l10n.dart';
 import 'theme.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -44,7 +45,9 @@ class MenuScreen extends StatelessWidget {
                       listenable: services.online,
                       builder: (context, _) => services.online.offered
                           ? IconButton(
-                              tooltip: services.online.available ? 'Online žebříček' : 'Přihlásit se',
+                              tooltip: services.online.available
+                                  ? context.l10n.menuOnlineLeaderboard
+                                  : context.l10n.signIn,
                               iconSize: 30,
                               color: KColors.ink,
                               icon: Icon(services.online.available ? Icons.emoji_events : Icons.login),
@@ -64,28 +67,28 @@ class MenuScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '90 vteřin. 8 nábojů. Hodně kačen.',
+                    context.l10n.menuTagline,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(color: KColors.ink.withValues(alpha: 0.7)),
                   ),
                   const Spacer(),
                   FilledButton(
                     onPressed: () => _open(context, GameScreen(services: services)),
-                    child: const Text('HRÁT'),
+                    child: Text(context.l10n.menuPlay),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(
                     onPressed: () => _open(context, SkinsScreen(services: services)),
-                    child: const Text('Skiny'),
+                    child: Text(context.l10n.menuSkins),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(
                     onPressed: () => _open(context, LeaderboardScreen(services: services)),
-                    child: const Text('Žebříček'),
+                    child: Text(context.l10n.menuLeaderboard),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(
                     onPressed: () => _open(context, SettingsScreen(services: services)),
-                    child: const Text('Nastavení'),
+                    child: Text(context.l10n.menuSettings),
                   ),
                   const Spacer(flex: 3),
                 ],

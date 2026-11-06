@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../game/hud_state.dart';
+import '../l10n/l10n.dart';
 import 'theme.dart';
 
 /// In-round HUD (§5): time left and score on top, the ammo belt at the bottom.
@@ -210,7 +211,7 @@ class _ReloadHint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = reloading ? 'nabíjím…' : 'přejeď dolů nebo ťukni sem';
+    final text = reloading ? context.l10n.hudReloading : context.l10n.hudReloadHint;
     return AnimatedOpacity(
       opacity: visible || reloading ? 1 : 0,
       duration: const Duration(milliseconds: 120),

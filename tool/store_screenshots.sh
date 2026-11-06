@@ -3,17 +3,23 @@
 # store page (olin.now), taken from the real app in an iOS simulator.
 #
 #   tool/store_screenshots.sh <out-dir> [skin ...]
+#   LANGS="en cs de" CLIPS=0 tool/store_screenshots.sh <out-dir>   # App Store / Play
 #
 # One debug build is installed; each shot sets the app's preferences
 # (`flutter.settings.skin`, and `flutter.shots.screen` which a debug build
 # honours, see main.dart) and relaunches it, so nothing has to be tapped.
-# Writes <out-dir>/NN-<name>.png and <out-dir>/clip-<skin>.mp4.
+# Writes <out-dir>/NN-<name>.png and <out-dir>/clip-<skin>.mp4; with LANGS,
+# <out-dir>/<lang>/NN-<name>.png per language (passed as launch arguments, so
+# neither the simulator's nor the Mac's language changes). The build unlocks
+# every pack (TESTER_UNLOCK), so paid skins can be shot in play.
 set -euo pipefail
 
 OUT="${1:?usage: $0 <out-dir> [skin ...]}"
 shift
 if [ $# -gt 0 ]; then SHOT_SKINS=("$@"); else SHOT_SKINS=(classic cyberpunk kawaii christmas popart sumie); fi
 CLIP_SKINS=(kawaii cyberpunk christmas)
+read -ra LANG_LIST <<< "${LANGS:-}"
+[ "${CLIPS:-1}" = 1 ] || CLIP_SKINS=()
 SIM="Kaceny-Shots-iPhone"
 BUNDLE="com.ol1n.kaceny"
 cd "$(dirname "$0")/.."
@@ -32,7 +38,7 @@ xcrun simctl bootstatus "$udid" -b >/dev/null
 xcrun simctl status_bar "$udid" override --time 9:41 --batteryState charged --batteryLevel 100 \
   --cellularBars 4 --wifiBars 3 --dataNetwork wifi
 
-flutter build ios --simulator --debug >/dev/null
+flutter build ios --simulator --debug --dart-define=TESTER_UNLOCK=true >/dev/null
 xcrun simctl install "$udid" build/ios/iphonesimulator/Runner.app
 
 # The app reads NSUserDefaults from its own data container. Write that plist
@@ -45,23 +51,39 @@ launch() {
   if [ "$1" = "-" ]; then xcrun simctl spawn "$udid" defaults delete "$PLIST" flutter.shots.screen 2>/dev/null || true
   else xcrun simctl spawn "$udid" defaults write "$PLIST" flutter.shots.screen -string "$1"; fi
   xcrun simctl spawn "$udid" defaults write "$PLIST" flutter.settings.skin -string "$2"
-  xcrun simctl launch "$udid" "$BUNDLE" >/dev/null
+  xcrun simctl launch "$udid" "$BUNDLE" ${LANG_ARGS[@]+"${LANG_ARGS[@]}"} >/dev/null
   sleep "$3"
 }
 
-shot() { xcrun simctl io "$udid" screenshot --type=png "$OUT/$1.png" >/dev/null; echo "  $1.png"; }
+DIR="$OUT"
+shot() { xcrun simctl io "$udid" screenshot --type=png "$DIR/$1.png" >/dev/null; echo "  $1.png"; }
 
+shoot_all() {
+  local n=1
+  launch - classic 6;      shot "$(printf %02d $n)-menu";  n=$((n + 1))
+  launch skins kawaii 6;   shot "$(printf %02d $n)-skiny"; n=$((n + 1))
+  for skin in "${SHOT_SKINS[@]}"; do
+    # ducks need a few seconds to fill the sky
+    launch game "$skin" 14; shot "$(printf %02d $n)-$skin"; n=$((n + 1))
+  done
+}
+
+LANG_ARGS=()
 # first launch after an install compiles the Dart code; let it finish
 launch - classic 20
-n=1
-launch - classic 6;      shot "$(printf %02d $n)-menu";  n=$((n + 1))
-launch skins kawaii 6;   shot "$(printf %02d $n)-skiny"; n=$((n + 1))
-for skin in "${SHOT_SKINS[@]}"; do
-  # ducks need a few seconds to fill the sky
-  launch game "$skin" 14; shot "$(printf %02d $n)-$skin"; n=$((n + 1))
-done
+if [ ${#LANG_LIST[@]} -eq 0 ]; then
+  shoot_all
+else
+  for lang in "${LANG_LIST[@]}"; do
+    echo "$lang"
+    DIR="$OUT/$lang"; mkdir -p "$DIR"
+    LANG_ARGS=(-AppleLanguages "($lang)" -AppleLocale "$lang")
+    shoot_all
+  done
+  LANG_ARGS=()
+fi
 
-for skin in "${CLIP_SKINS[@]}"; do
+for skin in ${CLIP_SKINS[@]+"${CLIP_SKINS[@]}"}; do
   launch game "$skin" 5
   xcrun simctl io "$udid" recordVideo --codec=h264 --force "$OUT/clip-$skin.mp4" 2>/dev/null &
   rec=$!

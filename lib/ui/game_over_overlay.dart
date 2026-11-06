@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../app_services.dart';
 import '../game/kaceny_game.dart';
 import '../services/leaderboard/leaderboard_repository.dart';
+import '../l10n/l10n.dart';
 import 'theme.dart';
 
 /// End of a round (§4.4): score, best, accuracy; initials if it made the
@@ -102,7 +103,7 @@ class _GameOverOverlayState extends State<GameOverOverlay> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Konec kola', style: hudText.copyWith(fontSize: 28)),
+                Text(context.l10n.gameOverTitle, style: hudText.copyWith(fontSize: 28)),
                 const SizedBox(height: 8),
                 Text('${result.score}', style: hudText.copyWith(fontSize: 76, height: 1)),
                 if (record)
@@ -110,13 +111,13 @@ class _GameOverOverlayState extends State<GameOverOverlay> {
                     margin: const EdgeInsets.only(top: 8),
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(color: KColors.orange, borderRadius: BorderRadius.circular(12)),
-                    child: Text('NOVÝ REKORD!', style: hudText.copyWith(fontSize: 16)),
+                    child: Text(context.l10n.gameOverNewRecord, style: hudText.copyWith(fontSize: 16)),
                   ),
                 const SizedBox(height: 16),
                 _Stats(result: result, best: record ? result.score : _previousBest),
                 if (_qualifies) ...[
                   const SizedBox(height: 20),
-                  Text('Do žebříčku! Tvoje iniciály:', style: hudText.copyWith(fontSize: 16)),
+                  Text(context.l10n.gameOverInitials, style: hudText.copyWith(fontSize: 16)),
                   const SizedBox(height: 8),
                   SizedBox(
                     width: 160,
@@ -126,9 +127,7 @@ class _GameOverOverlayState extends State<GameOverOverlay> {
                       maxLength: 3,
                       textAlign: TextAlign.center,
                       textCapitalization: TextCapitalization.characters,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9ÁČĎÉĚÍŇÓŘŠŤÚŮÝŽáčďéěíňóřšťúůýž]')),
-                      ],
+                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\p{L}0-9]', unicode: true))],
                       style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900, letterSpacing: 6),
                       decoration: InputDecoration(
                         counterText: '',
@@ -142,13 +141,13 @@ class _GameOverOverlayState extends State<GameOverOverlay> {
                   ),
                 ],
                 const SizedBox(height: 24),
-                FilledButton(onPressed: () => _leave(widget.onReplay), child: const Text('Znovu')),
+                FilledButton(onPressed: () => _leave(widget.onReplay), child: Text(context.l10n.gameOverReplay)),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     _SmallButton(
-                      label: 'Žebříček',
+                      label: context.l10n.menuLeaderboard,
                       onPressed: () async {
                         FocusScope.of(context).unfocus();
                         final rank = await _save();
@@ -159,7 +158,7 @@ class _GameOverOverlayState extends State<GameOverOverlay> {
                       },
                     ),
                     const SizedBox(width: 12),
-                    _SmallButton(label: 'Menu', onPressed: () => _leave(widget.onMenu)),
+                    _SmallButton(label: context.l10n.backToMenu, onPressed: () => _leave(widget.onMenu)),
                   ],
                 ),
               ],
@@ -194,9 +193,9 @@ class _Stats extends StatelessWidget {
       width: 320,
       child: Row(
         children: [
-          stat('nejlepší', '$best'),
-          stat('přesnost', '${(result.accuracy * 100).round()} %'),
-          stat('série', '${result.bestStreak}'),
+          stat(context.l10n.statBest, '$best'),
+          stat(context.l10n.statAccuracy, context.l10n.percent((result.accuracy * 100).round())),
+          stat(context.l10n.statStreak, '${result.bestStreak}'),
         ],
       ),
     );

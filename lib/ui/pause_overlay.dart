@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
 import 'theme.dart';
 
 class PauseOverlay extends StatelessWidget {
@@ -17,13 +18,13 @@ class PauseOverlay extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Pauza', style: hudText.copyWith(fontSize: 44)),
+            Text(context.l10n.pause, style: hudText.copyWith(fontSize: 44)),
             const SizedBox(height: 28),
-            FilledButton(onPressed: onResume, child: const Text('Pokračovat')),
+            FilledButton(onPressed: onResume, child: Text(context.l10n.pauseResume)),
             const SizedBox(height: 12),
-            _LightOutlined(onPressed: onRestart, label: 'Znovu od začátku'),
+            _LightOutlined(onPressed: onRestart, label: context.l10n.pauseRestart),
             const SizedBox(height: 12),
-            _LightOutlined(onPressed: onMenu, label: 'Menu'),
+            _LightOutlined(onPressed: onMenu, label: context.l10n.backToMenu),
           ],
         ),
       ),

@@ -2,14 +2,17 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_services.dart';
+import 'l10n/app_localizations.dart';
 import 'services/haptics.dart';
 import 'services/leaderboard/games_services_leaderboard.dart';
 import 'services/leaderboard/local_leaderboard.dart';
 import 'services/settings.dart';
 import 'services/sfx.dart';
+import 'services/skin_store.dart';
 import 'ui/game_screen.dart';
 import 'ui/menu_screen.dart';
 import 'ui/skins_screen.dart';
@@ -26,10 +29,12 @@ Future<void> main() async {
     haptics: Haptics(),
     leaderboard: LocalLeaderboard(),
     online: GamesServicesLeaderboard(),
+    store: SkinStore(),
   );
   // Neither may hold up the first frame.
   services.sfx.load().ignore();
   services.online.signIn().ignore();
+  services.store.init().ignore();
   runApp(KacenyApp(services: services, start: kDebugMode ? await _shotsScreen() : null));
 }
 
@@ -63,6 +68,25 @@ class KacenyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kačeny',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      // English for any language the game doesn't speak (the default would
+      // be the first supported one, alphabetically Czech).
+      localeListResolutionCallback: (locales, supported) {
+        for (final locale in locales ?? const <Locale>[]) {
+          for (final s in supported) {
+            if (s.languageCode == locale.languageCode) {
+              return s;
+            }
+          }
+        }
+        return const Locale('en');
+      },
       theme: buildTheme(),
       home: switch (start) {
         'game' => GameScreen(services: services),
