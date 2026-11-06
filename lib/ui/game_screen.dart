@@ -9,6 +9,7 @@ import 'game_over_overlay.dart';
 import 'hud.dart';
 import 'leaderboard_screen.dart';
 import 'pause_overlay.dart';
+import '../l10n/l10n.dart';
 import 'theme.dart';
 
 /// Hosts one [KacenyGame]: raw pointer input, the HUD and the overlays.
@@ -39,7 +40,12 @@ class _GameScreenState extends State<GameScreen> {
       autoReload: s.autoReload,
       debugOverlay: s.debugOverlay,
       onRoundFinished: (result) => services.online.submit(result.score),
-      skin: Skin.byId(s.skin),
+      // A pack can be gone (refunded, another store account): back to the
+      // original look rather than flying a skin that isn't owned.
+      skin: switch (Skin.byId(s.skin)) {
+        final skin when services.store.isUnlocked(skin) => skin,
+        _ => Skin.vector,
+      },
     );
     s.addListener(_applySettings);
     // Leaving the app mid-round pauses it.
@@ -150,7 +156,7 @@ class _GameScreenState extends State<GameScreen> {
                           style: IconButton.styleFrom(backgroundColor: KColors.pill),
                           onPressed: game.pause,
                           icon: const Icon(Icons.pause_rounded, color: Colors.white),
-                          tooltip: 'Pauza',
+                          tooltip: context.l10n.pause,
                         ),
                       ),
                     ),
