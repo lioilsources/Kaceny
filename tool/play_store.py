@@ -9,7 +9,7 @@ and products need a payments profile and an uploaded build with the billing
 permission.
 
 - listing: title, short and full description per language, contact details
-- shots:   store/screenshots/<lang>/*.png as phone screenshots, plus
+- shots:   store/screenshots/<lang>/ + common/ as phone screenshots, plus
            store/play-feature.png (1024x500) and the 512 px icon
 - iap:     one managed product per paid pack at $0.99, names per language
 """
@@ -25,7 +25,7 @@ from pathlib import Path
 import jwt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from asc_store import IAP_DESCRIPTION, LANGS, LISTING, ROOT, _dart_map, _paid_packs  # noqa: E402
+from asc_store import IAP_DESCRIPTION, LANGS, LISTING, ROOT, _dart_map, _paid_packs, shots_for  # noqa: E402
 
 PACKAGE = "com.ol1n.kaceny"
 SA_DIR = Path.home() / "Dev/Distribution/Android/_GoogleConsole/GooglePlay"
@@ -105,9 +105,8 @@ def step_shots():
     with Edit() as edit:
         for lang in LANGS:
             locale = PLAY_LOCALE[lang]
-            folder = ROOT / "store/screenshots" / lang
-            if folder.is_dir():
-                shots = sorted(folder.glob("*.png"))[:8]
+            if (ROOT / "store/screenshots" / lang).is_dir():
+                shots = shots_for(lang)[:8]
                 _replace_images(edit, locale, "phoneScreenshots", shots)
                 print(f"  {locale}: {len(shots)} screenshots")
             if feature.exists():

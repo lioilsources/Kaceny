@@ -14,7 +14,7 @@ Every step is idempotent: existing records are updated, not duplicated.
 - iap:         one non-consumable per paid pack at $0.99, names per language,
                review screenshot (store/iap-review.png)
 - leaderboard: Game Center + the all-time leaderboard (kaceny.alltime)
-- shots:       store/screenshots/<lang>/*.png as 6.9" iPhone screenshots
+- shots:       store/screenshots/<lang>/ + common/ as 6.9" iPhone screenshots
 """
 
 import hashlib
@@ -288,6 +288,13 @@ def step_leaderboard(app):
                          {ASC_LOCALE[lang]: {"name": LEADERBOARD_NAME[lang]} for lang in LANGS})
 
 
+def shots_for(lang):
+    """The language's own screens (menu, picker), then the gameplay ones,
+    which have no text and are shared."""
+    shots = ROOT / "store/screenshots"
+    return sorted((shots / lang).glob("*.jpg")) + sorted((shots / "common").glob("*.jpg"))
+
+
 def step_shots(app):
     version = editable_version(app)
     for loc in get_all(f"/v1/appStoreVersions/{version}/appStoreVersionLocalizations"):
@@ -296,6 +303,7 @@ def step_shots(app):
         folder = ROOT / "store/screenshots" / (lang or "")
         if not lang or not folder.is_dir():
             continue
+        files = shots_for(lang)
         sets = get_all(f"/v1/appStoreVersionLocalizations/{loc['id']}/appScreenshotSets")
         shot_set = next((s["id"] for s in sets if s["attributes"]["screenshotDisplayType"] == "APP_IPHONE_67"), None)
         if shot_set:
@@ -306,7 +314,6 @@ def step_shots(app):
                 "type": "appScreenshotSets", "attributes": {"screenshotDisplayType": "APP_IPHONE_67"},
                 "relationships": {"appStoreVersionLocalization": rel("appStoreVersionLocalizations",
                                                                      loc["id"])}}})["data"]["id"]
-        files = sorted(folder.glob("*.png"))[:10]
         for f in files:
             _upload("/v1/appScreenshots", "appScreenshots", {"appScreenshotSet": rel("appScreenshotSets", shot_set)}, f)
         print(f"  {locale}: {len(files)} screenshots")
