@@ -131,10 +131,10 @@ def step_info(app):
     info = editable_app_info(app)
     api("PATCH", f"/v1/appInfos/{info}", {"data": {"type": "appInfos", "id": info, "relationships": {
         "primaryCategory": rel("appCategories", "GAMES"),
-        "primarySubcategoryOne": rel("appCategories", "GAMES_ARCADE"),
+        "primarySubcategoryOne": rel("appCategories", "GAMES_ACTION"),
         "primarySubcategoryTwo": rel("appCategories", "GAMES_CASUAL"),
     }}})
-    print("  category Games / Arcade, Casual")
+    print("  category Games / Action, Casual")
     api("PATCH", f"/v1/apps/{app}", {"data": {"type": "apps", "id": app, "attributes": {
         "contentRightsDeclaration": "DOES_NOT_USE_THIRD_PARTY_CONTENT"}}})
     existing = get_all(f"/v1/appInfos/{info}/appInfoLocalizations")
@@ -159,12 +159,16 @@ def step_rating(app):
     info = editable_app_info(app)
     decl = api("GET", f"/v1/appInfos/{info}/ageRatingDeclaration")["data"]
     attrs = {}
+    # A new app returns these as null, so their type has to be known up front.
+    flags = {"advertising", "ageAssurance", "gambling", "healthOrWellnessTopics", "lootBox", "messagingAndChat",
+             "parentalControls", "socialMedia", "socialMediaAgeRestricted", "unrestrictedWebAccess",
+             "userGeneratedContent"}
     for k, v in decl["attributes"].items():
-        if isinstance(v, bool):
+        if isinstance(v, bool) or k in flags:
             attrs[k] = False
         elif isinstance(v, str) or v is None:
             if k in ("kidsAgeBand", "ageRatingOverride", "ageRatingOverrideV2", "koreaAgeRatingOverride",
-                     "developerAgeRatingInfoUrl"):
+                     "developerAgeRatingInfoUrl", "gracRatingClassificationNumber"):
                 continue
             attrs[k] = "NONE"
     # Ducks get shot and tumble out of the frame: cartoon, mild, frequent.
