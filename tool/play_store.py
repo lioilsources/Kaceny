@@ -1,6 +1,7 @@
 """Set up Kačeny's Google Play listing and products from the files in this repo.
 
-    python3 tool/play_store.py <step> [...]     steps: listing shots iap all
+    python3 tool/play_store.py <step> [...]     steps: listing shots bundle iap all
+    AAB=path/to/app-release.aab python3 tool/play_store.py bundle
 
 Uses the google-play-publisher service account from
 ~/Dev/Distribution/Android/_GoogleConsole/GooglePlay/ (never printed). The app
@@ -118,26 +119,47 @@ def step_shots():
             print("  (store/play-icon.png missing: upload a 512 px icon)")
 
 
+def step_bundle(aab=None):
+    """Upload an AAB (path in $AAB, default the v-tag release download) and
+    put it on the production track as a draft release."""
+    import os
+    path = Path(aab or os.environ["AAB"])
+    with Edit() as edit:
+        bundle = api("POST", f"{UPLOAD}/edits/{edit.id}/bundles?uploadType=media", raw=path.read_bytes(),
+                     ctype="application/octet-stream")
+        code = bundle["versionCode"]
+        api("PUT", f"{edit.base}/tracks/production", {"track": "production", "releases": [
+            {"versionCodes": [str(code)], "status": "draft"}]})
+        print(f"  bundle versionCode {code} -> production (draft)")
+
+
 def step_iap():
+    """One-time products (the legacy inappproducts API is closed): $0.99 in the
+    US, converted by Google for every other region, then activated."""
     packs, cs_titles = _paid_packs()
     names = _dart_map("packNames")
+    usd = {"currencyCode": "USD", "units": "0", "nanos": 990000000}
+    conversion = api("POST", f"{API}/pricing:convertRegionPrices", {"price": usd})
+    converted, regions_version = conversion["convertedRegionPrices"], conversion["regionVersion"]["version"]
+    regions = [{"regionCode": code, "price": p["price"], "availability": "AVAILABLE"}
+               for code, p in sorted(converted.items())]
     for pack in packs:
         sku = f"{PACKAGE}.pack.{pack}"
-        listings = {PLAY_LOCALE[lang]: {"title": cs_titles[pack] if lang == "cs" else names[lang][pack],
-                                        "description": IAP_DESCRIPTION[lang]} for lang in LANGS}
-        product = {"packageName": PACKAGE, "sku": sku, "status": "active", "purchaseType": "managedUser",
-                   "defaultLanguage": PLAY_LOCALE["en"], "listings": listings,
-                   "defaultPrice": {"priceMicros": "990000", "currency": "USD"}}
-        exists = api("GET", f"{API}/inappproducts/{sku}", ok=(404,))
-        query = "?autoConvertMissingPrices=true"
-        if exists:
-            api("PUT", f"{API}/inappproducts/{sku}{query}", product)
-        else:
-            api("POST", f"{API}/inappproducts{query}", product)
-        print(f"  {sku} $0.99")
+        product = {"packageName": PACKAGE, "productId": sku,
+                   "listings": [{"languageCode": PLAY_LOCALE[lang],
+                                 "title": cs_titles[pack] if lang == "cs" else names[lang][pack],
+                                 "description": IAP_DESCRIPTION[lang]} for lang in LANGS],
+                   "purchaseOptions": [{"purchaseOptionId": "buy", "buyOption": {"legacyCompatible": True},
+                                        "regionalPricingAndAvailabilityConfigs": regions}]}
+        api("PATCH", f"{API}/onetimeproducts/{sku}?allowMissing=true&updateMask=listings,purchaseOptions"
+                     f"&regionsVersion.version={regions_version}", product)
+        api("POST", f"{API}/oneTimeProducts/{sku}/purchaseOptions:batchUpdateStates", {"requests": [
+            {"activatePurchaseOptionRequest": {"packageName": PACKAGE, "productId": sku,
+                                               "purchaseOptionId": "buy"}}]})
+        print(f"  {sku} $0.99, {len(regions)} regions, active")
 
 
-STEPS = {"listing": step_listing, "shots": step_shots, "iap": step_iap}
+STEPS = {"listing": step_listing, "shots": step_shots, "bundle": step_bundle, "iap": step_iap}
 
 if __name__ == "__main__":
     wanted = sys.argv[1:] or ["all"]
