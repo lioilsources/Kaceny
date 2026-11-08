@@ -3,8 +3,9 @@
     python3 tool/asc_store.py <step> [...]     steps: info listing rating price iap leaderboard shots all
 
 Needs the App Manager API key (metadata and products; the "CI" developer key
-gets 403): ~/Dev/Distribution/Apple/_Keys/AuthKey_$ASC_KEY_ID.p8, never
-printed. The app record itself must exist (the API cannot create apps).
+gets 403): ASC_KEY_ID and ASC_ISSUER_ID in the environment (or .env, see
+.env.example), the key itself in ~/Dev/Distribution/Apple/_Keys/AuthKey_<id>.p8,
+never printed. The app record itself must exist (the API cannot create apps).
 Every step is idempotent: existing records are updated, not duplicated.
 
 - info:        name, subtitle, privacy URL per language; Games / Arcade
@@ -31,9 +32,21 @@ import jwt
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLE = "com.ol1n.kaceny"
-ISSUER = "edeaacd0-9ce8-4fae-91b7-e451efabc799"
-KEY_ID = os.environ.get("ASC_KEY_ID", "YBT496SW43")
-KEY = (Path.home() / f"Dev/Distribution/Apple/_Keys/AuthKey_{KEY_ID}.p8").read_text()
+
+
+def _env(name):
+    """From the environment, else from the gitignored .env next to the repo root."""
+    if os.environ.get(name):
+        return os.environ[name]
+    env = ROOT / ".env"
+    if env.exists():
+        for line in env.read_text().splitlines():
+            key, _, value = line.partition("=")
+            if key.strip() == name and value.strip():
+                return value.strip().strip('"')
+    raise SystemExit(f"{name} is not set (environment or .env, see .env.example)")
+
+
 PRIVACY_URL = "https://lioilsources.github.io/Kaceny/privacy.html"
 SUPPORT_URL = "https://lioilsources.github.io/Kaceny/support.html"
 MARKETING_URL = "https://olin.now/kaceny"
@@ -74,9 +87,12 @@ LEADERBOARD_NAME = {
 
 
 def _token():
+    # Read lazily: tool/play_store.py imports this module without the ASC key.
+    key_id = _env("ASC_KEY_ID")
+    key = (Path.home() / f"Dev/Distribution/Apple/_Keys/AuthKey_{key_id}.p8").read_text()
     now = int(time.time())
-    return jwt.encode({"iss": ISSUER, "iat": now, "exp": now + 1200, "aud": "appstoreconnect-v1"}, KEY,
-                      algorithm="ES256", headers={"kid": KEY_ID})
+    return jwt.encode({"iss": _env("ASC_ISSUER_ID"), "iat": now, "exp": now + 1200, "aud": "appstoreconnect-v1"},
+                      key, algorithm="ES256", headers={"kid": key_id})
 
 
 def api(method, path, body=None, ok=(200, 201, 204)):
