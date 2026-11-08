@@ -46,5 +46,7 @@
   "skinsStoreUnavailable": "Der Store ist gerade nicht erreichbar. Versuch es später noch mal.",
   "skinsRestore": "Käufe wiederherstellen",
   "skinsRestoreDone": "Käufe wiederhergestellt.",
-  "skinsThanks": "Danke! Das Paket gehört dir."
+  "skinsThanks": "Danke! Das Paket gehört dir.",
+  "skinsAllTitle": "Alle Pakete",
+  "skinsAllBody": "{skins} Skins aus allen {packs} Paketen auf einmal, für etwa den halben Preis. Für immer deins, auf all deinen Geräten."
 }

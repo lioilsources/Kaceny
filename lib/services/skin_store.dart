@@ -11,7 +11,8 @@ enum PurchaseOutcome { bought, restored, failed }
 
 /// The one place that talks to the platform store (StoreKit / Play Billing).
 /// Skins are sold by pack, one non-consumable product per paid pack
-/// (`com.ol1n.kaceny.pack.<packId>`); the free pack needs none.
+/// (`com.ol1n.kaceny.pack.<packId>`); the free pack needs none. One more
+/// product, [allPacks], unlocks every paid pack at once.
 ///
 /// Bought pack ids are cached in shared_preferences so the picker works
 /// offline; the store stays the source of truth through Restore Purchases.
@@ -25,6 +26,9 @@ class SkinStore extends ChangeNotifier {
   static const testerUnlock = bool.fromEnvironment('TESTER_UNLOCK');
 
   static String productId(String packId) => 'com.ol1n.kaceny.pack.$packId';
+
+  /// The bundle: owning it counts as owning every paid pack.
+  static const allPacks = 'all';
 
   /// Paid packs in catalog order.
   static final List<String> paidPacks = <String>{
@@ -53,7 +57,10 @@ class SkinStore extends ChangeNotifier {
   /// Finished purchases and restores, as (packId, outcome).
   Stream<(String, PurchaseOutcome)> get outcomes => _outcomes.stream;
 
-  bool ownsPack(String packId) => !supported || _owned.contains(packId);
+  bool ownsPack(String packId) => !supported || _owned.contains(packId) || _owned.contains(allPacks);
+
+  /// Nothing left to sell: the bundle or every pack on its own.
+  bool get ownsEverything => ownsPack(allPacks) || paidPacks.every(ownsPack);
 
   bool isUnlocked(Skin skin) => skin.free || ownsPack(skin.packId);
 
@@ -76,7 +83,9 @@ class SkinStore extends ChangeNotifier {
     );
     try {
       if (await InAppPurchase.instance.isAvailable()) {
-        final response = await InAppPurchase.instance.queryProductDetails({for (final p in paidPacks) productId(p)});
+        final response = await InAppPurchase.instance.queryProductDetails({
+          for (final p in [...paidPacks, allPacks]) productId(p),
+        });
         _products = {for (final p in response.productDetails) p.id: p};
         if (response.notFoundIDs.isNotEmpty) {
           debugPrint('Kačeny: products not in the store: ${response.notFoundIDs}');
@@ -161,7 +170,7 @@ class SkinStore extends ChangeNotifier {
   }
 
   String? _packFor(String id) {
-    for (final p in paidPacks) {
+    for (final p in [...paidPacks, allPacks]) {
       if (productId(p) == id) {
         return p;
       }

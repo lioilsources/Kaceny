@@ -57,8 +57,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get settingsAutoReload => 'Automatyczne przeładowanie';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Inaczej przeładujesz, przesuwając palcem w dół lub stukając w naboje.';
+  String get settingsAutoReloadHint => 'Inaczej przeładujesz, przesuwając palcem w dół lub stukając w naboje.';
 
   @override
   String get settingsDebug => 'Debug: hitboxy i strzały';
@@ -84,8 +83,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Wyniki wszystkich graczy w Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Wyniki wszystkich graczy w Game Center / Play Games.';
 
   @override
   String get leaderboardSignInInfo => 'Zaloguj się i porównaj z innymi.';
@@ -149,21 +147,16 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count skórki, każda z kaczką i własnym tłem. Twoje na zawsze, na wszystkich twoich urządzeniach.',
-      many:
-          '$count skórek, każda z kaczką i własnym tłem. Twoje na zawsze, na wszystkich twoich urządzeniach.',
-      few:
-          '$count skórki, każda z kaczką i własnym tłem. Twoje na zawsze, na wszystkich twoich urządzeniach.',
-      one:
-          '$count skórka: kaczka z własnym tłem. Twoja na zawsze, na wszystkich twoich urządzeniach.',
+      other: '$count skórki, każda z kaczką i własnym tłem. Twoje na zawsze, na wszystkich twoich urządzeniach.',
+      many: '$count skórek, każda z kaczką i własnym tłem. Twoje na zawsze, na wszystkich twoich urządzeniach.',
+      few: '$count skórki, każda z kaczką i własnym tłem. Twoje na zawsze, na wszystkich twoich urządzeniach.',
+      one: '$count skórka: kaczka z własnym tłem. Twoja na zawsze, na wszystkich twoich urządzeniach.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'Sklep jest teraz niedostępny. Spróbuj później.';
+  String get skinsStoreUnavailable => 'Sklep jest teraz niedostępny. Spróbuj później.';
 
   @override
   String get skinsRestore => 'Przywróć zakupy';
@@ -173,4 +166,12 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get skinsThanks => 'Dzięki! Pakiet jest twój.';
+
+  @override
+  String get skinsAllTitle => 'Wszystkie pakiety';
+
+  @override
+  String skinsAllBody(int skins, int packs) {
+    return '$skins skórek ze wszystkich $packs pakietów naraz, za mniej więcej połowę ceny. Na zawsze twoje, na wszystkich urządzeniach.';
+  }
 }

@@ -57,8 +57,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsAutoReload => 'Recarga automática';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Si no, recarga deslizando hacia abajo o tocando los cartuchos.';
+  String get settingsAutoReloadHint => 'Si no, recarga deslizando hacia abajo o tocando los cartuchos.';
 
   @override
   String get settingsDebug => 'Debug: hitboxes y disparos';
@@ -84,12 +83,10 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Puntuaciones de todos los jugadores en Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Puntuaciones de todos los jugadores en Game Center / Play Games.';
 
   @override
-  String get leaderboardSignInInfo =>
-      'Inicia sesión y compárate con los demás.';
+  String get leaderboardSignInInfo => 'Inicia sesión y compárate con los demás.';
 
   @override
   String get leaderboardOpen => 'Abrir';
@@ -150,17 +147,14 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count skins, cada uno un pato con su propio fondo. Tuyos para siempre, en todos tus dispositivos.',
-      one:
-          '$count skin: un pato con su propio fondo. Tuyo para siempre, en todos tus dispositivos.',
+      other: '$count skins, cada uno un pato con su propio fondo. Tuyos para siempre, en todos tus dispositivos.',
+      one: '$count skin: un pato con su propio fondo. Tuyo para siempre, en todos tus dispositivos.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'La tienda no está disponible ahora. Inténtalo más tarde.';
+  String get skinsStoreUnavailable => 'La tienda no está disponible ahora. Inténtalo más tarde.';
 
   @override
   String get skinsRestore => 'Restaurar compras';
@@ -170,4 +164,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get skinsThanks => '¡Gracias! El pack es tuyo.';
+
+  @override
+  String get skinsAllTitle => 'Todos los packs';
+
+  @override
+  String skinsAllBody(int skins, int packs) {
+    return '$skins skins de los $packs packs a la vez, por casi la mitad. Tuyos para siempre, en todos tus dispositivos.';
+  }
 }

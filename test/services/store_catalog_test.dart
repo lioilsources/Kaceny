@@ -14,6 +14,12 @@ void main() {
     expect(Skin.all.where((s) => s.free), hasLength(13));
   });
 
+  test('the bundle is its own product, not a pack of skins', () {
+    expect(SkinStore.productId(SkinStore.allPacks), 'com.ol1n.kaceny.pack.all');
+    expect(SkinStore.paidPacks, isNot(contains(SkinStore.allPacks)));
+    expect(Skin.all.where((s) => s.packId == SkinStore.allPacks), isEmpty);
+  });
+
   test('every skin and pack is named in every language the app speaks', () {
     for (final locale in AppLocalizations.supportedLocales.where((l) => l.languageCode != 'cs')) {
       final code = locale.languageCode;

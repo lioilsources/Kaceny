@@ -57,8 +57,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsAutoReload => 'Ricarica automatica';
 
   @override
-  String get settingsAutoReloadHint =>
-      'Altrimenti ricarica scorrendo verso il basso o toccando le cartucce.';
+  String get settingsAutoReloadHint => 'Altrimenti ricarica scorrendo verso il basso o toccando le cartucce.';
 
   @override
   String get settingsDebug => 'Debug: hitbox e colpi';
@@ -84,8 +83,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo =>
-      'Punteggi di tutti i giocatori su Game Center / Play Games.';
+  String get leaderboardOnlineInfo => 'Punteggi di tutti i giocatori su Game Center / Play Games.';
 
   @override
   String get leaderboardSignInInfo => 'Accedi e sfida gli altri.';
@@ -149,17 +147,14 @@ class AppLocalizationsIt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other:
-          '$count skin, ognuna con un’anatra e il suo sfondo. Tue per sempre, su tutti i tuoi dispositivi.',
-      one:
-          '$count skin: un’anatra con il suo sfondo. Tua per sempre, su tutti i tuoi dispositivi.',
+      other: '$count skin, ognuna con un’anatra e il suo sfondo. Tue per sempre, su tutti i tuoi dispositivi.',
+      one: '$count skin: un’anatra con il suo sfondo. Tua per sempre, su tutti i tuoi dispositivi.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable =>
-      'Lo store ora non è disponibile. Riprova più tardi.';
+  String get skinsStoreUnavailable => 'Lo store ora non è disponibile. Riprova più tardi.';
 
   @override
   String get skinsRestore => 'Ripristina acquisti';
@@ -169,4 +164,12 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get skinsThanks => 'Grazie! Il pacchetto è tuo.';
+
+  @override
+  String get skinsAllTitle => 'Tutti i pacchetti';
+
+  @override
+  String skinsAllBody(int skins, int packs) {
+    return '$skins skin da tutti i $packs pacchetti insieme, a circa metà prezzo. Tue per sempre, su tutti i tuoi dispositivi.';
+  }
 }
