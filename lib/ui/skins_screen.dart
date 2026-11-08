@@ -77,7 +77,7 @@ class _SkinsScreenState extends State<SkinsScreen> {
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
     final wanted = _wanted;
-    if (result == PurchaseOutcome.bought && wanted != null && wanted.packId == pack) {
+    if (result == PurchaseOutcome.bought && wanted != null && (wanted.packId == pack || pack == SkinStore.allPacks)) {
       services.settings.skin = wanted.id;
       _wanted = null;
     }
@@ -167,6 +167,13 @@ class _SkinsScreenState extends State<SkinsScreen> {
         builder: (context, _) => CustomScrollView(
           controller: _scroll,
           slivers: [
+            if (store.supported && !store.ownsEverything)
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(12, 16, 12, 0),
+                sliver: SliverToBoxAdapter(
+                  child: _AllPacksCard(store: store, onBuy: () => _buy(SkinStore.allPacks)),
+                ),
+              ),
             for (final MapEntry(key: packId, value: skins) in packs.entries) ...[
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
@@ -225,6 +232,38 @@ class _SkinsScreenState extends State<SkinsScreen> {
               ),
             ],
             const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Every paid pack in one purchase, above the per-pack lists.
+class _AllPacksCard extends StatelessWidget {
+  const _AllPacksCard({required this.store, required this.onBuy});
+
+  final SkinStore store;
+  final VoidCallback onBuy;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final paid = Skin.all.where((s) => !s.free).length;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              l10n.skinsAllTitle,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w900),
+            ),
+            const SizedBox(height: 4),
+            Text(l10n.skinsAllBody(paid, SkinStore.paidPacks.length)),
+            const SizedBox(height: 12),
+            _BuyButton(store: store, packId: SkinStore.allPacks, onPressed: onBuy),
           ],
         ),
       ),

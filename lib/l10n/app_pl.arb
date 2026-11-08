@@ -46,5 +46,7 @@
   "skinsStoreUnavailable": "Sklep jest teraz niedostępny. Spróbuj później.",
   "skinsRestore": "Przywróć zakupy",
   "skinsRestoreDone": "Zakupy przywrócone.",
-  "skinsThanks": "Dzięki! Pakiet jest twój."
+  "skinsThanks": "Dzięki! Pakiet jest twój.",
+  "skinsAllTitle": "Wszystkie pakiety",
+  "skinsAllBody": "{skins} skórek ze wszystkich {packs} pakietów naraz, za mniej więcej połowę ceny. Na zawsze twoje, na wszystkich urządzeniach."
 }

@@ -52,6 +52,21 @@ IAP_DESCRIPTION = {
     "fr": "10 skins de canards, chacun avec son décor.",
     "it": "10 skin di anatre, ognuna con il suo sfondo.",
 }
+# The bundle (com.ol1n.kaceny.pack.all, $4.99): every paid pack at once.
+ALL_NAME = {
+    "en": "All packs", "cs": "Všechny balíčky", "de": "Alle Pakete", "pl": "Wszystkie pakiety",
+    "sk": "Všetky balíčky", "es": "Todos los packs", "fr": "Tous les packs", "it": "Tutti i pacchetti",
+}
+ALL_DESCRIPTION = {
+    "en": "All 100 paid duck skins from all 10 packs.",
+    "cs": "Všech 100 placených skinů z 10 balíčků.",
+    "de": "Alle 100 Enten-Skins aus allen 10 Paketen.",
+    "pl": "Wszystkie 100 skórek kaczek z 10 pakietów.",
+    "sk": "Všetkých 100 platených skinov z 10 balíčkov.",
+    "es": "Las 100 skins de patos de los 10 packs.",
+    "fr": "Les 100 skins de canards des 10 packs.",
+    "it": "Tutte le 100 skin di anatre dei 10 pacchetti.",
+}
 LEADERBOARD_NAME = {
     "en": "Best score", "cs": "Nejlepší skóre", "de": "Bestwert", "pl": "Najlepszy wynik",
     "sk": "Najlepšie skóre", "es": "Mejor puntuación", "fr": "Meilleur score", "it": "Miglior punteggio",
@@ -235,26 +250,31 @@ def step_iap(app):
     names = _dart_map("packNames")
     existing = {x["attributes"]["productId"]: x["id"] for x in get_all(f"/v1/apps/{app}/inAppPurchasesV2?limit=200")}
     review_shot = ROOT / "store/iap-review.png"
-    for pack in packs:
+    items = [(pack, {lang: cs_titles[pack] if lang == "cs" else names[lang][pack] for lang in LANGS},
+              IAP_DESCRIPTION, "0.99",
+              f"Unlocks the 10 skins of the '{names['en'][pack]}' pack in the skin picker (menu > Skins).")
+             for pack in packs]
+    items.append(("all", ALL_NAME, ALL_DESCRIPTION, "4.99",
+                  "Unlocks every paid pack (100 skins) at once; sold from the card at the top of the skin "
+                  "picker (menu > Skins)."))
+    for pack, titles, descriptions, price, note in items:
         product = f"{BUNDLE}.pack.{pack}"
-        en = names["en"][pack]
+        en = titles["en"]
         if product in existing:
             iap = existing[product]
         else:
             iap = api("POST", "/v2/inAppPurchases", {"data": {"type": "inAppPurchases", "attributes": {
                 "name": f"Pack: {en}", "productId": product, "inAppPurchaseType": "NON_CONSUMABLE",
                 "familySharable": True,
-                "reviewNote": f"Unlocks the 10 skins of the '{en}' pack in the skin picker (menu > Skins). "
-                              "Skins only change how the ducks and the background look."},
+                "reviewNote": note + " Skins only change how the ducks and the background look."},
                 "relationships": {"app": rel("apps", app)}}})["data"]["id"]
         print(f"  {product}")
         locs = get_all(f"/v2/inAppPurchases/{iap}/inAppPurchaseLocalizations")
         upsert_localizations(locs, "inAppPurchaseLocalizations", {"inAppPurchaseV2": rel("inAppPurchases", iap)}, {
-            ASC_LOCALE[lang]: {"name": cs_titles[pack] if lang == "cs" else names[lang][pack],
-                               "description": IAP_DESCRIPTION[lang]}
+            ASC_LOCALE[lang]: {"name": titles[lang], "description": descriptions[lang]}
             for lang in LANGS})
         points = get_all(f"/v2/inAppPurchases/{iap}/pricePoints?filter[territory]=USA&limit=200")
-        point = next(p for p in points if p["attributes"]["customerPrice"] == "0.99")
+        point = next(p for p in points if p["attributes"]["customerPrice"] == price)
         api("POST", "/v1/inAppPurchasePriceSchedules", {
             "data": {"type": "inAppPurchasePriceSchedules", "relationships": {
                 "inAppPurchase": rel("inAppPurchases", iap), "baseTerritory": rel("territories", "USA"),
@@ -272,7 +292,7 @@ def step_iap(app):
             if not have:
                 _upload("/v1/inAppPurchaseAppStoreReviewScreenshots", "inAppPurchaseAppStoreReviewScreenshots",
                         {"inAppPurchaseV2": rel("inAppPurchases", iap)}, review_shot)
-        print(f"    $0.99, all territories{', review screenshot' if review_shot.exists() else ''}")
+        print(f"    ${price}, all territories{', review screenshot' if review_shot.exists() else ''}")
 
 
 def step_leaderboard(app):

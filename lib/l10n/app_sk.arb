@@ -46,5 +46,7 @@
   "skinsStoreUnavailable": "Obchod teraz nie je dostupný. Skús to neskôr.",
   "skinsRestore": "Obnoviť nákupy",
   "skinsRestoreDone": "Nákupy obnovené.",
-  "skinsThanks": "Vďaka! Balík je tvoj."
+  "skinsThanks": "Vďaka! Balík je tvoj.",
+  "skinsAllTitle": "Všetky balíčky",
+  "skinsAllBody": "{skins} skinov zo všetkých {packs} balíčkov naraz, zhruba za polovicu. Navždy tvoje, na všetkých zariadeniach."
 }

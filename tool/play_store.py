@@ -12,7 +12,8 @@ permission.
 - listing: title, short and full description per language, contact details
 - shots:   store/screenshots/<lang>/ + common/ as phone screenshots, plus
            store/play-feature.png (1024x500) and the 512 px icon
-- iap:     one managed product per paid pack at $0.99, names per language
+- iap:     one managed product per paid pack at $0.99, the all-packs bundle
+           at $4.99, names per language
 """
 
 import json
@@ -26,7 +27,7 @@ from pathlib import Path
 import jwt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from asc_store import IAP_DESCRIPTION, LANGS, LISTING, ROOT, _dart_map, _paid_packs, shots_for  # noqa: E402
+from asc_store import ALL_DESCRIPTION, ALL_NAME, IAP_DESCRIPTION, LANGS, LISTING, ROOT, _dart_map, _paid_packs, shots_for  # noqa: E402
 
 PACKAGE = "com.ol1n.kaceny"
 SA_DIR = Path.home() / "Dev/Distribution/Android/_GoogleConsole/GooglePlay"
@@ -134,21 +135,23 @@ def step_bundle(aab=None):
 
 
 def step_iap():
-    """One-time products (the legacy inappproducts API is closed): $0.99 in the
-    US, converted by Google for every other region, then activated."""
+    """One-time products (the legacy inappproducts API is closed): a US price,
+    converted by Google for every other region, then activated."""
     packs, cs_titles = _paid_packs()
     names = _dart_map("packNames")
-    usd = {"currencyCode": "USD", "units": "0", "nanos": 990000000}
-    conversion = api("POST", f"{API}/pricing:convertRegionPrices", {"price": usd})
-    converted, regions_version = conversion["convertedRegionPrices"], conversion["regionVersion"]["version"]
-    regions = [{"regionCode": code, "price": p["price"], "availability": "AVAILABLE"}
-               for code, p in sorted(converted.items())]
-    for pack in packs:
+    items = [(pack, {lang: cs_titles[pack] if lang == "cs" else names[lang][pack] for lang in LANGS},
+              IAP_DESCRIPTION, 0) for pack in packs]
+    items.append(("all", ALL_NAME, ALL_DESCRIPTION, 4))
+    for pack, titles, descriptions, dollars in items:
+        usd = {"currencyCode": "USD", "units": str(dollars), "nanos": 990000000}
+        conversion = api("POST", f"{API}/pricing:convertRegionPrices", {"price": usd})
+        converted, regions_version = conversion["convertedRegionPrices"], conversion["regionVersion"]["version"]
+        regions = [{"regionCode": code, "price": p["price"], "availability": "AVAILABLE"}
+                   for code, p in sorted(converted.items())]
         sku = f"{PACKAGE}.pack.{pack}"
         product = {"packageName": PACKAGE, "productId": sku,
-                   "listings": [{"languageCode": PLAY_LOCALE[lang],
-                                 "title": cs_titles[pack] if lang == "cs" else names[lang][pack],
-                                 "description": IAP_DESCRIPTION[lang]} for lang in LANGS],
+                   "listings": [{"languageCode": PLAY_LOCALE[lang], "title": titles[lang],
+                                 "description": descriptions[lang]} for lang in LANGS],
                    "purchaseOptions": [{"purchaseOptionId": "buy", "buyOption": {"legacyCompatible": True},
                                         "regionalPricingAndAvailabilityConfigs": regions}]}
         api("PATCH", f"{API}/onetimeproducts/{sku}?allowMissing=true&updateMask=listings,purchaseOptions"
@@ -156,7 +159,7 @@ def step_iap():
         api("POST", f"{API}/oneTimeProducts/{sku}/purchaseOptions:batchUpdateStates", {"requests": [
             {"activatePurchaseOptionRequest": {"packageName": PACKAGE, "productId": sku,
                                                "purchaseOptionId": "buy"}}]})
-        print(f"  {sku} $0.99, {len(regions)} regions, active")
+        print(f"  {sku} ${dollars}.99, {len(regions)} regions, active")
 
 
 STEPS = {"listing": step_listing, "shots": step_shots, "bundle": step_bundle, "iap": step_iap}

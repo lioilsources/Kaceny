@@ -46,5 +46,7 @@
   "skinsStoreUnavailable": "La tienda no está disponible ahora. Inténtalo más tarde.",
   "skinsRestore": "Restaurar compras",
   "skinsRestoreDone": "Compras restauradas.",
-  "skinsThanks": "¡Gracias! El pack es tuyo."
+  "skinsThanks": "¡Gracias! El pack es tuyo.",
+  "skinsAllTitle": "Todos los packs",
+  "skinsAllBody": "{skins} skins de los {packs} packs a la vez, por casi la mitad. Tuyos para siempre, en todos tus dispositivos."
 }

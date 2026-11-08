@@ -61,5 +61,9 @@
   "skinsStoreUnavailable": "The store isn't available right now. Try again later.",
   "skinsRestore": "Restore purchases",
   "skinsRestoreDone": "Purchases restored.",
-  "skinsThanks": "Thanks! The pack is yours."
+  "skinsThanks": "Thanks! The pack is yours.",
+  "skinsAllTitle": "All packs",
+  "@skinsAllTitle": {"description": "Card above the packs that sells every paid pack in one purchase."},
+  "skinsAllBody": "{skins} skins from all {packs} packs at once, for about half the price. Yours forever, on all your devices.",
+  "@skinsAllBody": {"placeholders": {"skins": {"type": "int"}, "packs": {"type": "int"}}}
 }
