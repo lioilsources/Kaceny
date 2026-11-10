@@ -49,3 +49,6 @@ android/.kotlin/
 
 # Skin curation output (generated)
 tool/skins/out/
+
+# Local secrets
+.env

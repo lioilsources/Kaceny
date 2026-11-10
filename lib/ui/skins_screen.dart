@@ -359,11 +359,11 @@ class _SkinTile extends StatelessWidget {
                       const Center(child: Icon(Icons.lock_rounded, color: Colors.white, size: 30)),
                     ],
                     if (skin.animated)
-                      Positioned(top: 6, left: 6, child: _Tag(context.l10n.skinsAnimated, KColors.green)),
+                      PositionedDirectional(top: 6, start: 6, child: _Tag(context.l10n.skinsAnimated, KColors.green)),
                     if (selected)
-                      const Positioned(
+                      const PositionedDirectional(
                         top: 6,
-                        right: 6,
+                        end: 6,
                         child: Icon(Icons.check_circle, color: KColors.orange, size: 26),
                       ),
                   ],
