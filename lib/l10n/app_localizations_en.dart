@@ -57,7 +57,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAutoReload => 'Automatic reload';
 
   @override
-  String get settingsAutoReloadHint => 'Otherwise reload by swiping down or tapping the shells.';
+  String get settingsAutoReloadHint =>
+      'Otherwise reload by swiping down or tapping the shells.';
 
   @override
   String get settingsDebug => 'Debug: hitboxes and shots';
@@ -83,10 +84,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get leaderboardOnlineInfo => 'Scores of all players in Game Center / Play Games.';
+  String get leaderboardOnlineInfo =>
+      'Scores of all players in Game Center / Play Games.';
 
   @override
-  String get leaderboardSignInInfo => 'Sign in and compare yourself with others.';
+  String get leaderboardSignInInfo =>
+      'Sign in and compare yourself with others.';
 
   @override
   String get leaderboardOpen => 'Open';
@@ -147,14 +150,17 @@ class AppLocalizationsEn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count skins, each a duck and its own background. Yours forever, on all your devices.',
-      one: '$count skin, a duck and its own background. Yours forever, on all your devices.',
+      other:
+          '$count skins, each a duck and its own background. Yours forever, on all your devices.',
+      one:
+          '$count skin, a duck and its own background. Yours forever, on all your devices.',
     );
     return '$_temp0';
   }
 
   @override
-  String get skinsStoreUnavailable => 'The store isn\'t available right now. Try again later.';
+  String get skinsStoreUnavailable =>
+      'The store isn\'t available right now. Try again later.';
 
   @override
   String get skinsRestore => 'Restore purchases';

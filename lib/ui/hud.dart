@@ -31,7 +31,7 @@ class GameHud extends StatelessWidget {
               children: [
                 Expanded(
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: _Timer(state: state),
@@ -42,7 +42,7 @@ class GameHud extends StatelessWidget {
                 const SizedBox(width: 64),
                 Expanded(
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: AlignmentDirectional.centerEnd,
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: _Score(state: state),
@@ -137,7 +137,7 @@ class _Score extends StatelessWidget {
             opacity: m > 1 ? 1 : 0,
             duration: const Duration(milliseconds: 150),
             child: Padding(
-              padding: const EdgeInsets.only(right: 6),
+              padding: const EdgeInsetsDirectional.only(end: 6),
               child: _Pill(
                 color: KColors.orange.withValues(alpha: 0.9),
                 child: Text(

@@ -86,7 +86,7 @@ class _LocalList extends StatelessWidget {
                 width: 36,
                 child: Text(
                   '${i + 1}.',
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.end,
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                 ),
               ),

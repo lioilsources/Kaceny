@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_services.dart';
 import 'l10n/app_localizations.dart';
+import 'l10n/locale_resolution.dart';
 import 'services/haptics.dart';
 import 'services/leaderboard/games_services_leaderboard.dart';
 import 'services/leaderboard/local_leaderboard.dart';
@@ -75,18 +76,7 @@ class KacenyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      // English for any language the game doesn't speak (the default would
-      // be the first supported one, alphabetically Czech).
-      localeListResolutionCallback: (locales, supported) {
-        for (final locale in locales ?? const <Locale>[]) {
-          for (final s in supported) {
-            if (s.languageCode == locale.languageCode) {
-              return s;
-            }
-          }
-        }
-        return const Locale('en');
-      },
+      localeListResolutionCallback: resolveAppLocale,
       theme: buildTheme(),
       home: switch (start) {
         'game' => GameScreen(services: services),

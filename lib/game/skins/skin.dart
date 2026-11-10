@@ -1,5 +1,6 @@
 import 'dart:ui' show Locale;
 
+import '../../l10n/locale_resolution.dart';
 import '../../l10n/skin_names.dart';
 import 'skin_catalog.dart';
 
@@ -44,7 +45,7 @@ class Skin {
       : _lookup(packNames, locale, packId) ?? packTitle;
 
   static String? _lookup(Map<String, Map<String, String>> names, Locale locale, String key) =>
-      names[locale.languageCode]?[key] ?? names['en']?[key];
+      names[localeKey(locale)]?[key] ?? names[locale.languageCode]?[key] ?? names['en']?[key];
 
   /// Asset paths, relative to `assets/` (Flame's image prefix in the game).
   String get duckAsset => 'skins/duck/$id.png';
