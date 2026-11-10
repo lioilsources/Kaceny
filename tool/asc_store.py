@@ -55,35 +55,24 @@ LANGS = [k for k in LISTING if not k.startswith("_")]
 ASC_LOCALE = {lang: LISTING["_locales"][lang][0] for lang in LANGS}
 PRIMARY = "en"
 
-IAP_DESCRIPTION = {
-    "en": "10 duck skins, each with its own background.",
-    "cs": "10 skinů kachen, každý s vlastním pozadím.",
-    "de": "10 Enten-Skins, jeder mit eigenem Hintergrund.",
-    "pl": "10 skórek kaczek, każda z własnym tłem.",
-    "sk": "10 skinov kačíc, každý s vlastným pozadím.",
-    "es": "10 skins de patos, cada uno con su fondo.",
-    "fr": "10 skins de canards, chacun avec son décor.",
-    "it": "10 skin di anatre, ognuna con il suo sfondo.",
-}
+# IAP and Game Center texts per language live next to the listing.
+IAP_DESCRIPTION = {lang: LISTING[lang]["iapDescription"] for lang in LANGS}
 # The bundle (com.ol1n.kaceny.pack.all, $4.99): every paid pack at once.
-ALL_NAME = {
-    "en": "All packs", "cs": "Všechny balíčky", "de": "Alle Pakete", "pl": "Wszystkie pakiety",
-    "sk": "Všetky balíčky", "es": "Todos los packs", "fr": "Tous les packs", "it": "Tutti i pacchetti",
-}
-ALL_DESCRIPTION = {
-    "en": "All 100 paid duck skins from all 10 packs.",
-    "cs": "Všech 100 placených skinů z 10 balíčků.",
-    "de": "Alle 100 Enten-Skins aus allen 10 Paketen.",
-    "pl": "Wszystkie 100 skórek kaczek z 10 pakietów.",
-    "sk": "Všetkých 100 platených skinov z 10 balíčkov.",
-    "es": "Las 100 skins de patos de los 10 packs.",
-    "fr": "Les 100 skins de canards des 10 packs.",
-    "it": "Tutte le 100 skin di anatre dei 10 pacchetti.",
-}
-LEADERBOARD_NAME = {
-    "en": "Best score", "cs": "Nejlepší skóre", "de": "Bestwert", "pl": "Najlepszy wynik",
-    "sk": "Najlepšie skóre", "es": "Mejor puntuación", "fr": "Meilleur score", "it": "Miglior punteggio",
-}
+ALL_NAME = {lang: LISTING[lang]["allName"] for lang in LANGS}
+ALL_DESCRIPTION = {lang: LISTING[lang]["allDescription"] for lang in LANGS}
+LEADERBOARD_NAME = {lang: LISTING[lang]["leaderboard"] for lang in LANGS}
+# Extra App Store locales that reuse a language's texts (en-GB from en, ...).
+ASC_COPIES = LISTING.get("_ascCopies", {})
+
+
+def per_locale(attrs_for):
+    """{asc_locale: attrs} for every language plus its copies."""
+    out = {}
+    for lang in LANGS:
+        attrs = attrs_for(lang)
+        for locale in [ASC_LOCALE[lang], *ASC_COPIES.get(lang, [])]:
+            out[locale] = attrs
+    return out
 
 
 def _token():
@@ -169,21 +158,19 @@ def step_info(app):
     api("PATCH", f"/v1/apps/{app}", {"data": {"type": "apps", "id": app, "attributes": {
         "contentRightsDeclaration": "DOES_NOT_USE_THIRD_PARTY_CONTENT"}}})
     existing = get_all(f"/v1/appInfos/{info}/appInfoLocalizations")
-    upsert_localizations(existing, "appInfoLocalizations", {"appInfo": rel("appInfos", info)}, {
-        ASC_LOCALE[lang]: {"name": LISTING[lang]["name"], "subtitle": LISTING[lang]["subtitle"],
-                           "privacyPolicyUrl": PRIVACY_URL}
-        for lang in LANGS})
+    upsert_localizations(existing, "appInfoLocalizations", {"appInfo": rel("appInfos", info)}, per_locale(
+        lambda lang: {"name": LISTING[lang]["name"], "subtitle": LISTING[lang]["subtitle"],
+                      "privacyPolicyUrl": PRIVACY_URL}))
 
 
 def step_listing(app):
     version = editable_version(app)
     existing = get_all(f"/v1/appStoreVersions/{version}/appStoreVersionLocalizations")
     upsert_localizations(existing, "appStoreVersionLocalizations",
-                         {"appStoreVersion": rel("appStoreVersions", version)}, {
-        ASC_LOCALE[lang]: {"description": LISTING[lang]["description"], "keywords": LISTING[lang]["keywords"],
-                           "promotionalText": LISTING[lang]["promo"], "supportUrl": SUPPORT_URL,
-                           "marketingUrl": MARKETING_URL}
-        for lang in LANGS})
+                         {"appStoreVersion": rel("appStoreVersions", version)}, per_locale(
+        lambda lang: {"description": LISTING[lang]["description"], "keywords": LISTING[lang]["keywords"],
+                      "promotionalText": LISTING[lang]["promo"], "supportUrl": SUPPORT_URL,
+                      "marketingUrl": MARKETING_URL}))
 
 
 def step_rating(app):
@@ -286,9 +273,8 @@ def step_iap(app):
                 "relationships": {"app": rel("apps", app)}}})["data"]["id"]
         print(f"  {product}")
         locs = get_all(f"/v2/inAppPurchases/{iap}/inAppPurchaseLocalizations")
-        upsert_localizations(locs, "inAppPurchaseLocalizations", {"inAppPurchaseV2": rel("inAppPurchases", iap)}, {
-            ASC_LOCALE[lang]: {"name": titles[lang], "description": descriptions[lang]}
-            for lang in LANGS})
+        upsert_localizations(locs, "inAppPurchaseLocalizations", {"inAppPurchaseV2": rel("inAppPurchases", iap)},
+                             per_locale(lambda lang: {"name": titles[lang], "description": descriptions[lang]}))
         points = get_all(f"/v2/inAppPurchases/{iap}/pricePoints?filter[territory]=USA&limit=200")
         point = next(p for p in points if p["attributes"]["customerPrice"] == price)
         api("POST", "/v1/inAppPurchasePriceSchedules", {
@@ -326,7 +312,7 @@ def step_leaderboard(app):
     locs = get_all(f"/v1/gameCenterLeaderboards/{board}/localizations")
     upsert_localizations(locs, "gameCenterLeaderboardLocalizations",
                          {"gameCenterLeaderboard": rel("gameCenterLeaderboards", board)},
-                         {ASC_LOCALE[lang]: {"name": LEADERBOARD_NAME[lang]} for lang in LANGS})
+                         per_locale(lambda lang: {"name": LEADERBOARD_NAME[lang]}))
 
 
 def shots_for(lang):
@@ -340,7 +326,7 @@ def step_shots(app):
     version = editable_version(app)
     for loc in get_all(f"/v1/appStoreVersions/{version}/appStoreVersionLocalizations"):
         locale = loc["attributes"]["locale"]
-        lang = next((lang for lang in LANGS if ASC_LOCALE[lang] == locale), None)
+        lang = next((lang for lang in LANGS if locale in (ASC_LOCALE[lang], *ASC_COPIES.get(lang, []))), None)
         folder = ROOT / "store/screenshots" / (lang or "")
         if not lang or not folder.is_dir():
             continue

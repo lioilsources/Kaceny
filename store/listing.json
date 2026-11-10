@@ -1,21 +1,236 @@
 {
-  "_limits": "name ≤30, subtitle ≤30, promo ≤170, keywords ≤100 (comma-separated, no spaces after commas, don't repeat words from name/subtitle), description ≤4000, playShort ≤80. ASC locale / Play locale in _locales.",
-  "_locales": {"en": ["en-US", "en-US"], "cs": ["cs", "cs-CZ"], "de": ["de-DE", "de-DE"], "pl": ["pl", "pl-PL"], "sk": ["sk", "sk"], "es": ["es-ES", "es-ES"], "fr": ["fr-FR", "fr-FR"], "it": ["it", "it-IT"]},
+  "_limits": "name ≤30, subtitle ≤30, promo ≤170, keywords ≤100 (comma-separated, no spaces after commas, don't repeat words from name/subtitle), description ≤4000, playShort ≤80. ASC locale / Play locale in _locales. iapDescription ≤55, allName ≤30, allDescription ≤55, leaderboard ≤30 (IAP and Game Center names). _locales: [ASC locale, Play locale or null if Play has no such language]; _ascCopies / _playCopies: extra store locales that reuse a language's texts.",
+  "_locales": {
+    "en": [
+      "en-US",
+      "en-US"
+    ],
+    "cs": [
+      "cs",
+      "cs-CZ"
+    ],
+    "de": [
+      "de-DE",
+      "de-DE"
+    ],
+    "pl": [
+      "pl",
+      "pl-PL"
+    ],
+    "sk": [
+      "sk",
+      "sk"
+    ],
+    "es": [
+      "es-ES",
+      "es-ES"
+    ],
+    "fr": [
+      "fr-FR",
+      "fr-FR"
+    ],
+    "it": [
+      "it",
+      "it-IT"
+    ],
+    "ar": [
+      "ar-SA",
+      "ar"
+    ],
+    "bn": [
+      "bn-BD",
+      "bn-BD"
+    ],
+    "ca": [
+      "ca",
+      "ca"
+    ],
+    "da": [
+      "da",
+      "da-DK"
+    ],
+    "el": [
+      "el",
+      "el-GR"
+    ],
+    "fi": [
+      "fi",
+      "fi-FI"
+    ],
+    "gu": [
+      "gu-IN",
+      "gu"
+    ],
+    "he": [
+      "he",
+      "iw-IL"
+    ],
+    "hi": [
+      "hi",
+      "hi-IN"
+    ],
+    "hr": [
+      "hr",
+      "hr"
+    ],
+    "hu": [
+      "hu",
+      "hu-HU"
+    ],
+    "id": [
+      "id",
+      "id"
+    ],
+    "ja": [
+      "ja",
+      "ja-JP"
+    ],
+    "kn": [
+      "kn-IN",
+      "kn-IN"
+    ],
+    "ko": [
+      "ko",
+      "ko-KR"
+    ],
+    "ml": [
+      "ml-IN",
+      "ml-IN"
+    ],
+    "mr": [
+      "mr-IN",
+      "mr-IN"
+    ],
+    "ms": [
+      "ms",
+      "ms"
+    ],
+    "nb": [
+      "no",
+      "no-NO"
+    ],
+    "nl": [
+      "nl-NL",
+      "nl-NL"
+    ],
+    "or": [
+      "or-IN",
+      null
+    ],
+    "pa": [
+      "pa-IN",
+      null
+    ],
+    "pt": [
+      "pt-BR",
+      "pt-BR"
+    ],
+    "pt_PT": [
+      "pt-PT",
+      "pt-PT"
+    ],
+    "ro": [
+      "ro",
+      "ro"
+    ],
+    "ru": [
+      "ru",
+      "ru-RU"
+    ],
+    "sl": [
+      "sl-SI",
+      "sl"
+    ],
+    "sv": [
+      "sv",
+      "sv-SE"
+    ],
+    "ta": [
+      "ta-IN",
+      "ta-IN"
+    ],
+    "te": [
+      "te-IN",
+      "te-IN"
+    ],
+    "th": [
+      "th",
+      "th"
+    ],
+    "tr": [
+      "tr",
+      "tr-TR"
+    ],
+    "uk": [
+      "uk",
+      "uk"
+    ],
+    "ur": [
+      "ur-PK",
+      "ur"
+    ],
+    "vi": [
+      "vi",
+      "vi"
+    ],
+    "zh": [
+      "zh-Hans",
+      "zh-CN"
+    ],
+    "zh_Hant": [
+      "zh-Hant",
+      "zh-TW"
+    ]
+  },
+  "_ascCopies": {
+    "en": [
+      "en-GB",
+      "en-AU",
+      "en-CA"
+    ],
+    "es": [
+      "es-MX"
+    ],
+    "fr": [
+      "fr-CA"
+    ]
+  },
+  "_playCopies": {
+    "en": [
+      "en-GB",
+      "en-AU",
+      "en-CA"
+    ],
+    "es": [
+      "es-419"
+    ],
+    "fr": [
+      "fr-CA"
+    ]
+  },
   "en": {
     "name": "Kačeny: Duck Shooter",
     "subtitle": "Tap ducks out of the sky",
     "promo": "90 seconds, 8 shells, a sky full of ducks. Tap to shoot, swipe down to reload, chase your best score. 13 looks free, no ads.",
     "keywords": "arcade,hunt,hunting,shooting,birds,tap,reflex,quick,casual,retro,pixel,skins,highscore,offline",
     "playShort": "Tap ducks out of the sky in 90-second rounds. Quick arcade fun, no ads.",
-    "description": "Ducks fly down the screen. You have 90 seconds and 8 shells. Tap them out of the sky.\n\nKačeny (Czech for \"ducks\") is a quick one-handed arcade game for the bus stop, the coffee break or one more round before bed. Every touch is a shot, straight away, with no waiting for your finger to lift.\n\nHOW TO PLAY\n• Tap a duck to shoot it. Smaller ducks are further away, faster to miss and worth more.\n• Hit them dead centre for a precision bonus.\n• Hit several in a row without missing and the combo multiplies your points up to ×2.\n• The magazine holds 8 shells. Swipe down or tap the shells to reload, or turn on automatic reload.\n• Watch the edges: a big duck peeks in now and then and hides again.\n\nSKINS\n113 looks for the ducks and the sky: watercolour, 16-bit pixel art, comic, plasticine, anime and more, many with flapping wings. 13 are free. Ten themed packs (Retro arcade, Art gallery, Cute, Materials, Neon nights, Holidays, Folk art of the world, Fantasy & sci-fi, Nature, Luxury) unlock for a small one-off purchase each. Skins only change the look. Nothing you can buy changes the score.\n\nALSO\n• Local top 20 with your initials, and the Game Center leaderboard.\n• No ads, no account, no tracking. Plays offline.\n• Sound and vibration you can switch off.\n\nNo ducks are harmed: they just tumble out of the frame."
+    "description": "Ducks fly down the screen. You have 90 seconds and 8 shells. Tap them out of the sky.\n\nKačeny (Czech for \"ducks\") is a quick one-handed arcade game for the bus stop, the coffee break or one more round before bed. Every touch is a shot, straight away, with no waiting for your finger to lift.\n\nHOW TO PLAY\n• Tap a duck to shoot it. Smaller ducks are further away, faster to miss and worth more.\n• Hit them dead centre for a precision bonus.\n• Hit several in a row without missing and the combo multiplies your points up to ×2.\n• The magazine holds 8 shells. Swipe down or tap the shells to reload, or turn on automatic reload.\n• Watch the edges: a big duck peeks in now and then and hides again.\n\nSKINS\n113 looks for the ducks and the sky: watercolour, 16-bit pixel art, comic, plasticine, anime and more, many with flapping wings. 13 are free. Ten themed packs (Retro arcade, Art gallery, Cute, Materials, Neon nights, Holidays, Folk art of the world, Fantasy & sci-fi, Nature, Luxury) unlock for a small one-off purchase each. Skins only change the look. Nothing you can buy changes the score.\n\nALSO\n• Local top 20 with your initials, and the Game Center leaderboard.\n• No ads, no account, no tracking. Plays offline.\n• Sound and vibration you can switch off.\n\nNo ducks are harmed: they just tumble out of the frame.",
+    "iapDescription": "10 duck skins, each with its own background.",
+    "allName": "All packs",
+    "allDescription": "All 100 paid duck skins from all 10 packs.",
+    "leaderboard": "Best score"
   },
   "cs": {
     "name": "Kačeny: Střílení kachen",
     "subtitle": "Sestřel kachny z oblohy",
     "promo": "90 vteřin, 8 nábojů a obloha plná kachen. Ťukni a střílej, přejeď dolů a přebij, překonej svůj rekord. 13 vzhledů zdarma, bez reklam.",
-    "keywords": "arkáda,hon,lov,střílečka,ptáci,ťukání,reflexy,rychlá,retro,pixel,skiny,rekord,offline,česká",
+    "keywords": "arkáda,hon,lov,střílečka,ptáci,ťukání,reflexy,rychlá,retro,pixel,skiny,rekord,offline",
     "playShort": "Sestřel kachny z oblohy v 90vteřinových kolech. Rychlá arkáda bez reklam.",
-    "description": "Kachny letí dolů po obrazovce. Máš 90 vteřin a 8 nábojů. Sestřel je z oblohy.\n\nKačeny jsou rychlá arkáda na jednu ruku: na zastávku, ke kávě nebo na jedno kolo před spaním. Každý dotyk je výstřel, hned, bez čekání na zvednutí prstu.\n\nJAK SE HRAJE\n• Ťukni na kachnu a vystřel. Menší kachny jsou dál, snáz se minou a mají víc bodů.\n• Trefa přesně doprostřed dává bonus za přesnost.\n• Několik zásahů za sebou bez minutí násobí body až ×2.\n• Do zásobníku se vejde 8 nábojů. Přebiješ přejetím dolů nebo ťuknutím na náboje, případně zapni automatické přebíjení.\n• Hlídej okraje: občas vykoukne velká kachna a zase se schová.\n\nSKINY\n113 vzhledů kachen a oblohy: akvarel, 16bitový pixel art, komiks, plastelína, anime a další, mnohé s mávajícími křídly. 13 je zdarma. Deset tematických balíčků (Retro herna, Galerie umění, Roztomilé, Materiály, Neon & noc, Svátky a sezóny, Lidové umění světa, Fantasy & sci-fi, Příroda, Luxus) odemkneš drobným jednorázovým nákupem. Skiny mění jen vzhled. Nic, co si koupíš, nemění skóre.\n\nA DÁL\n• Místní top 20 s tvými iniciálami a žebříček v Game Center.\n• Bez reklam, bez účtu, bez sledování. Hraje se i offline.\n• Zvuk i vibrace jdou vypnout.\n\nŽádná kachna nepřijde k úhoně: jen vypadnou ze záběru."
+    "description": "Kachny letí dolů po obrazovce. Máš 90 vteřin a 8 nábojů. Sestřel je z oblohy.\n\nKačeny jsou rychlá arkáda na jednu ruku: na zastávku, ke kávě nebo na jedno kolo před spaním. Každý dotyk je výstřel, hned, bez čekání na zvednutí prstu.\n\nJAK SE HRAJE\n• Ťukni na kachnu a vystřel. Menší kachny jsou dál, snáz se minou a mají víc bodů.\n• Trefa přesně doprostřed dává bonus za přesnost.\n• Několik zásahů za sebou bez minutí násobí body až ×2.\n• Do zásobníku se vejde 8 nábojů. Přebiješ přejetím dolů nebo ťuknutím na náboje, případně zapni automatické přebíjení.\n• Hlídej okraje: občas vykoukne velká kachna a zase se schová.\n\nSKINY\n113 vzhledů kachen a oblohy: akvarel, 16bitový pixel art, komiks, plastelína, anime a další, mnohé s mávajícími křídly. 13 je zdarma. Deset tematických balíčků (Retro herna, Galerie umění, Roztomilé, Materiály, Neon & noc, Svátky a sezóny, Lidové umění světa, Fantasy & sci-fi, Příroda, Luxus) odemkneš drobným jednorázovým nákupem. Skiny mění jen vzhled. Nic, co si koupíš, nemění skóre.\n\nA DÁL\n• Místní top 20 s tvými iniciálami a žebříček v Game Center.\n• Bez reklam, bez účtu, bez sledování. Hraje se i offline.\n• Zvuk i vibrace jdou vypnout.\n\nŽádná kachna nepřijde k úhoně: jen vypadnou ze záběru.",
+    "iapDescription": "10 skinů kachen, každý s vlastním pozadím.",
+    "allName": "Všechny balíčky",
+    "allDescription": "Všech 100 placených skinů z 10 balíčků.",
+    "leaderboard": "Nejlepší skóre"
   },
   "de": {
     "name": "Kačeny: Entenjagd",
@@ -23,7 +238,11 @@
     "promo": "90 Sekunden, 8 Patronen, ein Himmel voller Enten. Tippen zum Schießen, nach unten wischen zum Nachladen, Rekord knacken. 13 Looks gratis, keine Werbung.",
     "keywords": "arcade,jäger,schießen,ballern,vögel,zielen,reaktion,schnell,retro,pixel,skins,highscore,offline",
     "playShort": "Hol Enten vom Himmel in 90-Sekunden-Runden. Schneller Arcade-Spaß ohne Werbung.",
-    "description": "Enten fliegen über den Bildschirm nach unten. Du hast 90 Sekunden und 8 Patronen. Hol sie vom Himmel.\n\nKačeny (tschechisch für „Enten“) ist ein schnelles Arcade-Spiel für eine Hand: für die Bushaltestelle, die Kaffeepause oder noch eine Runde vorm Schlafengehen. Jede Berührung ist ein Schuss, sofort, ohne dass du erst den Finger heben musst.\n\nSO WIRD GESPIELT\n• Tipp auf eine Ente, um sie abzuschießen. Kleinere Enten sind weiter weg, schneller verfehlt und bringen mehr Punkte.\n• Triffst du genau in die Mitte, gibt es einen Präzisionsbonus.\n• Triff mehrere hintereinander ohne Fehlschuss, und die Combo multipliziert deine Punkte bis ×2.\n• Ins Magazin passen 8 Patronen. Wisch nach unten oder tipp auf die Patronen zum Nachladen, oder schalte automatisches Nachladen ein.\n• Behalte die Ränder im Blick: Ab und zu lugt eine große Ente herein und versteckt sich wieder.\n\nSKINS\n113 Looks für die Enten und den Himmel: Aquarell, 16-Bit-Pixel-Art, Comic, Knete, Anime und mehr, viele mit schlagenden Flügeln. 13 sind gratis. Zehn Themenpakete (Retro-Spielhalle, Kunstgalerie, Niedlich, Materialien, Neon & Nacht, Feste & Saisons, Volkskunst, Fantasy & Sci-Fi, Natur & Realismus, Luxus) schaltest du jeweils mit einem kleinen Einmalkauf frei. Skins ändern nur das Aussehen. Nichts, was du kaufen kannst, verändert die Punkte.\n\nAUSSERDEM\n• Lokale Top 20 mit deinen Initialen und die Bestenliste im Game Center.\n• Keine Werbung, kein Konto, kein Tracking. Funktioniert offline.\n• Ton und Vibration lassen sich abschalten.\n\nKeine Ente kommt zu Schaden: Sie purzeln einfach aus dem Bild."
+    "description": "Enten fliegen über den Bildschirm nach unten. Du hast 90 Sekunden und 8 Patronen. Hol sie vom Himmel.\n\nKačeny (tschechisch für „Enten“) ist ein schnelles Arcade-Spiel für eine Hand: für die Bushaltestelle, die Kaffeepause oder noch eine Runde vorm Schlafengehen. Jede Berührung ist ein Schuss, sofort, ohne dass du erst den Finger heben musst.\n\nSO WIRD GESPIELT\n• Tipp auf eine Ente, um sie abzuschießen. Kleinere Enten sind weiter weg, schneller verfehlt und bringen mehr Punkte.\n• Triffst du genau in die Mitte, gibt es einen Präzisionsbonus.\n• Triff mehrere hintereinander ohne Fehlschuss, und die Combo multipliziert deine Punkte bis ×2.\n• Ins Magazin passen 8 Patronen. Wisch nach unten oder tipp auf die Patronen zum Nachladen, oder schalte automatisches Nachladen ein.\n• Behalte die Ränder im Blick: Ab und zu lugt eine große Ente herein und versteckt sich wieder.\n\nSKINS\n113 Looks für die Enten und den Himmel: Aquarell, 16-Bit-Pixel-Art, Comic, Knete, Anime und mehr, viele mit schlagenden Flügeln. 13 sind gratis. Zehn Themenpakete (Retro-Spielhalle, Kunstgalerie, Niedlich, Materialien, Neon & Nacht, Feste & Saisons, Volkskunst, Fantasy & Sci-Fi, Natur & Realismus, Luxus) schaltest du jeweils mit einem kleinen Einmalkauf frei. Skins ändern nur das Aussehen. Nichts, was du kaufen kannst, verändert die Punkte.\n\nAUSSERDEM\n• Lokale Top 20 mit deinen Initialen und die Bestenliste im Game Center.\n• Keine Werbung, kein Konto, kein Tracking. Funktioniert offline.\n• Ton und Vibration lassen sich abschalten.\n\nKeine Ente kommt zu Schaden: Sie purzeln einfach aus dem Bild.",
+    "iapDescription": "10 Enten-Skins, jeder mit eigenem Hintergrund.",
+    "allName": "Alle Pakete",
+    "allDescription": "Alle 100 Enten-Skins aus allen 10 Paketen.",
+    "leaderboard": "Bestwert"
   },
   "pl": {
     "name": "Kačeny: Strzelanie do kaczek",
@@ -31,31 +250,47 @@
     "promo": "90 sekund, 8 nabojów, niebo pełne kaczek. Stuknij, by strzelić, przesuń w dół, by przeładować, i bij swój rekord. 13 wyglądów za darmo, bez reklam.",
     "keywords": "arcade,polowanie,łowy,strzelanka,ptaki,refleks,szybka,retro,pixel,skórki,rekord,offline,celowanie",
     "playShort": "Zestrzel kaczki z nieba w 90-sekundowych rundach. Szybka gra bez reklam.",
-    "description": "Kaczki lecą w dół ekranu. Masz 90 sekund i 8 nabojów. Zestrzel je z nieba.\n\nKačeny (po czesku „kaczki”) to szybka gra zręcznościowa na jedną rękę: na przystanek, na przerwę na kawę albo na jeszcze jedną rundę przed snem. Każdy dotyk to strzał, od razu, bez czekania, aż podniesiesz palec.\n\nJAK GRAĆ\n• Stuknij kaczkę, żeby ją zestrzelić. Mniejsze kaczki są dalej, łatwiej w nie spudłować i dają więcej punktów.\n• Trafienie w sam środek daje bonus za precyzję.\n• Trafiaj kilka razy z rzędu bez pudła, a combo pomnoży twoje punkty nawet do ×2.\n• W magazynku mieści się 8 nabojów. Przeładuj, przesuwając palcem w dół albo stukając w naboje, lub włącz automatyczne przeładowanie.\n• Pilnuj krawędzi: od czasu do czasu zagląda duża kaczka i znowu się chowa.\n\nSKÓRKI\n113 wyglądów kaczek i nieba: akwarela, 16-bitowy pixel art, komiks, plastelina, anime i nie tylko, wiele z machającymi skrzydłami. 13 jest za darmo. Każdy z dziesięciu tematycznych pakietów (Salon retro, Galeria sztuki, Słodkie, Materiały, Neon i noc, Święta i pory roku, Sztuka ludowa, Fantasy i sci-fi, Natura i realizm, Luksus) odblokujesz drobnym jednorazowym zakupem. Skórki zmieniają tylko wygląd. Nic, co możesz kupić, nie zmienia wyniku.\n\nPONADTO\n• Lokalne top 20 z twoimi inicjałami i ranking w Game Center.\n• Bez reklam, bez konta, bez śledzenia. Działa offline.\n• Dźwięk i wibracje można wyłączyć.\n\nŻadna kaczka nie cierpi: po prostu wypadają z kadru."
+    "description": "Kaczki lecą w dół ekranu. Masz 90 sekund i 8 nabojów. Zestrzel je z nieba.\n\nKačeny (po czesku „kaczki”) to szybka gra zręcznościowa na jedną rękę: na przystanek, na przerwę na kawę albo na jeszcze jedną rundę przed snem. Każdy dotyk to strzał, od razu, bez czekania, aż podniesiesz palec.\n\nJAK GRAĆ\n• Stuknij kaczkę, żeby ją zestrzelić. Mniejsze kaczki są dalej, łatwiej w nie spudłować i dają więcej punktów.\n• Trafienie w sam środek daje bonus za precyzję.\n• Trafiaj kilka razy z rzędu bez pudła, a combo pomnoży twoje punkty nawet do ×2.\n• W magazynku mieści się 8 nabojów. Przeładuj, przesuwając palcem w dół albo stukając w naboje, lub włącz automatyczne przeładowanie.\n• Pilnuj krawędzi: od czasu do czasu zagląda duża kaczka i znowu się chowa.\n\nSKÓRKI\n113 wyglądów kaczek i nieba: akwarela, 16-bitowy pixel art, komiks, plastelina, anime i nie tylko, wiele z machającymi skrzydłami. 13 jest za darmo. Każdy z dziesięciu tematycznych pakietów (Salon retro, Galeria sztuki, Słodkie, Materiały, Neon i noc, Święta i pory roku, Sztuka ludowa, Fantasy i sci-fi, Natura i realizm, Luksus) odblokujesz drobnym jednorazowym zakupem. Skórki zmieniają tylko wygląd. Nic, co możesz kupić, nie zmienia wyniku.\n\nPONADTO\n• Lokalne top 20 z twoimi inicjałami i ranking w Game Center.\n• Bez reklam, bez konta, bez śledzenia. Działa offline.\n• Dźwięk i wibracje można wyłączyć.\n\nŻadna kaczka nie cierpi: po prostu wypadają z kadru.",
+    "iapDescription": "10 skórek kaczek, każda z własnym tłem.",
+    "allName": "Wszystkie pakiety",
+    "allDescription": "Wszystkie 100 skórek kaczek z 10 pakietów.",
+    "leaderboard": "Najlepszy wynik"
   },
   "sk": {
     "name": "Kačeny: Strieľanie kačíc",
     "subtitle": "Zostreľ kačice z oblohy",
     "promo": "90 sekúnd, 8 nábojov a obloha plná kačíc. Ťukni a strieľaj, potiahni nadol a prebi, prekonaj svoj rekord. 13 vzhľadov zadarmo, bez reklám.",
-    "keywords": "arkáda,hon,poľovačka,strieľačka,vtáky,ťukanie,reflexy,rýchla,retro,pixel,skiny,rekord,offline,česká",
+    "keywords": "arkáda,hon,poľovačka,strieľačka,vtáky,ťukanie,reflexy,rýchla,retro,pixel,skiny,rekord",
     "playShort": "Zostreľ kačice z oblohy v 90-sekundových kolách. Rýchla arkáda bez reklám.",
-    "description": "Kačice letia dolu po obrazovke. Máš 90 sekúnd a 8 nábojov. Zostreľ ich z oblohy.\n\nKačeny (po česky „kačice“) sú rýchla arkáda na jednu ruku: na zastávku, ku káve alebo na jedno kolo pred spaním. Každý dotyk je výstrel, hneď, bez čakania na zdvihnutie prsta.\n\nAKO SA HRÁ\n• Ťukni na kačicu a zostreľ ju. Menšie kačice sú ďalej, ľahšie sa minú a majú viac bodov.\n• Zásah presne do stredu dáva bonus za presnosť.\n• Niekoľko zásahov za sebou bez minutia násobí body až ×2.\n• Do zásobníka sa zmestí 8 nábojov. Prebiješ potiahnutím nadol alebo ťuknutím na náboje, prípadne zapni automatické prebíjanie.\n• Sleduj okraje: občas vykukne veľká kačica a zase sa schová.\n\nSKINY\n113 vzhľadov kačíc a oblohy: akvarel, 16-bitový pixel art, komiks, plastelína, anime a ďalšie, mnohé s mávajúcimi krídlami. 13 je zadarmo. Desať tematických balíčkov (Retro herňa, Galéria umenia, Roztomilé, Materiály, Neón a noc, Sviatky a sezóny, Ľudové umenie sveta, Fantasy a sci-fi, Príroda a realizmus, Luxus) odomkneš, každý drobným jednorazovým nákupom. Skiny menia len vzhľad. Nič, čo si kúpiš, nemení skóre.\n\nA ĎALEJ\n• Miestne top 20 s tvojimi iniciálami a rebríček v Game Center.\n• Bez reklám, bez účtu, bez sledovania. Hrá sa aj offline.\n• Zvuk aj vibrácie sa dajú vypnúť.\n\nŽiadnej kačici sa nič nestane: len vypadnú zo záberu."
+    "description": "Kačice letia dolu po obrazovke. Máš 90 sekúnd a 8 nábojov. Zostreľ ich z oblohy.\n\nKačeny (po česky „kačice“) sú rýchla arkáda na jednu ruku: na zastávku, ku káve alebo na jedno kolo pred spaním. Každý dotyk je výstrel, hneď, bez čakania na zdvihnutie prsta.\n\nAKO SA HRÁ\n• Ťukni na kačicu a zostreľ ju. Menšie kačice sú ďalej, ľahšie sa minú a majú viac bodov.\n• Zásah presne do stredu dáva bonus za presnosť.\n• Niekoľko zásahov za sebou bez minutia násobí body až ×2.\n• Do zásobníka sa zmestí 8 nábojov. Prebiješ potiahnutím nadol alebo ťuknutím na náboje, prípadne zapni automatické prebíjanie.\n• Sleduj okraje: občas vykukne veľká kačica a zase sa schová.\n\nSKINY\n113 vzhľadov kačíc a oblohy: akvarel, 16-bitový pixel art, komiks, plastelína, anime a ďalšie, mnohé s mávajúcimi krídlami. 13 je zadarmo. Desať tematických balíčkov (Retro herňa, Galéria umenia, Roztomilé, Materiály, Neón a noc, Sviatky a sezóny, Ľudové umenie sveta, Fantasy a sci-fi, Príroda a realizmus, Luxus) odomkneš, každý drobným jednorazovým nákupom. Skiny menia len vzhľad. Nič, čo si kúpiš, nemení skóre.\n\nA ĎALEJ\n• Miestne top 20 s tvojimi iniciálami a rebríček v Game Center.\n• Bez reklám, bez účtu, bez sledovania. Hrá sa aj offline.\n• Zvuk aj vibrácie sa dajú vypnúť.\n\nŽiadnej kačici sa nič nestane: len vypadnú zo záberu.",
+    "iapDescription": "10 skinov kačíc, každý s vlastným pozadím.",
+    "allName": "Všetky balíčky",
+    "allDescription": "Všetkých 100 platených skinov z 10 balíčkov.",
+    "leaderboard": "Najlepšie skóre"
   },
   "es": {
     "name": "Kačeny: Caza de patos",
     "subtitle": "Derriba patos del cielo",
     "promo": "90 segundos, 8 cartuchos y un cielo lleno de patos. Toca para disparar, desliza hacia abajo para recargar y bate tu récord. 13 aspectos gratis, sin anuncios.",
-    "keywords": "arcade,cazador,disparos,tiro,pájaros,aves,reflejos,rápido,retro,pixel,skins,récord,offline,puntería",
+    "keywords": "arcade,cazador,disparos,tiro,pájaros,aves,reflejos,rápido,retro,pixel,skins,récord,offline",
     "playShort": "Derriba patos del cielo en rondas de 90 segundos. Arcade rápido y sin anuncios.",
-    "description": "Los patos bajan volando por la pantalla. Tienes 90 segundos y 8 cartuchos. Derríbalos del cielo.\n\nKačeny («patos» en checo) es un arcade rápido para jugar con una mano: en la parada del bus, en la pausa del café o para una partida más antes de dormir. Cada toque es un disparo, al instante, sin esperar a que levantes el dedo.\n\nCÓMO SE JUEGA\n• Toca un pato para dispararle. Los más pequeños están más lejos, es más fácil fallarlos y valen más.\n• Dale justo en el centro y te llevas un bonus de precisión.\n• Acierta varios seguidos sin fallar y el combo multiplica tus puntos hasta ×2.\n• En el cargador caben 8 cartuchos. Desliza hacia abajo o toca los cartuchos para recargar, o activa la recarga automática.\n• Vigila los bordes: de vez en cuando asoma un pato grande y vuelve a esconderse.\n\nSKINS\n113 aspectos para los patos y el cielo: acuarela, pixel art de 16 bits, cómic, plastilina, anime y más, muchos con alas que aletean. 13 son gratis. Diez packs temáticos (Arcade retro, Galería de arte, Adorables, Materiales, Neón y noche, Fiestas del año, Arte popular, Fantasía y sci-fi, Realismo natural, Lujo) se desbloquean con una pequeña compra única cada uno. Las skins solo cambian el aspecto. Nada de lo que compres cambia la puntuación.\n\nADEMÁS\n• Top 20 local con tus iniciales y la clasificación de Game Center.\n• Sin anuncios, sin cuenta, sin rastreo. Funciona sin conexión.\n• Sonido y vibración que puedes desactivar.\n\nNingún pato sale herido: simplemente se caen fuera de la pantalla."
+    "description": "Los patos bajan volando por la pantalla. Tienes 90 segundos y 8 cartuchos. Derríbalos del cielo.\n\nKačeny («patos» en checo) es un arcade rápido para jugar con una mano: en la parada del bus, en la pausa del café o para una partida más antes de dormir. Cada toque es un disparo, al instante, sin esperar a que levantes el dedo.\n\nCÓMO SE JUEGA\n• Toca un pato para dispararle. Los más pequeños están más lejos, es más fácil fallarlos y valen más.\n• Dale justo en el centro y te llevas un bonus de precisión.\n• Acierta varios seguidos sin fallar y el combo multiplica tus puntos hasta ×2.\n• En el cargador caben 8 cartuchos. Desliza hacia abajo o toca los cartuchos para recargar, o activa la recarga automática.\n• Vigila los bordes: de vez en cuando asoma un pato grande y vuelve a esconderse.\n\nSKINS\n113 aspectos para los patos y el cielo: acuarela, pixel art de 16 bits, cómic, plastilina, anime y más, muchos con alas que aletean. 13 son gratis. Diez packs temáticos (Arcade retro, Galería de arte, Adorables, Materiales, Neón y noche, Fiestas del año, Arte popular, Fantasía y sci-fi, Realismo natural, Lujo) se desbloquean con una pequeña compra única cada uno. Las skins solo cambian el aspecto. Nada de lo que compres cambia la puntuación.\n\nADEMÁS\n• Top 20 local con tus iniciales y la clasificación de Game Center.\n• Sin anuncios, sin cuenta, sin rastreo. Funciona sin conexión.\n• Sonido y vibración que puedes desactivar.\n\nNingún pato sale herido: simplemente se caen fuera de la pantalla.",
+    "iapDescription": "10 skins de patos, cada uno con su fondo.",
+    "allName": "Todos los packs",
+    "allDescription": "Las 100 skins de patos de los 10 packs.",
+    "leaderboard": "Mejor puntuación"
   },
   "fr": {
     "name": "Kačeny: Chasse aux canards",
     "subtitle": "Abats les canards en vol",
     "promo": "90 secondes, 8 cartouches, un ciel plein de canards. Touche pour tirer, glisse vers le bas pour recharger, bats ton record. 13 looks gratuits, sans pub.",
-    "keywords": "arcade,tir,chasseur,oiseaux,réflexes,rapide,casual,rétro,pixel,skins,score,record,hors ligne,adresse",
+    "keywords": "arcade,tir,chasseur,oiseaux,réflexes,rapide,casual,rétro,pixel,skins,score,record,hors ligne",
     "playShort": "Abats des canards en vol en manches de 90 secondes. Arcade rapide, sans pub.",
-    "description": "Des canards descendent l’écran. Tu as 90 secondes et 8 cartouches. Fais-les tomber du ciel.\n\nKačeny (« canards » en tchèque) est un jeu d’arcade rapide qui se joue d’une main : à l’arrêt de bus, à la pause café ou pour une dernière partie avant de dormir. Chaque toucher est un tir, immédiat, sans attendre que tu lèves le doigt.\n\nCOMMENT JOUER\n• Touche un canard pour tirer. Les plus petits sont plus loin, plus faciles à rater et rapportent plus.\n• Vise pile au centre pour un bonus de précision.\n• Enchaîne plusieurs touches sans rater et le combo multiplie tes points jusqu’à ×2.\n• Le chargeur contient 8 cartouches. Glisse vers le bas ou touche les cartouches pour recharger, ou active le rechargement automatique.\n• Surveille les bords : de temps en temps, un gros canard pointe le bout du bec puis se cache à nouveau.\n\nSKINS\n113 looks pour les canards et le ciel : aquarelle, pixel art 16 bits, BD, pâte à modeler, anime et plus encore, beaucoup avec des ailes qui battent. 13 sont gratuits. Dix packs thématiques (Arcade rétro, Galerie d’art, Trop mignon, Matières, Néon & nuit, Fêtes & saisons, Arts populaires, Fantasy & SF, Nature & réalisme, Luxe) se débloquent chacun par un petit achat unique. Les skins ne changent que l’apparence. Rien de ce que tu peux acheter ne change le score.\n\nET AUSSI\n• Top 20 local avec tes initiales, et le classement Game Center.\n• Pas de pub, pas de compte, pas de pistage. Fonctionne hors ligne.\n• Son et vibrations désactivables.\n\nAucun canard n’est blessé : ils sortent juste du cadre en culbutant."
+    "description": "Des canards descendent l’écran. Tu as 90 secondes et 8 cartouches. Fais-les tomber du ciel.\n\nKačeny (« canards » en tchèque) est un jeu d’arcade rapide qui se joue d’une main : à l’arrêt de bus, à la pause café ou pour une dernière partie avant de dormir. Chaque toucher est un tir, immédiat, sans attendre que tu lèves le doigt.\n\nCOMMENT JOUER\n• Touche un canard pour tirer. Les plus petits sont plus loin, plus faciles à rater et rapportent plus.\n• Vise pile au centre pour un bonus de précision.\n• Enchaîne plusieurs touches sans rater et le combo multiplie tes points jusqu’à ×2.\n• Le chargeur contient 8 cartouches. Glisse vers le bas ou touche les cartouches pour recharger, ou active le rechargement automatique.\n• Surveille les bords : de temps en temps, un gros canard pointe le bout du bec puis se cache à nouveau.\n\nSKINS\n113 looks pour les canards et le ciel : aquarelle, pixel art 16 bits, BD, pâte à modeler, anime et plus encore, beaucoup avec des ailes qui battent. 13 sont gratuits. Dix packs thématiques (Arcade rétro, Galerie d’art, Trop mignon, Matières, Néon & nuit, Fêtes & saisons, Arts populaires, Fantasy & SF, Nature & réalisme, Luxe) se débloquent chacun par un petit achat unique. Les skins ne changent que l’apparence. Rien de ce que tu peux acheter ne change le score.\n\nET AUSSI\n• Top 20 local avec tes initiales, et le classement Game Center.\n• Pas de pub, pas de compte, pas de pistage. Fonctionne hors ligne.\n• Son et vibrations désactivables.\n\nAucun canard n’est blessé : ils sortent juste du cadre en culbutant.",
+    "iapDescription": "10 skins de canards, chacun avec son décor.",
+    "allName": "Tous les packs",
+    "allDescription": "Les 100 skins de canards des 10 packs.",
+    "leaderboard": "Meilleur score"
   },
   "it": {
     "name": "Kačeny: Caccia alle anatre",
@@ -63,6 +298,454 @@
     "promo": "90 secondi, 8 cartucce, un cielo pieno di anatre. Tocca per sparare, scorri in giù per ricaricare, batti il tuo record. 13 look gratis, niente pubblicità.",
     "keywords": "arcade,tiro,sparare,cacciatore,uccelli,riflessi,veloce,retrò,pixel,skin,record,punteggio,offline",
     "playShort": "Abbatti anatre in volo in round da 90 secondi. Arcade veloce, zero pubblicità.",
-    "description": "Le anatre scendono lungo lo schermo. Hai 90 secondi e 8 cartucce. Buttale giù dal cielo.\n\nKačeny («anatre» in ceco) è un arcade veloce da giocare con una mano: alla fermata del bus, in pausa caffè o per un’ultima partita prima di dormire. Ogni tocco è un colpo, subito, senza aspettare che sollevi il dito.\n\nCOME SI GIOCA\n• Tocca un’anatra per spararle. Le anatre più piccole sono più lontane, più facili da mancare e valgono di più.\n• Colpisci proprio al centro per un bonus precisione.\n• Colpiscine diverse di fila senza sbagliare e la combo moltiplica i tuoi punti fino a ×2.\n• Il caricatore contiene 8 cartucce. Scorri verso il basso o tocca le cartucce per ricaricare, oppure attiva la ricarica automatica.\n• Tieni d’occhio i bordi: ogni tanto un’anatra grande fa capolino e torna a nascondersi.\n\nSKIN\n113 look per le anatre e il cielo: acquerello, pixel art a 16 bit, fumetto, plastilina, anime e altro ancora, molti con ali che sbattono. 13 sono gratis. Dieci pacchetti a tema (Sala giochi retrò, Galleria d’arte, Carini, Materiali, Neon e notte, Feste e stagioni, Arte popolare, Fantasy e sci-fi, Natura e realismo, Lusso) si sbloccano ciascuno con un piccolo acquisto una tantum. Le skin cambiano solo l’aspetto. Niente di ciò che puoi comprare cambia il punteggio.\n\nE INOLTRE\n• Top 20 locale con le tue iniziali e la classifica di Game Center.\n• Niente pubblicità, niente account, niente tracciamento. Funziona offline.\n• Suoni e vibrazione disattivabili.\n\nNessuna anatra si fa male: escono semplicemente dall’inquadratura ruzzolando."
+    "description": "Le anatre scendono lungo lo schermo. Hai 90 secondi e 8 cartucce. Buttale giù dal cielo.\n\nKačeny («anatre» in ceco) è un arcade veloce da giocare con una mano: alla fermata del bus, in pausa caffè o per un’ultima partita prima di dormire. Ogni tocco è un colpo, subito, senza aspettare che sollevi il dito.\n\nCOME SI GIOCA\n• Tocca un’anatra per spararle. Le anatre più piccole sono più lontane, più facili da mancare e valgono di più.\n• Colpisci proprio al centro per un bonus precisione.\n• Colpiscine diverse di fila senza sbagliare e la combo moltiplica i tuoi punti fino a ×2.\n• Il caricatore contiene 8 cartucce. Scorri verso il basso o tocca le cartucce per ricaricare, oppure attiva la ricarica automatica.\n• Tieni d’occhio i bordi: ogni tanto un’anatra grande fa capolino e torna a nascondersi.\n\nSKIN\n113 look per le anatre e il cielo: acquerello, pixel art a 16 bit, fumetto, plastilina, anime e altro ancora, molti con ali che sbattono. 13 sono gratis. Dieci pacchetti a tema (Sala giochi retrò, Galleria d’arte, Carini, Materiali, Neon e notte, Feste e stagioni, Arte popolare, Fantasy e sci-fi, Natura e realismo, Lusso) si sbloccano ciascuno con un piccolo acquisto una tantum. Le skin cambiano solo l’aspetto. Niente di ciò che puoi comprare cambia il punteggio.\n\nE INOLTRE\n• Top 20 locale con le tue iniziali e la classifica di Game Center.\n• Niente pubblicità, niente account, niente tracciamento. Funziona offline.\n• Suoni e vibrazione disattivabili.\n\nNessuna anatra si fa male: escono semplicemente dall’inquadratura ruzzolando.",
+    "iapDescription": "10 skin di anatre, ognuna con il suo sfondo.",
+    "allName": "Tutti i pacchetti",
+    "allDescription": "Tutte le 100 skin di anatre dei 10 pacchetti.",
+    "leaderboard": "Miglior punteggio"
+  },
+  "ar": {
+    "name": "Kačeny: صيد البط",
+    "subtitle": "أسقط البط من السماء",
+    "promo": "90 ثانية و8 طلقات وسماء مليئة بالبط. انقر لتطلق، واسحب للأسفل لتلقّم، وحطّم رقمك القياسي. 13 مظهرًا مجانًا، بلا إعلانات.",
+    "keywords": "أركيد,صيد,صياد,تصويب,رماية,طيور,نقر,ردود فعل,سريعة",
+    "playShort": "أسقط البط من السماء في جولات مدتها 90 ثانية. أركيد سريعة بلا إعلانات.",
+    "description": "يطير البط نزولًا على الشاشة. لديك 90 ثانية و8 طلقات. أسقطه من السماء.\n\nKačeny (تعني \"بط\" بالتشيكية) لعبة أركيد سريعة تُلعب بيد واحدة: في موقف الحافلة، أو في استراحة القهوة، أو جولة أخرى قبل النوم. كل لمسة طلقة فورية، دون انتظار رفع إصبعك.\n\nطريقة اللعب\n• انقر على بطة لتطلق عليها. البط الأصغر أبعد، ويسهل تفويته، ويستحق نقاطًا أكثر.\n• أصبها في المنتصف تمامًا لتحصل على مكافأة الدقة.\n• أصب عدة بطات متتالية دون أن تخطئ، وستضاعف السلسلة نقاطك حتى ×2.\n• يتسع المخزن لـ 8 طلقات. اسحب للأسفل أو انقر على الطلقات لتلقّم، أو فعّل التلقيم التلقائي.\n• راقب الحواف: بين حين وآخر تطل بطة كبيرة ثم تختبئ من جديد.\n\nالمظاهر\n113 مظهرًا للبط والسماء: ألوان مائية، وفن بكسل 16 بت، وقصص مصورة، وصلصال، وأنمي وغيرها، وكثير منها بأجنحة ترفرف. 13 منها مجانية. عشر حزم بموضوعات مختلفة (صالة ألعاب قديمة، معرض فني، لطيف، خامات، نيون وليل، أعياد ومواسم، فنون شعبية، خيال وخيال علمي، طبيعة، فخامة) تُفتح كل منها بعملية شراء صغيرة لمرة واحدة. المظاهر تغيّر الشكل فقط. لا شيء مما تشتريه يغيّر النتيجة.\n\nوأيضًا\n• أفضل 20 نتيجة على الجهاز بأحرفك الأولى، ولوحة صدارة Game Center.\n• بلا إعلانات، بلا حساب، بلا تتبّع. تعمل دون اتصال.\n• يمكن إيقاف الصوت والاهتزاز.\n\nلا يتأذى أي بط: كل ما في الأمر أنه يتدحرج خارج الإطار.",
+    "iapDescription": "10 مظاهر للبط، لكل منها خلفيته الخاصة.",
+    "allName": "كل الحزم",
+    "allDescription": "كل المظاهر المدفوعة الـ100 من الحزم العشر.",
+    "leaderboard": "أفضل نتيجة"
+  },
+  "bn": {
+    "name": "Kačeny: হাঁস শিকার",
+    "subtitle": "আকাশ থেকে হাঁস নামান",
+    "promo": "৯০ সেকেন্ড, ৮টি কার্তুজ আর হাঁসে ভরা আকাশ। ট্যাপ করে গুলি করুন, নিচে সোয়াইপ করে রিলোড করুন, নিজের রেকর্ড ভাঙুন। ১৩টি লুক ফ্রি, কোনো বিজ্ঞাপন নেই।",
+    "keywords": "আর্কেড,শিকার,শিকারি,শুটিং,পাখি,ট্যাপ",
+    "playShort": "৯০ সেকেন্ডের রাউন্ডে আকাশ থেকে হাঁস নামান। দ্রুত আর্কেড, কোনো বিজ্ঞাপন নেই।",
+    "description": "হাঁসগুলো স্ক্রিনের নিচের দিকে উড়ে আসে। আপনার হাতে ৯০ সেকেন্ড আর ৮টি কার্তুজ। ওদের আকাশ থেকে নামিয়ে আনুন।\n\nKačeny (চেক ভাষায় \"হাঁসেরা\") এক হাতে খেলার মতো দ্রুত আর্কেড গেম: বাস স্টপে, চায়ের বিরতিতে বা ঘুমানোর আগে আরও এক রাউন্ড। প্রতিটি ছোঁয়াই সঙ্গে সঙ্গে গুলি, আঙুল তোলার অপেক্ষা নেই।\n\nকীভাবে খেলবেন\n• গুলি করতে হাঁসে ট্যাপ করুন। ছোট হাঁস দূরে থাকে, সহজে ফসকে যায় আর বেশি পয়েন্ট দেয়।\n• ঠিক মাঝখানে লাগালে নির্ভুলতার বোনাস।\n• না ফসকে পরপর কয়েকটি লাগালে কম্বো আপনার পয়েন্ট ×2 পর্যন্ত বাড়ায়।\n• ম্যাগাজিনে ৮টি কার্তুজ ধরে। রিলোড করতে নিচে সোয়াইপ করুন বা কার্তুজে ট্যাপ করুন, অথবা স্বয়ংক্রিয় রিলোড চালু করুন।\n• কিনারার দিকে নজর রাখুন: মাঝে মাঝে একটা বড় হাঁস উঁকি দিয়ে আবার লুকিয়ে পড়ে।\n\nস্কিন\nহাঁস আর আকাশের জন্য ১১৩টি লুক: জলরং, ১৬-বিট পিক্সেল আর্ট, কমিক, মাটি, অ্যানিমে আর আরও অনেক কিছু, অনেকগুলোর ডানা ঝাপটায়। ১৩টি ফ্রি। দশটি থিম প্যাক (রেট্রো আর্কেড, আর্ট গ্যালারি, মিষ্টি, উপাদান, নিয়ন ও রাত, উৎসব ও ঋতু, লোকশিল্প, ফ্যান্টাসি ও কল্পবিজ্ঞান, প্রকৃতি, বিলাসিতা) প্রতিটি ছোট একবারের কেনাকাটায় আনলক হয়। স্কিন শুধু চেহারা বদলায়। কেনা কোনো কিছুই স্কোর বদলায় না।\n\nআরও\n• আপনার আদ্যক্ষরসহ লোকাল টপ ২০, আর Game Center লিডারবোর্ড।\n• কোনো বিজ্ঞাপন নেই, অ্যাকাউন্ট নেই, ট্র্যাকিং নেই। অফলাইনে চলে।\n• শব্দ ও কম্পন বন্ধ করা যায়।\n\nকোনো হাঁস আঘাত পায় না: ওরা শুধু গড়িয়ে ফ্রেমের বাইরে চলে যায়।",
+    "iapDescription": "১০টি হাঁসের স্কিন, প্রতিটির নিজস্ব পটভূমি।",
+    "allName": "সব প্যাক",
+    "allDescription": "১০টি প্যাকের সব ১০০টি পেইড হাঁসের স্কিন।",
+    "leaderboard": "সেরা স্কোর"
+  },
+  "ca": {
+    "name": "Kačeny: Caça d’ànecs",
+    "subtitle": "Abat ànecs del cel",
+    "promo": "90 segons, 8 cartutxos i un cel ple d’ànecs. Toca per disparar, llisca avall per recarregar i supera el teu rècord. 13 aparences gratis, sense anuncis.",
+    "keywords": "arcade,caçador,trets,ocells,tocar,reflexos,ràpid,casual,retro,píxel,aparences,rècord,offline",
+    "playShort": "Abat ànecs del cel en rondes de 90 segons. Arcade ràpid i sense anuncis.",
+    "description": "Els ànecs baixen volant per la pantalla. Tens 90 segons i 8 cartutxos. Fes-los caure del cel.\n\nKačeny (en txec, \"ànecs\") és un joc arcade ràpid per jugar amb una mà: a la parada de l’autobús, a la pausa del cafè o una ronda més abans d’anar a dormir. Cada toc és un tret immediat, sense esperar que aixequis el dit.\n\nCOM ES JUGA\n• Toca un ànec per disparar-li. Els més petits són més lluny, és més fàcil fallar-los i valen més.\n• Encerta’ls just al mig per obtenir un bonus de precisió.\n• Encerta’n diversos seguits sense fallar i el combo multiplica els punts fins a ×2.\n• El carregador té 8 cartutxos. Llisca avall o toca els cartutxos per recarregar, o activa la recàrrega automàtica.\n• Vigila les vores: de tant en tant un ànec gros treu el cap i es torna a amagar.\n\nAPARENCES\n113 aparences per als ànecs i el cel: aquarel·la, pixel art de 16 bits, còmic, plastilina, anime i més, moltes amb ales que baten. 13 són gratis. Deu paquets temàtics (Arcade retro, Galeria d’art, Bufons, Materials, Neó i nit, Festes, Art popular, Fantasia i sci-fi, Natura, Luxe) es desbloquegen amb una petita compra única cadascun. Les aparences només canvien l’aspecte. Res del que compris canvia la puntuació.\n\nI A MÉS\n• Top 20 local amb les teves inicials i la classificació de Game Center.\n• Sense anuncis, sense compte, sense seguiment. Funciona sense connexió.\n• So i vibració desactivables.\n\nCap ànec pren mal: només surten rodolant del pla.",
+    "iapDescription": "10 aparences d’ànecs, cadascuna amb el seu fons.",
+    "allName": "Tots els paquets",
+    "allDescription": "Les 100 aparences de pagament dels 10 paquets.",
+    "leaderboard": "Millor puntuació"
+  },
+  "da": {
+    "name": "Kačeny: Andejagt",
+    "subtitle": "Skyd ænderne ned fra himlen",
+    "promo": "90 sekunder, 8 patroner og en himmel fuld af ænder. Tryk for at skyde, stryg ned for at lade, slå din rekord. 13 looks gratis, ingen reklamer.",
+    "keywords": "arkade,jagt,jæger,skyde,fugle,tryk,refleks,hurtig,casual,retro,pixel,skins,highscore,offline,sigte",
+    "playShort": "Skyd ænder ned fra himlen i runder på 90 sekunder. Hurtig arkade uden reklamer.",
+    "description": "Ænder flyver ned over skærmen. Du har 90 sekunder og 8 patroner. Skyd dem ned fra himlen.\n\nKačeny (tjekkisk for \"ænder\") er et hurtigt arkadespil til én hånd: til busstoppestedet, kaffepausen eller én runde mere før sengetid. Hvert tryk er et skud med det samme, uden at vente på at fingeren løftes.\n\nSÅDAN SPILLER DU\n• Tryk på en and for at skyde den. Mindre ænder er længere væk, lettere at ramme ved siden af og giver flere point.\n• Ram dem lige i midten for en præcisionsbonus.\n• Ram flere i træk uden at misse, og comboen ganger dine point op til ×2.\n• Magasinet rummer 8 patroner. Stryg ned eller tryk på patronerne for at lade, eller slå automatisk genladning til.\n• Hold øje med kanterne: en gang imellem kigger en stor and ind og gemmer sig igen.\n\nSKINS\n113 looks til ænderne og himlen: akvarel, 16-bit pixelkunst, tegneserie, modellervoks, anime og mere, mange med baskende vinger. 13 er gratis. Ti temapakker (Retro-arkade, Kunstgalleri, Nuttet, Materialer, Neon & nat, Højtider, Folkekunst, Fantasy & sci-fi, Natur, Luksus) låses op med et lille engangskøb hver. Skins ændrer kun udseendet. Intet, du kan købe, ændrer pointene.\n\nDESUDEN\n• Lokal top 20 med dine initialer og Game Center-ranglisten.\n• Ingen reklamer, ingen konto, ingen sporing. Kan spilles offline.\n• Lyd og vibration kan slås fra.\n\nIngen ænder kommer til skade: de tumler bare ud af billedet.",
+    "iapDescription": "10 andeskins, hver med sin egen baggrund.",
+    "allName": "Alle pakker",
+    "allDescription": "Alle 100 betalte andeskins fra alle 10 pakker.",
+    "leaderboard": "Bedste score"
+  },
+  "el": {
+    "name": "Kačeny: Κυνήγι πάπιας",
+    "subtitle": "Ρίξε τις πάπιες απ’ τον ουρανό",
+    "promo": "90 δευτερόλεπτα, 8 φυσίγγια και ένας ουρανός γεμάτος πάπιες. Πάτα για να ρίξεις, σύρε κάτω για γέμισμα, σπάσε το ρεκόρ σου. 13 εμφανίσεις δωρεάν, χωρίς διαφημίσεις.",
+    "keywords": "arcade,κυνηγός,σκοποβολή,πουλιά,πάτημα,αντανακλαστικά",
+    "playShort": "Ρίξε πάπιες απ’ τον ουρανό σε γύρους των 90 δευτερολέπτων. Γρήγορο arcade.",
+    "description": "Πάπιες πετούν προς τα κάτω στην οθόνη. Έχεις 90 δευτερόλεπτα και 8 φυσίγγια. Ρίξ’ τες από τον ουρανό.\n\nΤο Kačeny (στα τσέχικα «πάπιες») είναι ένα γρήγορο arcade για το ένα χέρι: για τη στάση του λεωφορείου, το διάλειμμα για καφέ ή έναν ακόμα γύρο πριν τον ύπνο. Κάθε άγγιγμα είναι αμέσως βολή, χωρίς να περιμένεις να σηκώσεις το δάχτυλο.\n\nΠΩΣ ΠΑΙΖΕΤΑΙ\n• Πάτα μια πάπια για να τη χτυπήσεις. Οι μικρότερες είναι πιο μακριά, αστοχείς πιο εύκολα και αξίζουν περισσότερο.\n• Πέτυχέ τες ακριβώς στο κέντρο για μπόνους ακρίβειας.\n• Πέτυχε πολλές στη σειρά χωρίς αστοχία και το combo πολλαπλασιάζει τους πόντους σου έως ×2.\n• Ο γεμιστήρας χωράει 8 φυσίγγια. Σύρε προς τα κάτω ή πάτα τα φυσίγγια για γέμισμα, ή ενεργοποίησε το αυτόματο γέμισμα.\n• Πρόσεχε τις άκρες: πότε πότε μια μεγάλη πάπια κρυφοκοιτάζει και ξανακρύβεται.\n\nΕΜΦΑΝΙΣΕΙΣ\n113 εμφανίσεις για τις πάπιες και τον ουρανό: ακουαρέλα, 16-bit pixel art, κόμικ, πλαστελίνη, anime και άλλα, πολλές με φτερά που χτυπούν. Οι 13 είναι δωρεάν. Δέκα θεματικά πακέτα (Ρετρό ουφάδικο, Γκαλερί τέχνης, Χαριτωμένα, Υλικά, Νέον & νύχτα, Γιορτές, Λαϊκή τέχνη, Φαντασία & sci-fi, Φύση, Πολυτέλεια) ξεκλειδώνουν το καθένα με μια μικρή εφάπαξ αγορά. Οι εμφανίσεις αλλάζουν μόνο την όψη. Τίποτα από όσα αγοράζεις δεν αλλάζει το σκορ.\n\nΕΠΙΣΗΣ\n• Τοπικό top 20 με τα αρχικά σου και η κατάταξη του Game Center.\n• Χωρίς διαφημίσεις, χωρίς λογαριασμό, χωρίς παρακολούθηση. Παίζει offline.\n• Ήχος και δόνηση απενεργοποιούνται.\n\nΚαμία πάπια δεν παθαίνει τίποτα: απλώς κουτρουβαλάνε έξω από το κάδρο.",
+    "iapDescription": "10 εμφανίσεις πάπιας, καθεμία με δικό της φόντο.",
+    "allName": "Όλα τα πακέτα",
+    "allDescription": "Και οι 100 επί πληρωμή εμφανίσεις από 10 πακέτα.",
+    "leaderboard": "Καλύτερο σκορ"
+  },
+  "fi": {
+    "name": "Kačeny: Sorsajahti",
+    "subtitle": "Ammu sorsat taivaalta",
+    "promo": "90 sekuntia, 8 patruunaa ja taivas täynnä sorsia. Napauta ampuaksesi, pyyhkäise alas ladataksesi ja riko ennätyksesi. 13 lookia ilmaiseksi, ei mainoksia.",
+    "keywords": "arcade,metsästys,ampuminen,linnut,napautus,refleksit,nopea,retro,pikseli,skinit,ennätys,offline",
+    "playShort": "Ammu sorsat taivaalta 90 sekunnin kierroksilla. Nopeaa arcadea ilman mainoksia.",
+    "description": "Sorsat lentävät ruudulla alaspäin. Sinulla on 90 sekuntia ja 8 patruunaa. Ammu ne alas taivaalta.\n\nKačeny (tšekkiä, tarkoittaa \"sorsat\") on nopea yhden käden arcadepeli bussipysäkille, kahvitauolle tai vielä yhdelle kierrokselle ennen nukkumaanmenoa. Jokainen kosketus on heti laukaus, sormen nostamista ei tarvitse odottaa.\n\nNÄIN PELAAT\n• Napauta sorsaa ampuaksesi sen. Pienemmät sorsat ovat kauempana, helpompi ohittaa ja arvokkaampia.\n• Osu keskelle saadaksesi tarkkuusbonuksen.\n• Osu useaan peräkkäin ohittamatta, niin kombo kertoo pisteesi jopa ×2.\n• Lippaaseen mahtuu 8 patruunaa. Lataa pyyhkäisemällä alas tai napauttamalla patruunoita, tai laita automaattinen lataus päälle.\n• Pidä reunoja silmällä: välillä iso sorsa kurkistaa sisään ja piiloutuu taas.\n\nSKINIT\n113 lookia sorsille ja taivaalle: vesiväri, 16-bittinen pikselitaide, sarjakuva, muovailuvaha, anime ja paljon muuta, monissa räpyttelevät siivet. 13 on ilmaisia. Kymmenen teemapakettia (Retrohalli, Taidegalleria, Söpöt, Materiaalit, Neon & yö, Juhlat, Kansantaide, Fantasia & scifi, Luonto, Luksus) avautuvat kukin pienellä kertaostolla. Skinit muuttavat vain ulkonäköä. Mikään ostettava ei vaikuta pisteisiin.\n\nLISÄKSI\n• Paikallinen top 20 nimikirjaimillasi ja Game Centerin tulostaulu.\n• Ei mainoksia, ei tiliä, ei seurantaa. Toimii ilman verkkoa.\n• Äänen ja värinän voi kytkeä pois.\n\nYksikään sorsa ei satu: ne vain putoavat kuvasta.",
+    "iapDescription": "10 sorsaskiniä, jokaisessa oma tausta.",
+    "allName": "Kaikki paketit",
+    "allDescription": "Kaikki 100 maksullista sorsaskiniä 10 paketista.",
+    "leaderboard": "Paras tulos"
+  },
+  "gu": {
+    "name": "Kačeny: બતકનો શિકાર",
+    "subtitle": "આકાશમાંથી બતક પાડો",
+    "promo": "90 સેકન્ડ, 8 કારતૂસ અને બતકથી ભરેલું આકાશ. ગોળી ચલાવવા ટૅપ કરો, રીલોડ માટે નીચે સ્વાઇપ કરો અને તમારો રેકોર્ડ તોડો. 13 લુક મફત, કોઈ જાહેરાત નહીં.",
+    "keywords": "આર્કેડ,શિકાર,શિકારી,નિશાનબાજી,પક્ષી",
+    "playShort": "90 સેકન્ડના રાઉન્ડમાં આકાશમાંથી બતક પાડો. ઝડપી આર્કેડ, કોઈ જાહેરાત નહીં.",
+    "description": "બતક સ્ક્રીન પર નીચેની તરફ ઊડે છે. તમારી પાસે 90 સેકન્ડ અને 8 કારતૂસ છે. તેમને આકાશમાંથી પાડો.\n\nKačeny (ચેક ભાષામાં \"બતક\") એક હાથે રમી શકાય એવી ઝડપી આર્કેડ ગેમ છે: બસ સ્ટૉપ પર, ચાના વિરામમાં કે સૂતાં પહેલાં વધુ એક રાઉન્ડ. દરેક સ્પર્શ તરત જ ગોળી છે, આંગળી ઉપાડવાની રાહ નહીં.\n\nકેવી રીતે રમવું\n• ગોળી ચલાવવા બતક પર ટૅપ કરો. નાનાં બતક દૂર હોય છે, સહેલાઈથી ચૂકી જવાય છે અને વધુ પોઇન્ટ આપે છે.\n• બરાબર વચ્ચે નિશાન લગાવો અને ચોકસાઈનું બોનસ મેળવો.\n• ચૂક્યા વિના સતત ઘણાં નિશાન લગાવો અને કૉમ્બો તમારા પોઇન્ટ ×2 સુધી વધારશે.\n• મૅગેઝિનમાં 8 કારતૂસ સમાય છે. રીલોડ માટે નીચે સ્વાઇપ કરો કે કારતૂસ પર ટૅપ કરો, અથવા આપોઆપ રીલોડ ચાલુ કરો.\n• કિનારીઓ પર નજર રાખો: ક્યારેક એક મોટું બતક ડોકિયું કરીને ફરી સંતાઈ જાય છે.\n\nસ્કિન\nબતક અને આકાશ માટે 113 લુક: જળરંગ, 16-બિટ પિક્સેલ આર્ટ, કૉમિક, માટી, એનિમે અને ઘણું બધું, ઘણાંની પાંખો ફફડે છે. 13 મફત છે. દસ થીમ પૅક (રેટ્રો આર્કેડ, કલા ગેલેરી, મીઠડાં, સામગ્રી, નિયોન અને રાત, તહેવાર અને ઋતુ, લોકકલા, ફૅન્ટસી અને વિજ્ઞાનકથા, પ્રકૃતિ, વૈભવ) દરેક નાની એક વખતની ખરીદીથી અનલૉક થાય છે. સ્કિન ફક્ત દેખાવ બદલે છે. કંઈ પણ ખરીદવાથી સ્કોર બદલાતો નથી.\n\nવધુમાં\n• તમારા આદ્યાક્ષરો સાથે સ્થાનિક ટૉપ 20, અને Game Center લીડરબોર્ડ.\n• કોઈ જાહેરાત નહીં, કોઈ એકાઉન્ટ નહીં, કોઈ ટ્રૅકિંગ નહીં. ઑફલાઇન ચાલે છે.\n• અવાજ અને વાઇબ્રેશન બંધ કરી શકાય છે.\n\nકોઈ બતકને ઈજા થતી નથી: તે બસ ગબડીને ફ્રેમની બહાર જતાં રહે છે.",
+    "iapDescription": "10 બતક સ્કિન, દરેકની પોતાની પૃષ્ઠભૂમિ.",
+    "allName": "બધાં પૅક",
+    "allDescription": "બધાં 10 પૅકની 100 પેઇડ બતક સ્કિન.",
+    "leaderboard": "શ્રેષ્ઠ સ્કોર"
+  },
+  "he": {
+    "name": "Kačeny: ציד ברווזים",
+    "subtitle": "הפל ברווזים מהשמיים",
+    "promo": "90 שניות, 8 כדורים ושמיים מלאים ברווזים. הקש כדי לירות, החלק למטה כדי לטעון ושבור את השיא שלך. 13 מראות בחינם, בלי פרסומות.",
+    "keywords": "ארקייד,ציד,צייד,יריות,קליעה,ציפורים,הקשה,רפלקסים,מהיר",
+    "playShort": "הפל ברווזים מהשמיים בסיבובים של 90 שניות. ארקייד מהיר בלי פרסומות.",
+    "description": "ברווזים עפים למטה על המסך. יש לך 90 שניות ו-8 כדורים. הפל אותם מהשמיים.\n\nKačeny (\"ברווזים\" בצ׳כית) הוא משחק ארקייד מהיר ליד אחת: בתחנת האוטובוס, בהפסקת הקפה או עוד סיבוב אחד לפני השינה. כל נגיעה היא ירייה מיידית, בלי לחכות שתרים את האצבע.\n\nאיך משחקים\n• הקש על ברווז כדי לירות בו. ברווזים קטנים יותר רחוקים יותר, קל יותר להחטיא אותם והם שווים יותר.\n• פגע בדיוק במרכז ותקבל בונוס דיוק.\n• פגע בכמה ברצף בלי להחטיא, והקומבו יכפיל את הנקודות עד ×2.\n• במחסנית יש 8 כדורים. החלק למטה או הקש על הכדורים כדי לטעון, או הפעל טעינה אוטומטית.\n• שים לב לשוליים: מדי פעם ברווז גדול מציץ פנימה ומתחבא שוב.\n\nסקינים\n113 מראות לברווזים ולשמיים: צבעי מים, פיקסל ארט 16 ביט, קומיקס, פלסטלינה, אנימה ועוד, רבים עם כנפיים מנפנפות. 13 בחינם. עשר חבילות נושא (ארקייד רטרו, גלריה לאמנות, חמוד, חומרים, ניאון ולילה, חגים ועונות, אמנות עממית, פנטזיה ומדע בדיוני, טבע, יוקרה) נפתחות כל אחת ברכישה קטנה חד-פעמית. סקינים משנים רק את המראה. שום דבר שאפשר לקנות לא משנה את הניקוד.\n\nועוד\n• 20 המובילים במכשיר עם ראשי התיבות שלך, וטבלת השיאים של Game Center.\n• בלי פרסומות, בלי חשבון, בלי מעקב. עובד גם בלי חיבור.\n• אפשר לכבות צליל ורטט.\n\nאף ברווז לא נפגע: הם פשוט מתגלגלים החוצה מהפריים.",
+    "iapDescription": "10 סקינים של ברווזים, כל אחד עם רקע משלו.",
+    "allName": "כל החבילות",
+    "allDescription": "כל 100 סקיני הברווזים בתשלום מ-10 החבילות.",
+    "leaderboard": "התוצאה הטובה ביותר"
+  },
+  "hi": {
+    "name": "Kačeny: बत्तख शिकार",
+    "subtitle": "आसमान से बत्तखें गिराइए",
+    "promo": "90 सेकंड, 8 कारतूस और बत्तखों से भरा आसमान. टैप करके गोली चलाइए, नीचे स्वाइप करके रीलोड कीजिए और अपना रिकॉर्ड तोड़िए. 13 लुक मुफ़्त, कोई विज्ञापन नहीं.",
+    "keywords": "आर्केड,शिकार,शिकारी,निशानेबाज़ी",
+    "playShort": "90 सेकंड के राउंड में आसमान से बत्तखें गिराइए. तेज़ आर्केड, कोई विज्ञापन नहीं.",
+    "description": "बत्तखें स्क्रीन पर नीचे की ओर उड़ती हैं. आपके पास 90 सेकंड और 8 कारतूस हैं. उन्हें आसमान से गिराइए.\n\nKačeny (चेक भाषा में \"बत्तखें\") एक हाथ से खेलने वाला तेज़ आर्केड गेम है: बस स्टॉप पर, चाय-कॉफ़ी के ब्रेक में या सोने से पहले एक और राउंड. हर टच तुरंत एक गोली है, उँगली उठाने का इंतज़ार नहीं.\n\nकैसे खेलें\n• गोली चलाने के लिए बत्तख पर टैप करें. छोटी बत्तखें दूर होती हैं, उनसे निशाना आसानी से चूकता है और वे ज़्यादा अंक देती हैं.\n• ठीक बीच में निशाना लगाइए और सटीकता बोनस पाइए.\n• बिना चूके लगातार कई निशाने लगाइए और कॉम्बो आपके अंक ×2 तक बढ़ा देगा.\n• मैगज़ीन में 8 कारतूस आते हैं. रीलोड के लिए नीचे स्वाइप करें या कारतूसों पर टैप करें, या अपने-आप रीलोड चालू करें.\n• किनारों पर नज़र रखें: कभी-कभी एक बड़ी बत्तख झाँकती है और फिर छिप जाती है.\n\nस्किन\nबत्तखों और आसमान के लिए 113 लुक: जलरंग, 16-बिट पिक्सेल आर्ट, कॉमिक, मिट्टी, एनीमे और भी बहुत कुछ, कई के पंख फड़फड़ाते हैं. 13 मुफ़्त हैं. दस थीम वाले पैक (रेट्रो आर्केड, आर्ट गैलरी, प्यारे, सामग्रियाँ, नियॉन और रात, त्योहार और मौसम, लोक कला, फ़ैंटेसी और साइंस-फ़िक्शन, प्रकृति, शाही ठाठ) हर एक छोटी-सी एक बार की ख़रीदारी से अनलॉक होता है. स्किन सिर्फ़ रूप बदलती हैं. कुछ भी ख़रीदने से स्कोर नहीं बदलता.\n\nऔर भी\n• आपके नाम के पहले अक्षरों के साथ लोकल टॉप 20, और Game Center लीडरबोर्ड.\n• कोई विज्ञापन नहीं, कोई अकाउंट नहीं, कोई ट्रैकिंग नहीं. ऑफ़लाइन चलता है.\n• आवाज़ और वाइब्रेशन बंद किए जा सकते हैं.\n\nकिसी बत्तख को चोट नहीं लगती: वे बस लुढ़ककर फ़्रेम से बाहर चली जाती हैं.",
+    "iapDescription": "10 बत्तख स्किन, हर एक का अपना बैकग्राउंड.",
+    "allName": "सभी पैक",
+    "allDescription": "सभी 10 पैक की 100 पेड बत्तख स्किन.",
+    "leaderboard": "सर्वश्रेष्ठ स्कोर"
+  },
+  "hr": {
+    "name": "Kačeny: Lov na patke",
+    "subtitle": "Obori patke s neba",
+    "promo": "90 sekundi, 8 metaka i nebo puno pataka. Dodirni za pucanj, povuci prema dolje za punjenje i obori svoj rekord. 13 izgleda besplatno, bez reklama.",
+    "keywords": "arkada,lovac,pucanje,pucačina,ptice,dodir,refleksi,brza,casual,retro,piksel,izgledi,rekord,offline",
+    "playShort": "Obori patke s neba u rundama od 90 sekundi. Brza arkada bez reklama.",
+    "description": "Patke lete niz ekran. Imaš 90 sekundi i 8 metaka. Obori ih s neba.\n\nKačeny (na češkom „patke”) brza je arkadna igra za jednu ruku: na autobusnoj stanici, uz kavu ili još jednu rundu prije spavanja. Svaki dodir odmah je pucanj, bez čekanja da podigneš prst.\n\nKAKO SE IGRA\n• Dodirni patku da pucaš. Manje patke su dalje, lakše ih je promašiti i vrijede više.\n• Pogodi ih točno u sredinu za bonus preciznosti.\n• Pogodi nekoliko zaredom bez promašaja i kombo množi bodove do ×2.\n• U spremnik stane 8 metaka. Povuci prema dolje ili dodirni metke za punjenje, ili uključi automatsko punjenje.\n• Pazi na rubove: povremeno proviri velika patka pa se opet sakrije.\n\nIZGLEDI\n113 izgleda za patke i nebo: akvarel, 16-bitni pixel art, strip, plastelin, anime i još mnogo toga, mnogi s krilima koja mašu. 13 je besplatno. Deset tematskih paketa (Retro igraonica, Umjetnička galerija, Slatko, Materijali, Neon i noć, Blagdani, Narodna umjetnost, Fantasy i SF, Priroda, Luksuz) otključavaš malom jednokratnom kupnjom. Izgledi mijenjaju samo izgled. Ništa što kupiš ne mijenja rezultat.\n\nI JOŠ\n• Lokalnih top 20 s tvojim inicijalima i ljestvica u Game Centeru.\n• Bez reklama, bez računa, bez praćenja. Radi i offline.\n• Zvuk i vibracija mogu se isključiti.\n\nNijedna patka ne strada: samo se otkotrljaju iz kadra.",
+    "iapDescription": "10 izgleda pataka, svaki s vlastitom pozadinom.",
+    "allName": "Svi paketi",
+    "allDescription": "Svih 100 plaćenih izgleda pataka iz 10 paketa.",
+    "leaderboard": "Najbolji rezultat"
+  },
+  "hu": {
+    "name": "Kačeny: Kacsavadászat",
+    "subtitle": "Lődd le a kacsákat az égről",
+    "promo": "90 másodperc, 8 töltény és egy égbolt tele kacsákkal. Koppints a lövéshez, húzd lefelé az újratöltéshez, és döntsd meg a rekordod. 13 ingyenes kinézet, reklámok nélkül.",
+    "keywords": "arcade,vadász,lövöldözés,madarak,koppintás,reflex,gyors,casual,retró,pixel,kinézet,rekord",
+    "playShort": "Lődd le a kacsákat 90 másodperces körökben. Gyors arcade, reklám nélkül.",
+    "description": "Kacsák repülnek lefelé a képernyőn. 90 másodperced és 8 töltényed van. Lődd le őket az égről.\n\nA Kačeny (csehül „kacsák”) gyors, egykezes arcade játék a buszmegállóba, a kávészünetre vagy még egy körre lefekvés előtt. Minden érintés azonnal lövés, nem kell megvárnod, hogy felemeld az ujjad.\n\nHOGYAN JÁTSZD\n• Koppints egy kacsára a lövéshez. A kisebb kacsák messzebb vannak, könnyebb mellélőni, és többet érnek.\n• Találd el őket pont középen a pontossági bónuszért.\n• Találj el többet egymás után hibázás nélkül, és a kombó akár ×2-re szorozza a pontjaidat.\n• A tárba 8 töltény fér. Húzd lefelé vagy koppints a töltényekre az újratöltéshez, vagy kapcsold be az automatikus újratöltést.\n• Figyeld a széleket: néha bekukucskál egy nagy kacsa, aztán újra elbújik.\n\nKINÉZETEK\n113 kinézet a kacsáknak és az égnek: akvarell, 16 bites pixel art, képregény, gyurma, anime és még sok más, sok közülük csapkodó szárnyakkal. 13 ingyenes. Tíz tematikus csomag (Retró játékterem, Művészeti galéria, Cuki, Anyagok, Neon és éjszaka, Ünnepek, Népművészet, Fantasy és sci-fi, Természet, Luxus) egyenként kis, egyszeri vásárlással oldható fel. A kinézetek csak a megjelenést változtatják. Semmi, amit megveszel, nem befolyásolja a pontszámot.\n\nTOVÁBBÁ\n• Helyi top 20 a monogramoddal, és a Game Center ranglista.\n• Nincs reklám, nincs fiók, nincs követés. Offline is játszható.\n• A hang és a rezgés kikapcsolható.\n\nEgyetlen kacsa sem sérül meg: csak kibukfenceznek a képből.",
+    "iapDescription": "10 kacsakinézet, mindegyik saját háttérrel.",
+    "allName": "Minden csomag",
+    "allDescription": "Mind a 100 fizetős kacsakinézet a 10 csomagból.",
+    "leaderboard": "Legjobb eredmény"
+  },
+  "id": {
+    "name": "Kačeny: Tembak Bebek",
+    "subtitle": "Jatuhkan bebek dari langit",
+    "promo": "90 detik, 8 peluru, dan langit penuh bebek. Ketuk untuk menembak, geser ke bawah untuk isi ulang, kalahkan rekormu. 13 tampilan gratis, tanpa iklan.",
+    "keywords": "arkade,berburu,pemburu,menembak,burung,ketuk,refleks,cepat,kasual,retro,piksel,skin,skor,offline",
+    "playShort": "Jatuhkan bebek dari langit dalam ronde 90 detik. Arkade cepat tanpa iklan.",
+    "description": "Bebek terbang turun di layar. Kamu punya 90 detik dan 8 peluru. Jatuhkan mereka dari langit.\n\nKačeny (bahasa Ceko untuk \"bebek\") adalah game arkade cepat untuk satu tangan: di halte bus, saat rehat kopi, atau satu ronde lagi sebelum tidur. Setiap sentuhan langsung jadi tembakan, tanpa menunggu jarimu terangkat.\n\nCARA BERMAIN\n• Ketuk bebek untuk menembaknya. Bebek yang lebih kecil lebih jauh, lebih mudah meleset, dan bernilai lebih tinggi.\n• Tembak tepat di tengah untuk bonus presisi.\n• Kena beberapa kali berturut-turut tanpa meleset dan kombo melipatgandakan poinmu hingga ×2.\n• Magasin berisi 8 peluru. Geser ke bawah atau ketuk peluru untuk isi ulang, atau nyalakan isi ulang otomatis.\n• Awasi tepi layar: sesekali bebek besar mengintip lalu bersembunyi lagi.\n\nSKIN\n113 tampilan untuk bebek dan langit: cat air, pixel art 16-bit, komik, tanah liat, anime, dan banyak lagi, banyak yang sayapnya mengepak. 13 gratis. Sepuluh paket bertema (Arkade retro, Galeri seni, Imut, Material, Neon & malam, Hari raya, Seni rakyat, Fantasi & fiksi ilmiah, Alam, Mewah) masing-masing dibuka dengan pembelian kecil sekali bayar. Skin hanya mengubah tampilan. Tidak ada yang bisa kamu beli yang mengubah skor.\n\nJUGA\n• Top 20 lokal dengan inisialmu, dan papan skor Game Center.\n• Tanpa iklan, tanpa akun, tanpa pelacakan. Bisa dimainkan offline.\n• Suara dan getar bisa dimatikan.\n\nTidak ada bebek yang terluka: mereka hanya terjungkal keluar layar.",
+    "iapDescription": "10 skin bebek, masing-masing dengan latarnya.",
+    "allName": "Semua paket",
+    "allDescription": "Semua 100 skin bebek berbayar dari 10 paket.",
+    "leaderboard": "Skor terbaik"
+  },
+  "ja": {
+    "name": "Kačeny：カモ撃ちアーケード",
+    "subtitle": "空のカモをタップで撃ち落とせ",
+    "promo": "90秒、弾は8発、空はカモだらけ。タップで撃って、下スワイプでリロード、ハイスコアを更新しよう。13種類のスキンが無料、広告なし。",
+    "keywords": "シューティング,射撃,ハンティング,狩り,鳥,タップ,反射神経,カジュアル",
+    "playShort": "90秒のラウンドで空のカモを撃ち落とせ。サクッと遊べるアーケード、広告なし。",
+    "description": "カモが画面の上から飛んできます。持ち時間は90秒、弾は8発。空から撃ち落としましょう。\n\nKačeny（チェコ語で「カモたち」）は片手で遊べるスピーディーなアーケードゲーム。バス停で、コーヒーブレイクに、寝る前にもう1ラウンド。触れた瞬間に発射、指を離すのを待ちません。\n\n遊び方\n• カモをタップして撃ちます。小さいカモほど遠くにいて外しやすく、得点も高め。\n• ど真ん中に当てると精度ボーナス。\n• 外さずに連続で当てるとコンボで得点が最大×2に。\n• 弾倉は8発。下にスワイプするか弾をタップしてリロード、またはオートリロードをオンに。\n• 画面の端に注意：ときどき大きなカモが顔を出して、また隠れます。\n\nスキン\nカモと空の見た目は113種類：水彩、16ビットのドット絵、コミック、粘土、アニメなど、羽ばたくものもたくさん。13種類は無料。10のテーマパック（レトロゲーセン、アートギャラリー、かわいい、素材、ネオン＆ナイト、行事と季節、世界の民芸、ファンタジー＆SF、自然、ラグジュアリー）は、それぞれ少額の買い切りで解放できます。スキンが変えるのは見た目だけ。買えるもので得点が変わることはありません。\n\nそのほか\n• イニシャル付きのローカルトップ20と、Game Centerのランキング。\n• 広告なし、アカウント不要、トラッキングなし。オフラインで遊べます。\n• サウンドとバイブレーションはオフにできます。\n\nカモは傷つきません。画面の外へ転がり落ちるだけです。",
+    "iapDescription": "カモのスキン10種類、それぞれ専用の背景付き。",
+    "allName": "全パック",
+    "allDescription": "全10パックの有料カモスキン100種類すべて。",
+    "leaderboard": "ベストスコア"
+  },
+  "kn": {
+    "name": "Kačeny: ಬಾತುಕೋಳಿ ಬೇಟೆ",
+    "subtitle": "ಆಕಾಶದಿಂದ ಬಾತುಕೋಳಿ ಉರುಳಿಸಿ",
+    "promo": "90 ಸೆಕೆಂಡುಗಳು, 8 ಗುಂಡುಗಳು ಮತ್ತು ಬಾತುಕೋಳಿಗಳಿಂದ ತುಂಬಿದ ಆಕಾಶ. ಹೊಡೆಯಲು ಟ್ಯಾಪ್ ಮಾಡಿ, ರೀಲೋಡ್‌ಗೆ ಕೆಳಗೆ ಸ್ವೈಪ್ ಮಾಡಿ, ನಿಮ್ಮ ದಾಖಲೆ ಮುರಿಯಿರಿ. 13 ಲುಕ್ ಉಚಿತ, ಜಾಹೀರಾತಿಲ್ಲ.",
+    "keywords": "ಆರ್ಕೇಡ್,ಬೇಟೆ,ಬೇಟೆಗಾರ,ಶೂಟಿಂಗ್",
+    "playShort": "90 ಸೆಕೆಂಡುಗಳ ಸುತ್ತುಗಳಲ್ಲಿ ಆಕಾಶದಿಂದ ಬಾತುಕೋಳಿಗಳನ್ನು ಉರುಳಿಸಿ. ಜಾಹೀರಾತಿಲ್ಲ.",
+    "description": "ಬಾತುಕೋಳಿಗಳು ಪರದೆಯ ಮೇಲೆ ಕೆಳಕ್ಕೆ ಹಾರುತ್ತವೆ. ನಿಮ್ಮ ಬಳಿ 90 ಸೆಕೆಂಡುಗಳು ಮತ್ತು 8 ಗುಂಡುಗಳಿವೆ. ಅವುಗಳನ್ನು ಆಕಾಶದಿಂದ ಉರುಳಿಸಿ.\n\nKačeny (ಜೆಕ್ ಭಾಷೆಯಲ್ಲಿ \"ಬಾತುಕೋಳಿಗಳು\") ಒಂದೇ ಕೈಯಲ್ಲಿ ಆಡುವ ವೇಗದ ಆರ್ಕೇಡ್ ಆಟ: ಬಸ್ ನಿಲ್ದಾಣದಲ್ಲಿ, ಕಾಫಿ ವಿರಾಮದಲ್ಲಿ ಅಥವಾ ಮಲಗುವ ಮೊದಲು ಇನ್ನೊಂದು ಸುತ್ತು. ಪ್ರತಿಯೊಂದು ಸ್ಪರ್ಶವೂ ತಕ್ಷಣದ ಗುಂಡು, ಬೆರಳು ಎತ್ತುವವರೆಗೆ ಕಾಯಬೇಕಿಲ್ಲ.\n\nಹೇಗೆ ಆಡುವುದು\n• ಹೊಡೆಯಲು ಬಾತುಕೋಳಿಯ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿ. ಚಿಕ್ಕ ಬಾತುಕೋಳಿಗಳು ದೂರದಲ್ಲಿರುತ್ತವೆ, ಸುಲಭವಾಗಿ ತಪ್ಪುತ್ತವೆ ಮತ್ತು ಹೆಚ್ಚು ಅಂಕ ನೀಡುತ್ತವೆ.\n• ಸರಿಯಾಗಿ ಮಧ್ಯಕ್ಕೆ ಹೊಡೆದರೆ ನಿಖರತೆಯ ಬೋನಸ್.\n• ತಪ್ಪದೇ ಸತತವಾಗಿ ಹಲವನ್ನು ಹೊಡೆದರೆ ಕಾಂಬೋ ನಿಮ್ಮ ಅಂಕಗಳನ್ನು ×2 ವರೆಗೆ ಹೆಚ್ಚಿಸುತ್ತದೆ.\n• ಮ್ಯಾಗಜೀನ್‌ನಲ್ಲಿ 8 ಗುಂಡುಗಳು ಹಿಡಿಯುತ್ತವೆ. ರೀಲೋಡ್‌ಗೆ ಕೆಳಗೆ ಸ್ವೈಪ್ ಮಾಡಿ ಅಥವಾ ಗುಂಡುಗಳ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿ, ಅಥವಾ ಸ್ವಯಂ ರೀಲೋಡ್ ಆನ್ ಮಾಡಿ.\n• ಅಂಚುಗಳನ್ನು ಗಮನಿಸಿ: ಆಗಾಗ ಒಂದು ದೊಡ್ಡ ಬಾತುಕೋಳಿ ಇಣುಕಿ ನೋಡಿ ಮತ್ತೆ ಅಡಗಿಕೊಳ್ಳುತ್ತದೆ.\n\nಸ್ಕಿನ್‌ಗಳು\nಬಾತುಕೋಳಿಗಳು ಮತ್ತು ಆಕಾಶಕ್ಕಾಗಿ 113 ಲುಕ್‌ಗಳು: ಜಲವರ್ಣ, 16-ಬಿಟ್ ಪಿಕ್ಸೆಲ್ ಆರ್ಟ್, ಕಾಮಿಕ್, ಮಣ್ಣು, ಅನಿಮೆ ಮತ್ತು ಇನ್ನಷ್ಟು, ಹಲವು ರೆಕ್ಕೆ ಬಡಿಯುತ್ತವೆ. 13 ಉಚಿತ. ಹತ್ತು ಥೀಮ್ ಪ್ಯಾಕ್‌ಗಳು (ರೆಟ್ರೋ ಆರ್ಕೇಡ್, ಕಲಾ ಗ್ಯಾಲರಿ, ಮುದ್ದಾದ, ವಸ್ತುಗಳು, ನಿಯಾನ್ ಮತ್ತು ರಾತ್ರಿ, ಹಬ್ಬಗಳು ಮತ್ತು ಋತುಗಳು, ಜಾನಪದ ಕಲೆ, ಫ್ಯಾಂಟಸಿ, ಪ್ರಕೃತಿ, ವೈಭವ) ಪ್ರತಿಯೊಂದೂ ಸಣ್ಣ ಒಂದು ಬಾರಿಯ ಖರೀದಿಯಿಂದ ಅನ್‌ಲಾಕ್ ಆಗುತ್ತದೆ. ಸ್ಕಿನ್‌ಗಳು ನೋಟವನ್ನು ಮಾತ್ರ ಬದಲಾಯಿಸುತ್ತವೆ. ಖರೀದಿಸಬಹುದಾದ ಯಾವುದೂ ಸ್ಕೋರ್ ಬದಲಾಯಿಸುವುದಿಲ್ಲ.\n\nಇನ್ನೂ\n• ನಿಮ್ಮ ಮೊದಲಕ್ಷರಗಳೊಂದಿಗೆ ಸ್ಥಳೀಯ ಟಾಪ್ 20, ಮತ್ತು Game Center ಲೀಡರ್‌ಬೋರ್ಡ್.\n• ಜಾಹೀರಾತಿಲ್ಲ, ಖಾತೆ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಆಡಬಹುದು.\n• ಧ್ವನಿ ಮತ್ತು ಕಂಪನವನ್ನು ಆಫ್ ಮಾಡಬಹುದು.\n\nಯಾವ ಬಾತುಕೋಳಿಗೂ ಗಾಯವಾಗುವುದಿಲ್ಲ: ಅವು ಉರುಳುತ್ತಾ ಚೌಕಟ್ಟಿನಿಂದ ಹೊರಗೆ ಹೋಗುತ್ತವೆ ಅಷ್ಟೇ.",
+    "iapDescription": "10 ಬಾತುಕೋಳಿ ಸ್ಕಿನ್‌ಗಳು, ಪ್ರತಿಯೊಂದಕ್ಕೂ ಸ್ವಂತ ಹಿನ್ನೆಲೆ.",
+    "allName": "ಎಲ್ಲಾ ಪ್ಯಾಕ್‌ಗಳು",
+    "allDescription": "10 ಪ್ಯಾಕ್‌ಗಳ ಎಲ್ಲಾ 100 ಪಾವತಿಸಿದ ಬಾತುಕೋಳಿ ಸ್ಕಿನ್‌ಗಳು.",
+    "leaderboard": "ಅತ್ಯುತ್ತಮ ಸ್ಕೋರ್"
+  },
+  "ko": {
+    "name": "Kačeny: 오리 사냥",
+    "subtitle": "하늘의 오리를 탭으로 맞혀라",
+    "promo": "90초, 탄환 8발, 오리로 가득한 하늘. 탭해서 쏘고, 아래로 스와이프해 재장전하고, 최고 기록을 깨 보세요. 스킨 13개 무료, 광고 없음.",
+    "keywords": "아케이드,사냥,사냥꾼,사격,슈팅,새,탭,반사신경,캐주얼,레트로,픽셀,스킨",
+    "playShort": "90초 라운드에서 하늘의 오리를 맞혀 떨어뜨리세요. 빠른 아케이드, 광고 없음.",
+    "description": "오리들이 화면 아래로 날아옵니다. 주어진 시간은 90초, 탄환은 8발. 하늘에서 떨어뜨리세요.\n\nKačeny(체코어로 \"오리들\")는 한 손으로 즐기는 빠른 아케이드 게임입니다. 버스 정류장에서, 커피 한잔하며, 자기 전에 한 판 더. 손가락을 떼기를 기다리지 않고 터치하는 순간 바로 발사됩니다.\n\n플레이 방법\n• 오리를 탭해서 쏘세요. 작은 오리일수록 멀리 있어 빗나가기 쉽고 점수가 높습니다.\n• 정중앙을 맞히면 정확도 보너스.\n• 빗나가지 않고 연속으로 맞히면 콤보로 점수가 최대 ×2.\n• 탄창에는 8발이 들어갑니다. 아래로 스와이프하거나 탄환을 탭해 재장전하거나, 자동 재장전을 켜세요.\n• 가장자리를 잘 보세요: 가끔 큰 오리가 고개를 내밀었다가 다시 숨습니다.\n\n스킨\n오리와 하늘을 위한 113가지 모습: 수채화, 16비트 픽셀 아트, 만화, 점토, 애니메 등, 날갯짓하는 스킨도 많습니다. 13개는 무료. 10개의 테마 팩(레트로 오락실, 미술관, 귀여움, 재질, 네온 & 밤, 명절 & 계절, 세계 민속 예술, 판타지 & SF, 자연, 럭셔리)은 각각 소액 일회성 구매로 잠금 해제됩니다. 스킨은 겉모습만 바꿉니다. 구매할 수 있는 어떤 것도 점수에 영향을 주지 않습니다.\n\n그 밖에\n• 이니셜과 함께 기록되는 로컬 톱 20, 그리고 Game Center 순위표.\n• 광고 없음, 계정 없음, 추적 없음. 오프라인 플레이 가능.\n• 사운드와 진동은 끌 수 있습니다.\n\n다치는 오리는 없어요. 그냥 화면 밖으로 굴러떨어질 뿐입니다.",
+    "iapDescription": "오리 스킨 10개, 각각 전용 배경 포함.",
+    "allName": "모든 팩",
+    "allDescription": "10개 팩의 유료 오리 스킨 100개 전부.",
+    "leaderboard": "최고 점수"
+  },
+  "ml": {
+    "name": "Kačeny: താറാവ് വേട്ട",
+    "subtitle": "ആകാശത്തെ താറാവുകളെ വീഴ്ത്തൂ",
+    "promo": "90 സെക്കൻഡ്, 8 തിരകൾ, താറാവുകൾ നിറഞ്ഞ ആകാശം. വെടിവയ്ക്കാൻ ടാപ്പ് ചെയ്യൂ, റീലോഡിന് താഴേക്ക് സ്വൈപ്പ് ചെയ്യൂ, റെക്കോർഡ് തകർക്കൂ. 13 ലുക്ക് സൗജന്യം, പരസ്യമില്ല.",
+    "keywords": "ആർക്കേഡ്,വേട്ട,വേട്ടക്കാരൻ",
+    "playShort": "90 സെക്കൻഡ് റൗണ്ടുകളിൽ താറാവുകളെ വെടിവച്ചു വീഴ്ത്തൂ. പരസ്യമില്ല.",
+    "description": "താറാവുകൾ സ്ക്രീനിലൂടെ താഴേക്ക് പറക്കുന്നു. നിങ്ങൾക്ക് 90 സെക്കൻഡും 8 തിരകളുമുണ്ട്. അവയെ ആകാശത്തുനിന്ന് വീഴ്ത്തൂ.\n\nKačeny (ചെക്ക് ഭാഷയിൽ \"താറാവുകൾ\") ഒറ്റക്കൈ കൊണ്ട് കളിക്കാവുന്ന വേഗമേറിയ ആർക്കേഡ് ഗെയിമാണ്: ബസ് സ്റ്റോപ്പിൽ, ചായ ഇടവേളയിൽ, അല്ലെങ്കിൽ ഉറങ്ങും മുമ്പ് ഒരു റൗണ്ട് കൂടി. ഓരോ സ്പർശവും ഉടൻ ഒരു വെടി, വിരൽ ഉയർത്തുന്നതുവരെ കാത്തിരിക്കേണ്ട.\n\nഎങ്ങനെ കളിക്കാം\n• വെടിവയ്ക്കാൻ ഒരു താറാവിൽ ടാപ്പ് ചെയ്യുക. ചെറിയ താറാവുകൾ അകലെയാണ്, എളുപ്പം ഉന്നം തെറ്റും, കൂടുതൽ പോയിന്റ് നൽകും.\n• കൃത്യം നടുവിൽ കൊണ്ടാൽ കൃത്യതാ ബോണസ്.\n• തെറ്റാതെ തുടർച്ചയായി പലതിനെ കൊണ്ടാൽ കോംബോ നിങ്ങളുടെ പോയിന്റുകൾ ×2 വരെ ഇരട്ടിപ്പിക്കും.\n• മാഗസിനിൽ 8 തിരകൾ കൊള്ളും. റീലോഡിന് താഴേക്ക് സ്വൈപ്പ് ചെയ്യുക അല്ലെങ്കിൽ തിരകളിൽ ടാപ്പ് ചെയ്യുക, അല്ലെങ്കിൽ ഓട്ടോമാറ്റിക് റീലോഡ് ഓണാക്കുക.\n• അരികുകൾ ശ്രദ്ധിക്കൂ: ഇടയ്ക്ക് ഒരു വലിയ താറാവ് എത്തിനോക്കി വീണ്ടും ഒളിക്കും.\n\nസ്കിനുകൾ\nതാറാവുകൾക്കും ആകാശത്തിനുമായി 113 ലുക്കുകൾ: ജലച്ചായം, 16-ബിറ്റ് പിക്സൽ ആർട്ട്, കോമിക്, കളിമണ്ണ്, അനിമെ തുടങ്ങി പലതും, പലതിനും ചിറകടിക്കുന്ന ചിറകുകൾ. 13 എണ്ണം സൗജന്യം. പത്ത് തീം പായ്ക്കുകൾ (റെട്രോ ആർക്കേഡ്, ആർട്ട് ഗാലറി, ക്യൂട്ട്, വസ്തുക്കൾ, നിയോണും രാത്രിയും, ഉത്സവങ്ങളും ഋതുക്കളും, നാടൻ കല, ഫാന്റസി, പ്രകൃതി, ആഡംബരം) ഓരോന്നും ചെറിയ ഒറ്റത്തവണ വാങ്ങലിലൂടെ അൺലോക്ക് ചെയ്യാം. സ്കിനുകൾ രൂപം മാത്രമേ മാറ്റൂ. വാങ്ങാവുന്ന ഒന്നും സ്കോർ മാറ്റില്ല.\n\nകൂടാതെ\n• നിങ്ങളുടെ ഇനിഷ്യലുകളോടെ ലോക്കൽ ടോപ്പ് 20, Game Center ലീഡർബോർഡ്.\n• പരസ്യമില്ല, അക്കൗണ്ടില്ല, ട്രാക്കിംഗില്ല. ഓഫ്‌ലൈനായി കളിക്കാം.\n• ശബ്ദവും വൈബ്രേഷനും ഓഫാക്കാം.\n\nഒരു താറാവിനും പരിക്കില്ല: അവ ഉരുണ്ട് ഫ്രെയിമിന് പുറത്തേക്ക് പോകുന്നു, അത്രമാത്രം.",
+    "iapDescription": "10 താറാവ് സ്കിനുകൾ, ഓരോന്നിനും സ്വന്തം പശ്ചാത്തലം.",
+    "allName": "എല്ലാ പായ്ക്കുകളും",
+    "allDescription": "10 പായ്ക്കുകളിലെ എല്ലാ 100 പണമടച്ചുള്ള സ്കിനുകളും.",
+    "leaderboard": "മികച്ച സ്കോർ"
+  },
+  "mr": {
+    "name": "Kačeny: बदकांची शिकार",
+    "subtitle": "आकाशातून बदके पाडा",
+    "promo": "90 सेकंद, 8 काडतुसे आणि बदकांनी भरलेले आकाश. गोळी झाडण्यासाठी टॅप करा, रीलोडसाठी खाली स्वाइप करा आणि तुमचा विक्रम मोडा. 13 लूक मोफत, जाहिराती नाहीत.",
+    "keywords": "आर्केड,शिकार,शिकारी,नेमबाजी,पक्षी",
+    "playShort": "90 सेकंदांच्या फेऱ्यांमध्ये आकाशातून बदके पाडा. जलद आर्केड, जाहिराती नाहीत.",
+    "description": "बदके स्क्रीनवरून खाली उडत येतात. तुमच्याकडे 90 सेकंद आणि 8 काडतुसे आहेत. त्यांना आकाशातून पाडा.\n\nKačeny (चेक भाषेत \"बदके\") हा एका हाताने खेळता येणारा जलद आर्केड गेम आहे: बस स्टॉपवर, चहाच्या सुट्टीत किंवा झोपण्यापूर्वी आणखी एक फेरी. प्रत्येक स्पर्श लगेच गोळी असतो, बोट उचलण्याची वाट नाही.\n\nकसे खेळायचे\n• गोळी झाडण्यासाठी बदकावर टॅप करा. लहान बदके दूर असतात, सहज चुकतात आणि जास्त गुण देतात.\n• अगदी मध्यभागी नेम लावा आणि अचूकतेचा बोनस मिळवा.\n• न चुकता सलग अनेक नेम लावा आणि कॉम्बो तुमचे गुण ×2 पर्यंत वाढवेल.\n• मॅगझिनमध्ये 8 काडतुसे बसतात. रीलोडसाठी खाली स्वाइप करा किंवा काडतुसांवर टॅप करा, किंवा आपोआप रीलोड चालू करा.\n• कडांकडे लक्ष ठेवा: अधूनमधून एक मोठे बदक डोकावते आणि पुन्हा लपते.\n\nस्किन\nबदके आणि आकाशासाठी 113 लूक: जलरंग, 16-बिट पिक्सेल आर्ट, कॉमिक, माती, अ‍ॅनिमे आणि बरेच काही, अनेकांचे पंख फडफडतात. 13 मोफत आहेत. दहा थीम पॅक (रेट्रो आर्केड, कला दालन, गोंडस, साहित्य, निऑन आणि रात्र, सण आणि ऋतू, लोककला, फँटसी आणि विज्ञानकथा, निसर्ग, ऐश्वर्य) प्रत्येकी एका छोट्या एकवेळच्या खरेदीने अनलॉक होतात. स्किन फक्त रूप बदलतात. काहीही विकत घेतल्याने स्कोअर बदलत नाही.\n\nआणखी\n• तुमच्या आद्याक्षरांसह स्थानिक टॉप 20, आणि Game Center लीडरबोर्ड.\n• जाहिराती नाहीत, खाते नाही, ट्रॅकिंग नाही. ऑफलाइन चालतो.\n• आवाज आणि कंपन बंद करता येतात.\n\nकोणत्याही बदकाला इजा होत नाही: ती फक्त घरंगळत फ्रेमबाहेर जातात.",
+    "iapDescription": "10 बदक स्किन, प्रत्येकाची स्वतःची पार्श्वभूमी.",
+    "allName": "सर्व पॅक",
+    "allDescription": "सर्व 10 पॅकमधील 100 सशुल्क बदक स्किन.",
+    "leaderboard": "सर्वोत्तम स्कोअर"
+  },
+  "ms": {
+    "name": "Kačeny: Tembak Itik",
+    "subtitle": "Jatuhkan itik dari langit",
+    "promo": "90 saat, 8 peluru dan langit penuh itik. Ketik untuk menembak, leret ke bawah untuk mengisi semula, pecahkan rekod anda. 13 rupa percuma, tanpa iklan.",
+    "keywords": "arked,memburu,pemburu,menembak,burung,ketik,refleks,pantas,kasual,retro,piksel,kulit,skor,offline",
+    "playShort": "Jatuhkan itik dari langit dalam pusingan 90 saat. Arked pantas tanpa iklan.",
+    "description": "Itik terbang turun di skrin. Anda ada 90 saat dan 8 peluru. Jatuhkan mereka dari langit.\n\nKačeny (bahasa Czech untuk \"itik\") ialah permainan arked pantas untuk sebelah tangan: di perhentian bas, waktu rehat kopi atau satu pusingan lagi sebelum tidur. Setiap sentuhan terus menjadi tembakan, tanpa menunggu jari diangkat.\n\nCARA BERMAIN\n• Ketik itik untuk menembaknya. Itik yang lebih kecil lebih jauh, lebih mudah tersasar dan bernilai lebih tinggi.\n• Kena tepat di tengah untuk bonus ketepatan.\n• Kena beberapa ekor berturut-turut tanpa tersasar dan kombo menggandakan mata anda sehingga ×2.\n• Magazin memuatkan 8 peluru. Leret ke bawah atau ketik peluru untuk mengisi semula, atau hidupkan isi semula automatik.\n• Perhatikan tepi skrin: sekali-sekala itik besar mengintai lalu bersembunyi semula.\n\nKULIT\n113 rupa untuk itik dan langit: cat air, seni piksel 16-bit, komik, plastisin, anime dan banyak lagi, kebanyakannya dengan sayap yang mengepak. 13 percuma. Sepuluh pek bertema (Arked retro, Galeri seni, Comel, Bahan, Neon & malam, Perayaan, Seni rakyat, Fantasi & sains fiksyen, Alam, Mewah) dibuka masing-masing dengan pembelian kecil sekali sahaja. Kulit hanya mengubah rupa. Tiada apa yang anda beli mengubah skor.\n\nJUGA\n• 20 teratas tempatan dengan huruf awal anda, dan papan pendahulu Game Center.\n• Tiada iklan, tiada akaun, tiada penjejakan. Boleh dimain di luar talian.\n• Bunyi dan getaran boleh dimatikan.\n\nTiada itik yang tercedera: mereka cuma tergolek keluar dari bingkai.",
+    "iapDescription": "10 kulit itik, setiap satu dengan latarnya.",
+    "allName": "Semua pek",
+    "allDescription": "Kesemua 100 kulit itik berbayar daripada 10 pek.",
+    "leaderboard": "Skor terbaik"
+  },
+  "nb": {
+    "name": "Kačeny: Andejakt",
+    "subtitle": "Skyt ender ned fra himmelen",
+    "promo": "90 sekunder, 8 patroner og en himmel full av ender. Trykk for å skyte, sveip ned for å lade, slå rekorden din. 13 looks gratis, ingen reklame.",
+    "keywords": "arkade,jakt,jeger,skyte,fugler,trykk,refleks,rask,casual,retro,piksel,skins,highscore,offline,sikte",
+    "playShort": "Skyt ender ned fra himmelen i runder på 90 sekunder. Rask arkade uten reklame.",
+    "description": "Ender flyr nedover skjermen. Du har 90 sekunder og 8 patroner. Skyt dem ned fra himmelen.\n\nKačeny (tsjekkisk for «ender») er et raskt arkadespill for én hånd: på bussholdeplassen, i kaffepausen eller én runde til før leggetid. Hver berøring er et skudd med en gang, uten å vente på at fingeren løftes.\n\nSLIK SPILLER DU\n• Trykk på en and for å skyte den. Mindre ender er lenger unna, lettere å bomme på og gir flere poeng.\n• Treff midt i blinken for en presisjonsbonus.\n• Treff flere på rad uten å bomme, så ganger comboen poengene dine opptil ×2.\n• Magasinet tar 8 patroner. Sveip ned eller trykk på patronene for å lade, eller slå på automatisk lading.\n• Følg med på kantene: av og til kikker en stor and inn og gjemmer seg igjen.\n\nSKINS\n113 looks for endene og himmelen: akvarell, 16-bits pikselkunst, tegneserie, leire, anime og mer, mange med flaksende vinger. 13 er gratis. Ti temapakker (Retroarkade, Kunstgalleri, Søtt, Materialer, Neon & natt, Høytider, Folkekunst, Fantasy & sci-fi, Natur, Luksus) låses opp med et lite engangskjøp hver. Skins endrer bare utseendet. Ingenting du kan kjøpe, endrer poengene.\n\nOGSÅ\n• Lokal topp 20 med initialene dine og topplisten i Game Center.\n• Ingen reklame, ingen konto, ingen sporing. Kan spilles uten nett.\n• Lyd og vibrering kan slås av.\n\nIngen ender kommer til skade: de tumler bare ut av bildet.",
+    "iapDescription": "10 andeskins, hver med egen bakgrunn.",
+    "allName": "Alle pakker",
+    "allDescription": "Alle 100 betalte andeskins fra alle 10 pakkene.",
+    "leaderboard": "Beste poengsum"
+  },
+  "nl": {
+    "name": "Kačeny: Eendenjacht",
+    "subtitle": "Schiet eenden uit de lucht",
+    "promo": "90 seconden, 8 patronen, een lucht vol eenden. Tik om te schieten, veeg omlaag om te herladen en verbeter je record. 13 looks gratis, geen advertenties.",
+    "keywords": "arcade,jagen,schieten,vogels,tikken,reflex,snel,casual,retro,pixel,skins,highscore,offline,mikken",
+    "playShort": "Schiet eenden uit de lucht in rondes van 90 seconden. Snelle arcade, geen ads.",
+    "description": "Eenden vliegen omlaag over het scherm. Je hebt 90 seconden en 8 patronen. Schiet ze uit de lucht.\n\nKačeny (Tsjechisch voor \"eenden\") is een snel arcadespel voor één hand: voor bij de bushalte, de koffiepauze of nog één rondje voor het slapengaan. Elke aanraking is meteen een schot, zonder te wachten tot je vinger loslaat.\n\nZO SPEEL JE\n• Tik op een eend om te schieten. Kleinere eenden zijn verder weg, sneller gemist en meer punten waard.\n• Raak ze precies in het midden voor een precisiebonus.\n• Raak er meerdere achter elkaar zonder te missen en de combo vermenigvuldigt je punten tot ×2.\n• Het magazijn houdt 8 patronen. Veeg omlaag of tik op de patronen om te herladen, of zet automatisch herladen aan.\n• Let op de randen: af en toe gluurt er een grote eend naar binnen en verstopt zich weer.\n\nSKINS\n113 looks voor de eenden en de lucht: aquarel, 16-bit pixelart, strip, klei, anime en meer, veel met fladderende vleugels. 13 zijn gratis. Tien themapakketten (Retro-arcade, Kunstgalerie, Schattig, Materialen, Neon & nacht, Feesten, Volkskunst, Fantasy & sci-fi, Natuur, Luxe) ontgrendel je elk met een kleine eenmalige aankoop. Skins veranderen alleen het uiterlijk. Niets wat je koopt verandert de score.\n\nVERDER\n• Lokale top 20 met je initialen, en de Game Center-ranglijst.\n• Geen advertenties, geen account, geen tracking. Speelt offline.\n• Geluid en trillen kun je uitzetten.\n\nGeen enkele eend raakt gewond: ze tuimelen gewoon uit beeld.",
+    "iapDescription": "10 eendenskins, elk met een eigen achtergrond.",
+    "allName": "Alle pakketten",
+    "allDescription": "Alle 100 betaalde eendenskins uit alle 10 pakketten.",
+    "leaderboard": "Beste score"
+  },
+  "or": {
+    "name": "Kačeny: ବତକ ଶିକାର",
+    "subtitle": "ଆକାଶରୁ ବତକ ଖସାନ୍ତୁ",
+    "promo": "90 ସେକେଣ୍ଡ, 8ଟି କାର୍ତ୍ତୁଜ ଓ ବତକରେ ଭରା ଆକାଶ। ଗୁଳି ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ, ରିଲୋଡ୍ ପାଇଁ ତଳକୁ ସ୍ୱାଇପ୍ କରନ୍ତୁ, ନିଜ ରେକର୍ଡ ଭାଙ୍ଗନ୍ତୁ। 13ଟି ଲୁକ୍ ମାଗଣା, ବିଜ୍ଞାପନ ନାହିଁ।",
+    "keywords": "ଆର୍କେଡ୍,ଶିକାର,ଶିକାରୀ,ଗୁଳି,ପକ୍ଷୀ",
+    "playShort": "90 ସେକେଣ୍ଡର ରାଉଣ୍ଡରେ ଆକାଶରୁ ବତକ ଖସାନ୍ତୁ। ଦ୍ରୁତ ଆର୍କେଡ୍, ବିଜ୍ଞାପନ ନାହିଁ।",
+    "description": "ବତକମାନେ ସ୍କ୍ରିନରେ ତଳକୁ ଉଡ଼ନ୍ତି। ଆପଣଙ୍କ ପାଖରେ 90 ସେକେଣ୍ଡ ଓ 8ଟି କାର୍ତ୍ତୁଜ ଅଛି। ସେମାନଙ୍କୁ ଆକାଶରୁ ଖସାନ୍ତୁ।\n\nKačeny (ଚେକ୍ ଭାଷାରେ \"ବତକ\") ଏକ ହାତରେ ଖେଳିହେବା ଭଳି ଦ୍ରୁତ ଆର୍କେଡ୍ ଖେଳ: ବସ୍ ଷ୍ଟପରେ, ଚା ବିରତିରେ ବା ଶୋଇବା ଆଗରୁ ଆଉ ଏକ ରାଉଣ୍ଡ। ପ୍ରତ୍ୟେକ ସ୍ପର୍ଶ ସଙ୍ଗେ ସଙ୍ଗେ ଗୁଳି, ଆଙ୍ଗୁଠି ଉଠାଇବା ପାଇଁ ଅପେକ୍ଷା ନାହିଁ।\n\nକିପରି ଖେଳିବେ\n• ଗୁଳି କରିବାକୁ ବତକରେ ଟ୍ୟାପ୍ କରନ୍ତୁ। ଛୋଟ ବତକ ଦୂରରେ ଥାଏ, ସହଜରେ ଚୁକିଯାଏ ଓ ଅଧିକ ପଏଣ୍ଟ ଦିଏ।\n• ଠିକ୍ ମଝିରେ ଲଗାନ୍ତୁ ଓ ସଠିକତା ବୋନସ୍ ପାଆନ୍ତୁ।\n• ନ ଚୁକି କ୍ରମାଗତ କେତେଟି ଲଗାନ୍ତୁ, କମ୍ବୋ ଆପଣଙ୍କ ପଏଣ୍ଟ ×2 ପର୍ଯ୍ୟନ୍ତ ବଢ଼ାଇବ।\n• ମ୍ୟାଗାଜିନରେ 8ଟି କାର୍ତ୍ତୁଜ ଧରେ। ରିଲୋଡ୍ ପାଇଁ ତଳକୁ ସ୍ୱାଇପ୍ କରନ୍ତୁ ବା କାର୍ତ୍ତୁଜରେ ଟ୍ୟାପ୍ କରନ୍ତୁ, କିମ୍ବା ସ୍ୱୟଂଚାଳିତ ରିଲୋଡ୍ ଚାଲୁ କରନ୍ତୁ।\n• ଧାରଗୁଡ଼ିକ ଉପରେ ନଜର ରଖନ୍ତୁ: ବେଳେବେଳେ ଏକ ବଡ଼ ବତକ ଉଙ୍କି ମାରି ପୁଣି ଲୁଚିଯାଏ।\n\nସ୍କିନ୍\nବତକ ଓ ଆକାଶ ପାଇଁ 113ଟି ଲୁକ୍: ଜଳରଙ୍ଗ, 16-ବିଟ୍ ପିକ୍ସେଲ ଆର୍ଟ, କମିକ୍, ମାଟି, ଆନିମେ ଓ ଆହୁରି ଅନେକ, ଅନେକଙ୍କ ଡେଣା ହଲେ। 13ଟି ମାଗଣା। ଦଶଟି ଥିମ୍ ପ୍ୟାକ (ରେଟ୍ରୋ ଆର୍କେଡ୍, କଳା ଗ୍ୟାଲେରୀ, ସୁନ୍ଦର, ସାମଗ୍ରୀ, ନିୟନ୍ ଓ ରାତି, ପର୍ବ ଓ ଋତୁ, ଲୋକକଳା, ଫ୍ୟାଣ୍ଟାସି ଓ ବିଜ୍ଞାନ କଳ୍ପନା, ପ୍ରକୃତି, ବିଳାସ) ପ୍ରତ୍ୟେକ ଏକ ଛୋଟ ଏକକାଳୀନ କ୍ରୟରେ ଅନଲକ୍ ହୁଏ। ସ୍କିନ୍ କେବଳ ଦେଖାଣିଆ ବଦଳାଏ। କିଛି କିଣିଲେ ସ୍କୋର ବଦଳେ ନାହିଁ।\n\nଆହୁରି\n• ଆପଣଙ୍କ ନାମର ପ୍ରଥମ ଅକ୍ଷର ସହ ସ୍ଥାନୀୟ ଟପ୍ 20, ଓ Game Center ଲିଡରବୋର୍ଡ।\n• ବିଜ୍ଞାପନ ନାହିଁ, ଆକାଉଣ୍ଟ ନାହିଁ, ଟ୍ରାକିଂ ନାହିଁ। ଅଫଲାଇନରେ ଚାଲେ।\n• ଶବ୍ଦ ଓ କମ୍ପନ ବନ୍ଦ କରିହେବ।\n\nକୌଣସି ବତକ ଆଘାତ ପାଏ ନାହିଁ: ସେମାନେ କେବଳ ଗଡ଼ି ଫ୍ରେମ୍ ବାହାରକୁ ଚାଲିଯାଆନ୍ତି।",
+    "iapDescription": "10ଟି ବତକ ସ୍କିନ୍, ପ୍ରତ୍ୟେକର ନିଜସ୍ୱ ପୃଷ୍ଠଭୂମି।",
+    "allName": "ସମସ୍ତ ପ୍ୟାକ",
+    "allDescription": "ସମସ୍ତ 10ଟି ପ୍ୟାକର 100ଟି ଦେୟଯୁକ୍ତ ବତକ ସ୍କିନ୍।",
+    "leaderboard": "ସର୍ବୋତ୍ତମ ସ୍କୋର"
+  },
+  "pa": {
+    "name": "Kačeny: ਬੱਤਖ ਸ਼ਿਕਾਰ",
+    "subtitle": "ਅਸਮਾਨ ਤੋਂ ਬੱਤਖਾਂ ਡੇਗੋ",
+    "promo": "90 ਸਕਿੰਟ, 8 ਕਾਰਤੂਸ ਅਤੇ ਬੱਤਖਾਂ ਨਾਲ ਭਰਿਆ ਅਸਮਾਨ। ਟੈਪ ਕਰਕੇ ਗੋਲੀ ਚਲਾਓ, ਹੇਠਾਂ ਸਵਾਈਪ ਕਰਕੇ ਰੀਲੋਡ ਕਰੋ ਅਤੇ ਆਪਣਾ ਰਿਕਾਰਡ ਤੋੜੋ। 13 ਲੁੱਕ ਮੁਫ਼ਤ, ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀਂ।",
+    "keywords": "ਆਰਕੇਡ,ਸ਼ਿਕਾਰ,ਸ਼ਿਕਾਰੀ,ਨਿਸ਼ਾਨੇਬਾਜ਼ੀ",
+    "playShort": "90 ਸਕਿੰਟ ਦੇ ਰਾਊਂਡਾਂ ਵਿੱਚ ਅਸਮਾਨ ਤੋਂ ਬੱਤਖਾਂ ਡੇਗੋ। ਤੇਜ਼ ਆਰਕੇਡ, ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀਂ।",
+    "description": "ਬੱਤਖਾਂ ਸਕ੍ਰੀਨ ਉੱਤੇ ਹੇਠਾਂ ਵੱਲ ਉੱਡਦੀਆਂ ਹਨ। ਤੁਹਾਡੇ ਕੋਲ 90 ਸਕਿੰਟ ਅਤੇ 8 ਕਾਰਤੂਸ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਅਸਮਾਨ ਤੋਂ ਡੇਗੋ।\n\nKačeny (ਚੈੱਕ ਭਾਸ਼ਾ ਵਿੱਚ \"ਬੱਤਖਾਂ\") ਇੱਕ ਹੱਥ ਨਾਲ ਖੇਡੀ ਜਾਣ ਵਾਲੀ ਤੇਜ਼ ਆਰਕੇਡ ਗੇਮ ਹੈ: ਬੱਸ ਅੱਡੇ ਉੱਤੇ, ਚਾਹ ਦੇ ਵਕਫ਼ੇ ਵਿੱਚ ਜਾਂ ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਹੋਰ ਰਾਊਂਡ। ਹਰ ਛੋਹ ਤੁਰੰਤ ਗੋਲੀ ਹੈ, ਉਂਗਲ ਚੁੱਕਣ ਦੀ ਉਡੀਕ ਨਹੀਂ।\n\nਕਿਵੇਂ ਖੇਡਣਾ ਹੈ\n• ਗੋਲੀ ਚਲਾਉਣ ਲਈ ਬੱਤਖ ਉੱਤੇ ਟੈਪ ਕਰੋ। ਛੋਟੀਆਂ ਬੱਤਖਾਂ ਦੂਰ ਹੁੰਦੀਆਂ ਹਨ, ਨਿਸ਼ਾਨਾ ਸੌਖਿਆਂ ਖੁੰਝਦਾ ਹੈ ਅਤੇ ਉਹ ਵੱਧ ਅੰਕ ਦਿੰਦੀਆਂ ਹਨ।\n• ਬਿਲਕੁਲ ਵਿਚਕਾਰ ਨਿਸ਼ਾਨਾ ਲਾਓ ਅਤੇ ਸ਼ੁੱਧਤਾ ਬੋਨਸ ਪਾਓ।\n• ਬਿਨਾਂ ਖੁੰਝੇ ਲਗਾਤਾਰ ਕਈ ਨਿਸ਼ਾਨੇ ਲਾਓ ਅਤੇ ਕੰਬੋ ਤੁਹਾਡੇ ਅੰਕ ×2 ਤੱਕ ਵਧਾ ਦੇਵੇਗਾ।\n• ਮੈਗਜ਼ੀਨ ਵਿੱਚ 8 ਕਾਰਤੂਸ ਆਉਂਦੇ ਹਨ। ਰੀਲੋਡ ਲਈ ਹੇਠਾਂ ਸਵਾਈਪ ਕਰੋ ਜਾਂ ਕਾਰਤੂਸਾਂ ਉੱਤੇ ਟੈਪ ਕਰੋ, ਜਾਂ ਆਪਣੇ-ਆਪ ਰੀਲੋਡ ਚਾਲੂ ਕਰੋ।\n• ਕਿਨਾਰਿਆਂ ਉੱਤੇ ਨਜ਼ਰ ਰੱਖੋ: ਕਦੇ-ਕਦੇ ਇੱਕ ਵੱਡੀ ਬੱਤਖ ਝਾਕਦੀ ਹੈ ਅਤੇ ਫਿਰ ਲੁਕ ਜਾਂਦੀ ਹੈ।\n\nਸਕਿਨ\nਬੱਤਖਾਂ ਅਤੇ ਅਸਮਾਨ ਲਈ 113 ਲੁੱਕ: ਜਲ ਰੰਗ, 16-ਬਿਟ ਪਿਕਸਲ ਆਰਟ, ਕਾਮਿਕ, ਮਿੱਟੀ, ਐਨੀਮੇ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ, ਕਈਆਂ ਦੇ ਖੰਭ ਫੜਫੜਾਉਂਦੇ ਹਨ। 13 ਮੁਫ਼ਤ ਹਨ। ਦਸ ਥੀਮ ਪੈਕ (ਰੈਟਰੋ ਆਰਕੇਡ, ਕਲਾ ਗੈਲਰੀ, ਪਿਆਰੇ, ਸਮੱਗਰੀਆਂ, ਨਿਓਨ ਅਤੇ ਰਾਤ, ਤਿਉਹਾਰ ਅਤੇ ਰੁੱਤਾਂ, ਲੋਕ ਕਲਾ, ਫੈਂਟੇਸੀ ਅਤੇ ਵਿਗਿਆਨ-ਗਲਪ, ਕੁਦਰਤ, ਸ਼ਾਹੀ ਠਾਠ) ਹਰ ਇੱਕ ਛੋਟੀ ਜਿਹੀ ਇੱਕ ਵਾਰ ਦੀ ਖਰੀਦ ਨਾਲ ਅਨਲੌਕ ਹੁੰਦਾ ਹੈ। ਸਕਿਨ ਸਿਰਫ਼ ਦਿੱਖ ਬਦਲਦੀਆਂ ਹਨ। ਕੁਝ ਵੀ ਖਰੀਦਣ ਨਾਲ ਸਕੋਰ ਨਹੀਂ ਬਦਲਦਾ।\n\nਹੋਰ ਵੀ\n• ਤੁਹਾਡੇ ਨਾਂ ਦੇ ਪਹਿਲੇ ਅੱਖਰਾਂ ਨਾਲ ਲੋਕਲ ਟੌਪ 20, ਅਤੇ Game Center ਲੀਡਰਬੋਰਡ।\n• ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀਂ, ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਟ੍ਰੈਕਿੰਗ ਨਹੀਂ। ਆਫ਼ਲਾਈਨ ਚੱਲਦੀ ਹੈ।\n• ਆਵਾਜ਼ ਅਤੇ ਥਰਥਰਾਹਟ ਬੰਦ ਕੀਤੀਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।\n\nਕਿਸੇ ਬੱਤਖ ਨੂੰ ਸੱਟ ਨਹੀਂ ਲੱਗਦੀ: ਉਹ ਬੱਸ ਰਿੜ੍ਹਦੀਆਂ ਹੋਈਆਂ ਫ੍ਰੇਮ ਤੋਂ ਬਾਹਰ ਚਲੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।",
+    "iapDescription": "10 ਬੱਤਖ ਸਕਿਨਾਂ, ਹਰ ਇੱਕ ਦਾ ਆਪਣਾ ਪਿਛੋਕੜ।",
+    "allName": "ਸਾਰੇ ਪੈਕ",
+    "allDescription": "ਸਾਰੇ 10 ਪੈਕਾਂ ਦੀਆਂ 100 ਭੁਗਤਾਨ ਵਾਲੀਆਂ ਸਕਿਨਾਂ।",
+    "leaderboard": "ਸਭ ਤੋਂ ਵਧੀਆ ਸਕੋਰ"
+  },
+  "pt": {
+    "name": "Kačeny: Caça aos Patos",
+    "subtitle": "Derrube patos do céu",
+    "promo": "90 segundos, 8 cartuchos e um céu cheio de patos. Toque para atirar, deslize para baixo para recarregar e bata seu recorde. 13 visuais grátis, sem anúncios.",
+    "keywords": "arcade,caçador,tiro,atirar,pássaros,aves,reflexo,rápido,casual,retrô,pixel,skins,recorde,offline",
+    "playShort": "Derrube patos do céu em rodadas de 90 segundos. Arcade rápido e sem anúncios.",
+    "description": "Patos descem voando pela tela. Você tem 90 segundos e 8 cartuchos. Derrube-os do céu.\n\nKačeny (\"patos\" em tcheco) é um arcade rápido para jogar com uma mão: no ponto de ônibus, no intervalo do café ou numa última rodada antes de dormir. Cada toque é um tiro na hora, sem esperar você levantar o dedo.\n\nCOMO JOGAR\n• Toque num pato para atirar. Patos menores estão mais longe, são mais fáceis de errar e valem mais.\n• Acerte bem no meio para ganhar bônus de precisão.\n• Acerte vários seguidos sem errar e o combo multiplica seus pontos até ×2.\n• O pente tem 8 cartuchos. Deslize para baixo ou toque nos cartuchos para recarregar, ou ative a recarga automática.\n• Fique de olho nas bordas: de vez em quando um pato grande espia e se esconde de novo.\n\nSKINS\n113 visuais para os patos e o céu: aquarela, pixel art 16 bits, quadrinhos, massinha, anime e mais, muitos com asas batendo. 13 são grátis. Dez pacotes temáticos (Fliperama retrô, Galeria de arte, Fofos, Materiais, Neon e noite, Festas, Arte popular, Fantasia e sci-fi, Natureza, Luxo) são desbloqueados com uma pequena compra única cada. As skins só mudam o visual. Nada que você compra muda a pontuação.\n\nE MAIS\n• Top 20 local com suas iniciais e o ranking do Game Center.\n• Sem anúncios, sem conta, sem rastreamento. Funciona offline.\n• Som e vibração podem ser desligados.\n\nNenhum pato se machuca: eles só caem para fora da tela.",
+    "iapDescription": "10 skins de patos, cada uma com seu fundo.",
+    "allName": "Todos os pacotes",
+    "allDescription": "As 100 skins pagas de patos dos 10 pacotes.",
+    "leaderboard": "Melhor pontuação"
+  },
+  "pt_PT": {
+    "name": "Kačeny: Caça aos Patos",
+    "subtitle": "Abate os patos em pleno voo",
+    "promo": "90 segundos, 8 cartuchos e um céu cheio de patos. Toca para disparar, desliza para baixo para recarregar e bate o teu recorde. 13 visuais grátis, sem anúncios.",
+    "keywords": "arcada,caçador,tiro,disparar,pássaros,aves,reflexos,rápido,casual,retro,píxel,skins,recorde",
+    "playShort": "Abate patos em pleno voo em rondas de 90 segundos. Arcada rápida e sem anúncios.",
+    "description": "Os patos descem a voar pelo ecrã. Tens 90 segundos e 8 cartuchos. Abate-os do céu.\n\nKačeny (\"patos\" em checo) é um jogo de arcada rápido para jogar com uma mão: na paragem do autocarro, na pausa do café ou numa última ronda antes de dormir. Cada toque é um tiro imediato, sem esperar que levantes o dedo.\n\nCOMO SE JOGA\n• Toca num pato para disparar. Os patos mais pequenos estão mais longe, são mais fáceis de falhar e valem mais.\n• Acerta-lhes mesmo no centro para um bónus de precisão.\n• Acerta em vários seguidos sem falhar e o combo multiplica os pontos até ×2.\n• O carregador leva 8 cartuchos. Desliza para baixo ou toca nos cartuchos para recarregar, ou ativa o recarregamento automático.\n• Atenção às margens: de vez em quando um pato grande espreita e volta a esconder-se.\n\nSKINS\n113 visuais para os patos e o céu: aguarela, pixel art de 16 bits, banda desenhada, plasticina, anime e mais, muitos com asas a bater. 13 são grátis. Dez pacotes temáticos (Arcada retro, Galeria de arte, Fofinhos, Materiais, Néon e noite, Festas, Arte popular, Fantasia e sci-fi, Natureza, Luxo) desbloqueiam-se com uma pequena compra única cada. As skins só mudam o aspeto. Nada do que compres muda a pontuação.\n\nE AINDA\n• Top 20 local com as tuas iniciais e a classificação do Game Center.\n• Sem anúncios, sem conta, sem rastreio. Funciona offline.\n• Som e vibração podem ser desligados.\n\nNenhum pato se magoa: apenas caem para fora do ecrã.",
+    "iapDescription": "10 skins de patos, cada uma com o seu fundo.",
+    "allName": "Todos os pacotes",
+    "allDescription": "As 100 skins pagas de patos dos 10 pacotes.",
+    "leaderboard": "Melhor pontuação"
+  },
+  "ro": {
+    "name": "Kačeny: Vânătoare de rațe",
+    "subtitle": "Doboară rațele din zbor",
+    "promo": "90 de secunde, 8 cartușe și un cer plin de rațe. Atinge ca să tragi, glisează în jos ca să reîncarci și bate-ți recordul. 13 skinuri gratuite, fără reclame.",
+    "keywords": "arcade,vânător,împușcat,trage,păsări,atingere,reflexe,rapid,casual,retro,pixel,skinuri,record",
+    "playShort": "Doboară rațe din zbor în runde de 90 de secunde. Arcade rapid, fără reclame.",
+    "description": "Rațele zboară în jos pe ecran. Ai 90 de secunde și 8 cartușe. Doboară-le de pe cer.\n\nKačeny (în cehă, „rațe”) este un joc arcade rapid, de jucat cu o mână: în stația de autobuz, în pauza de cafea sau încă o rundă înainte de culcare. Fiecare atingere e un foc imediat, fără să aștepți să ridici degetul.\n\nCUM SE JOACĂ\n• Atinge o rață ca să tragi. Rațele mai mici sunt mai departe, mai ușor de ratat și valorează mai mult.\n• Nimerește-le fix în centru pentru un bonus de precizie.\n• Nimerește mai multe la rând fără să ratezi și combo-ul îți înmulțește punctele până la ×2.\n• Încărcătorul are 8 cartușe. Glisează în jos sau atinge cartușele ca să reîncarci, ori pornește reîncărcarea automată.\n• Fii atent la margini: din când în când o rață mare trage cu ochiul și se ascunde iar.\n\nSKINURI\n113 înfățișări pentru rațe și cer: acuarelă, pixel art pe 16 biți, benzi desenate, plastilină, anime și altele, multe cu aripi care bat. 13 sunt gratuite. Zece pachete tematice (Sală de jocuri retro, Galerie de artă, Drăgălașe, Materiale, Neon și noapte, Sărbători, Artă populară, Fantasy și SF, Natură, Lux) se deblochează fiecare cu o mică achiziție unică. Skinurile schimbă doar aspectul. Nimic din ce cumperi nu schimbă scorul.\n\nȘI ÎN PLUS\n• Top 20 local cu inițialele tale și clasamentul din Game Center.\n• Fără reclame, fără cont, fără urmărire. Merge și offline.\n• Sunetul și vibrațiile se pot opri.\n\nNicio rață nu pățește nimic: doar se rostogolesc afară din cadru.",
+    "iapDescription": "10 skinuri cu rațe, fiecare cu fundalul lui.",
+    "allName": "Toate pachetele",
+    "allDescription": "Toate cele 100 de skinuri plătite din 10 pachete.",
+    "leaderboard": "Cel mai bun scor"
+  },
+  "ru": {
+    "name": "Kačeny: Охота на уток",
+    "subtitle": "Сбивай уток в небе",
+    "promo": "90 секунд, 8 патронов и небо, полное уток. Нажми, чтобы выстрелить, смахни вниз для перезарядки и побей свой рекорд. 13 скинов бесплатно, без рекламы.",
+    "keywords": "аркада,охотник,стрелялка,тир,птицы,реакция,быстрая",
+    "playShort": "Сбивай уток в небе в раундах по 90 секунд. Быстрая аркада без рекламы.",
+    "description": "Утки летят вниз по экрану. У тебя 90 секунд и 8 патронов. Сбей их с неба.\n\nKačeny (по-чешски «утки») — быстрая аркада для одной руки: на остановке, в перерыве на кофе или ещё один раунд перед сном. Каждое касание — сразу выстрел, не нужно ждать, пока поднимешь палец.\n\nКАК ИГРАТЬ\n• Нажми на утку, чтобы выстрелить. Маленькие утки дальше, по ним легче промахнуться, и они стоят больше.\n• Попади точно в центр, чтобы получить бонус за меткость.\n• Попадай несколько раз подряд без промахов — и комбо умножит очки до ×2.\n• В магазине 8 патронов. Смахни вниз или нажми на патроны, чтобы перезарядить, или включи автоперезарядку.\n• Следи за краями: время от времени большая утка заглядывает в кадр и снова прячется.\n\nСКИНЫ\n113 образов для уток и неба: акварель, 16-битный пиксель-арт, комикс, пластилин, аниме и многое другое, у многих машут крылья. 13 бесплатны. Десять тематических наборов (Ретро-аркада, Галерея искусств, Милые, Материалы, Неон и ночь, Праздники, Народное искусство, Фэнтези и фантастика, Природа, Роскошь) открываются небольшой разовой покупкой каждый. Скины меняют только внешний вид. Ничто из того, что можно купить, не влияет на счёт.\n\nА ЕЩЁ\n• Локальный топ-20 с твоими инициалами и рейтинг в Game Center.\n• Без рекламы, без аккаунта, без слежки. Работает офлайн.\n• Звук и вибрацию можно отключить.\n\nНи одна утка не пострадала: они просто вываливаются из кадра.",
+    "iapDescription": "10 скинов уток, у каждого свой фон.",
+    "allName": "Все наборы",
+    "allDescription": "Все 100 платных скинов уток из 10 наборов.",
+    "leaderboard": "Лучший счёт"
+  },
+  "sl": {
+    "name": "Kačeny: Lov na race",
+    "subtitle": "Sestreli race z neba",
+    "promo": "90 sekund, 8 nabojev in nebo, polno rac. Tapni za strel, podrsaj navzdol za polnjenje in premagaj svoj rekord. 13 videzov brezplačno, brez oglasov.",
+    "keywords": "arkada,lovec,streljanje,ptice,tap,refleksi,hitra,casual,retro,piksel,videzi,rekord,offline,merjenje",
+    "playShort": "Sestreli race z neba v krogih po 90 sekund. Hitra arkada brez oglasov.",
+    "description": "Race letijo navzdol po zaslonu. Imaš 90 sekund in 8 nabojev. Sestreli jih z neba.\n\nKačeny (po češko »race«) je hitra arkadna igra za eno roko: na avtobusni postaji, ob kavi ali še en krog pred spanjem. Vsak dotik je takoj strel, brez čakanja, da dvigneš prst.\n\nKAKO SE IGRA\n• Tapni raco, da ustreliš. Manjše race so dlje, lažje jih zgrešiš in so vredne več.\n• Zadeni jih točno v sredino za bonus natančnosti.\n• Zadeni jih več zapored brez zgrešenega strela in kombo pomnoži točke do ×2.\n• V nabojnik gre 8 nabojev. Podrsaj navzdol ali tapni naboje za polnjenje ali vklopi samodejno polnjenje.\n• Pazi na robove: občasno pokuka velika raca in se spet skrije.\n\nVIDEZI\n113 videzov za race in nebo: akvarel, 16-bitni pixel art, strip, plastelin, anime in še več, mnogi z mahajočimi krili. 13 jih je brezplačnih. Deset tematskih paketov (Retro igralnica, Umetniška galerija, Ljubko, Materiali, Neon in noč, Prazniki, Ljudska umetnost, Fantazija in ZF, Narava, Razkošje) odkleneš z majhnim enkratnim nakupom. Videzi spremenijo le izgled. Nič, kar kupiš, ne spremeni rezultata.\n\nPOLEG TEGA\n• Lokalnih top 20 s tvojimi začetnicami in lestvica v Game Center.\n• Brez oglasov, brez računa, brez sledenja. Deluje brez povezave.\n• Zvok in vibriranje lahko izklopiš.\n\nNobena raca se ne poškoduje: le odkotalijo se iz kadra.",
+    "iapDescription": "10 videzov rac, vsak z lastnim ozadjem.",
+    "allName": "Vsi paketi",
+    "allDescription": "Vseh 100 plačljivih videzov rac iz 10 paketov.",
+    "leaderboard": "Najboljši rezultat"
+  },
+  "sv": {
+    "name": "Kačeny: Ankjakt",
+    "subtitle": "Skjut ner ankor från himlen",
+    "promo": "90 sekunder, 8 patroner och en himmel full av ankor. Tryck för att skjuta, svep nedåt för att ladda om, slå ditt rekord. 13 looks gratis, ingen reklam.",
+    "keywords": "arkad,jakt,jägare,skjuta,fåglar,tryck,reflexer,snabb,casual,retro,pixel,skins,highscore,offline",
+    "playShort": "Skjut ner ankor från himlen i rundor på 90 sekunder. Snabb arkad utan reklam.",
+    "description": "Ankor flyger nedåt över skärmen. Du har 90 sekunder och 8 patroner. Skjut ner dem från himlen.\n\nKačeny (tjeckiska för \"ankor\") är ett snabbt arkadspel för en hand: vid busshållplatsen, på kafferasten eller en runda till innan läggdags. Varje beröring är ett skott direkt, utan att vänta på att fingret lyfts.\n\nSÅ SPELAR DU\n• Tryck på en anka för att skjuta den. Mindre ankor är längre bort, lättare att missa och ger mer poäng.\n• Träffa mitt i prick för en precisionsbonus.\n• Träffa flera i rad utan att missa så multiplicerar kombon dina poäng upp till ×2.\n• Magasinet rymmer 8 patroner. Svep nedåt eller tryck på patronerna för att ladda om, eller slå på automatisk omladdning.\n• Håll koll på kanterna: ibland kikar en stor anka in och gömmer sig igen.\n\nSKINS\n113 looks för ankorna och himlen: akvarell, 16-bitars pixelkonst, serie, lera, anime och mer, många med flaxande vingar. 13 är gratis. Tio temapaket (Retroarkad, Konstgalleri, Gulligt, Material, Neon & natt, Högtider, Folkkonst, Fantasy & sci-fi, Natur, Lyx) låses upp med ett litet engångsköp vardera. Skins ändrar bara utseendet. Inget du kan köpa påverkar poängen.\n\nDESSUTOM\n• Lokal topp 20 med dina initialer och topplistan i Game Center.\n• Ingen reklam, inget konto, ingen spårning. Spelas offline.\n• Ljud och vibration går att stänga av.\n\nInga ankor kommer till skada: de trillar bara ut ur bild.",
+    "iapDescription": "10 ankskins, var och en med egen bakgrund.",
+    "allName": "Alla paket",
+    "allDescription": "Alla 100 betalda ankskins från alla 10 paket.",
+    "leaderboard": "Bästa poäng"
+  },
+  "ta": {
+    "name": "Kačeny: வாத்து வேட்டை",
+    "subtitle": "வானில் வாத்துகளை வீழ்த்து",
+    "promo": "90 வினாடிகள், 8 தோட்டாக்கள், வாத்துகள் நிறைந்த வானம். சுட தட்டு, நிரப்ப கீழே ஸ்வைப் செய், உன் சாதனையை முறியடி. 13 தோற்றங்கள் இலவசம், விளம்பரம் இல்லை.",
+    "keywords": "ஆர்கேட்,வேட்டை,சுடுதல்,பறவைகள்,தட்டு",
+    "playShort": "90 வினாடி சுற்றுகளில் வானிலிருந்து வாத்துகளை வீழ்த்து. விளம்பரமில்லா ஆர்கேட்.",
+    "description": "வாத்துகள் திரையில் கீழ்நோக்கிப் பறக்கின்றன. உன்னிடம் 90 வினாடிகளும் 8 தோட்டாக்களும் உள்ளன. அவற்றை வானிலிருந்து வீழ்த்து.\n\nKačeny (செக் மொழியில் \"வாத்துகள்\") ஒரு கையால் விளையாடும் வேகமான ஆர்கேட் விளையாட்டு: பேருந்து நிறுத்தத்தில், தேநீர் இடைவேளையில் அல்லது தூங்கும் முன் இன்னொரு சுற்று. ஒவ்வொரு தொடுதலும் உடனே ஒரு சூடு, விரலைத் தூக்கும் வரை காத்திருக்க வேண்டாம்.\n\nஎப்படி விளையாடுவது\n• சுட ஒரு வாத்தைத் தட்டு. சிறிய வாத்துகள் தொலைவில் இருக்கும், எளிதில் தவறும், அதிக புள்ளிகள் தரும்.\n• சரியாக நடுவில் அடித்தால் துல்லிய போனஸ்.\n• தவறாமல் தொடர்ந்து பல அடித்தால் காம்போ உன் புள்ளிகளை ×2 வரை பெருக்கும்.\n• மேகசினில் 8 தோட்டாக்கள். நிரப்ப கீழே ஸ்வைப் செய் அல்லது தோட்டாக்களைத் தட்டு, அல்லது தானியங்கு நிரப்புதலை இயக்கு.\n• ஓரங்களைக் கவனி: அவ்வப்போது ஒரு பெரிய வாத்து எட்டிப் பார்த்து மீண்டும் ஒளிந்துகொள்ளும்.\n\nஸ்கின்கள்\nவாத்துகளுக்கும் வானத்துக்கும் 113 தோற்றங்கள்: நீர்வண்ணம், 16-பிட் பிக்சல் ஆர்ட், காமிக், களிமண், அனிமே மற்றும் பல, பலவற்றில் சிறகுகள் அடிக்கும். 13 இலவசம். பத்து கருப்பொருள் தொகுப்புகள் (ரெட்ரோ ஆர்கேட், கலைக்கூடம், அழகானவை, பொருட்கள், நியான் & இரவு, பண்டிகைகள் & பருவங்கள், நாட்டுப்புறக் கலை, கற்பனை & அறிவியல் புனைவு, இயற்கை, ஆடம்பரம்) ஒவ்வொன்றும் சிறிய ஒருமுறை வாங்குதலில் திறக்கும். ஸ்கின்கள் தோற்றத்தை மட்டுமே மாற்றும். வாங்கக்கூடிய எதுவும் மதிப்பெண்ணை மாற்றாது.\n\nமேலும்\n• உன் முதலெழுத்துகளுடன் உள்ளூர் டாப் 20, மற்றும் Game Center தரவரிசை.\n• விளம்பரம் இல்லை, கணக்கு இல்லை, கண்காணிப்பு இல்லை. ஆஃப்லைனில் இயங்கும்.\n• ஒலியையும் அதிர்வையும் அணைக்கலாம்.\n\nஎந்த வாத்துக்கும் காயம் இல்லை: அவை சட்டகத்துக்கு வெளியே உருண்டு விழுகின்றன, அவ்வளவுதான்.",
+    "iapDescription": "10 வாத்து ஸ்கின்கள், ஒவ்வொன்றுக்கும் சொந்தப் பின்னணி.",
+    "allName": "எல்லா தொகுப்புகளும்",
+    "allDescription": "10 தொகுப்புகளின் எல்லா 100 கட்டண வாத்து ஸ்கின்களும்.",
+    "leaderboard": "சிறந்த மதிப்பெண்"
+  },
+  "te": {
+    "name": "Kačeny: బాతుల వేట",
+    "subtitle": "ఆకాశం నుండి బాతులను కూల్చండి",
+    "promo": "90 సెకన్లు, 8 తూటాలు, బాతులతో నిండిన ఆకాశం. కాల్చడానికి ట్యాప్ చేయండి, రీలోడ్‌కు కిందకు స్వైప్ చేయండి, మీ రికార్డును బద్దలు కొట్టండి. 13 లుక్‌లు ఉచితం, ప్రకటనలు లేవు.",
+    "keywords": "ఆర్కేడ్,వేట,వేటగాడు,షూటింగ్,పక్షులు",
+    "playShort": "90 సెకన్ల రౌండ్లలో ఆకాశం నుండి బాతులను కూల్చండి. ప్రకటనలు లేని ఆర్కేడ్.",
+    "description": "బాతులు తెరపై కిందకు ఎగురుతాయి. మీ దగ్గర 90 సెకన్లు, 8 తూటాలు ఉన్నాయి. వాటిని ఆకాశం నుండి కూల్చండి.\n\nKačeny (చెక్ భాషలో \"బాతులు\") ఒక చేత్తో ఆడే వేగవంతమైన ఆర్కేడ్ ఆట: బస్ స్టాప్‌లో, టీ విరామంలో లేదా నిద్రపోయే ముందు ఇంకో రౌండ్. ప్రతి స్పర్శ వెంటనే ఒక తూటా, వేలు ఎత్తే వరకు ఆగనవసరం లేదు.\n\nఎలా ఆడాలి\n• కాల్చడానికి బాతుపై ట్యాప్ చేయండి. చిన్న బాతులు దూరంగా ఉంటాయి, సులభంగా గురి తప్పుతాయి, ఎక్కువ పాయింట్లు ఇస్తాయి.\n• సరిగ్గా మధ్యలో కొడితే ఖచ్చితత్వ బోనస్.\n• తప్పకుండా వరుసగా చాలా కొడితే కాంబో మీ పాయింట్లను ×2 వరకు పెంచుతుంది.\n• మ్యాగజైన్‌లో 8 తూటాలు పడతాయి. రీలోడ్‌కు కిందకు స్వైప్ చేయండి లేదా తూటాలపై ట్యాప్ చేయండి, లేదా ఆటోమేటిక్ రీలోడ్ ఆన్ చేయండి.\n• అంచులను గమనించండి: అప్పుడప్పుడు ఒక పెద్ద బాతు తొంగి చూసి మళ్లీ దాక్కుంటుంది.\n\nస్కిన్‌లు\nబాతులకు, ఆకాశానికి 113 లుక్‌లు: నీటి రంగులు, 16-బిట్ పిక్సెల్ ఆర్ట్, కామిక్, మట్టి, అనిమే ఇంకా ఎన్నో, చాలా వాటికి రెక్కలు ఆడతాయి. 13 ఉచితం. పది థీమ్ ప్యాక్‌లు (రెట్రో ఆర్కేడ్, కళా ప్రదర్శనశాల, ముద్దుగా, పదార్థాలు, నియాన్ & రాత్రి, పండుగలు & ఋతువులు, జానపద కళ, ఫాంటసీ & సైన్స్ ఫిక్షన్, ప్రకృతి, విలాసం) ఒక్కొక్కటి చిన్న ఒక్కసారి కొనుగోలుతో అన్‌లాక్ అవుతుంది. స్కిన్‌లు రూపాన్ని మాత్రమే మారుస్తాయి. కొనగలిగే ఏదీ స్కోర్‌ను మార్చదు.\n\nఇంకా\n• మీ పేరు మొదటి అక్షరాలతో స్థానిక టాప్ 20, Game Center లీడర్‌బోర్డ్.\n• ప్రకటనలు లేవు, ఖాతా లేదు, ట్రాకింగ్ లేదు. ఆఫ్‌లైన్‌లో పని చేస్తుంది.\n• శబ్దం, వైబ్రేషన్ ఆపివేయవచ్చు.\n\nఏ బాతుకీ గాయం కాదు: అవి కేవలం దొర్లుకుంటూ ఫ్రేమ్ బయటకు వెళ్లిపోతాయి.",
+    "iapDescription": "10 బాతు స్కిన్‌లు, ప్రతి దానికీ సొంత నేపథ్యం.",
+    "allName": "అన్ని ప్యాక్‌లు",
+    "allDescription": "10 ప్యాక్‌లలోని మొత్తం 100 చెల్లింపు బాతు స్కిన్‌లు.",
+    "leaderboard": "ఉత్తమ స్కోర్"
+  },
+  "th": {
+    "name": "Kačeny: ยิงเป็ด",
+    "subtitle": "ยิงเป็ดให้ร่วงจากฟ้า",
+    "promo": "90 วินาที กระสุน 8 นัด และท้องฟ้าที่เต็มไปด้วยเป็ด แตะเพื่อยิง ปัดลงเพื่อบรรจุกระสุน แล้วทำลายสถิติของคุณ สกินฟรี 13 แบบ ไม่มีโฆษณา",
+    "keywords": "อาร์เคด,ล่าสัตว์,นักล่า,ยิงปืน,นก",
+    "playShort": "ยิงเป็ดให้ร่วงจากฟ้าในรอบละ 90 วินาที เกมอาร์เคดเร็วๆ ไม่มีโฆษณา",
+    "description": "เป็ดบินลงมาตามหน้าจอ คุณมีเวลา 90 วินาทีและกระสุน 8 นัด ยิงพวกมันให้ร่วงจากฟ้า\n\nKačeny (ภาษาเช็ก แปลว่า \"เป็ด\") คือเกมอาร์เคดเร็วๆ ที่เล่นได้ด้วยมือเดียว ทั้งตอนรอรถเมล์ พักดื่มกาแฟ หรืออีกสักรอบก่อนนอน ทุกการแตะคือการยิงทันที ไม่ต้องรอยกนิ้ว\n\nวิธีเล่น\n• แตะที่เป็ดเพื่อยิง เป็ดตัวเล็กอยู่ไกลกว่า พลาดง่ายกว่า และได้คะแนนมากกว่า\n• ยิงโดนตรงกลางพอดีเพื่อรับโบนัสความแม่นยำ\n• ยิงโดนหลายตัวติดกันโดยไม่พลาด คอมโบจะคูณคะแนนได้สูงสุด ×2\n• แม็กกาซีนบรรจุกระสุนได้ 8 นัด ปัดลงหรือแตะที่กระสุนเพื่อบรรจุใหม่ หรือเปิดการบรรจุอัตโนมัติ\n• ระวังขอบจอ: บางครั้งจะมีเป็ดตัวใหญ่โผล่หน้ามาแล้วหลบไปอีก\n\nสกิน\n113 ลุคสำหรับเป็ดและท้องฟ้า ทั้งสีน้ำ พิกเซลอาร์ต 16 บิต การ์ตูน ดินน้ำมัน อนิเมะ และอีกมากมาย หลายแบบกระพือปีกได้ ฟรี 13 แบบ แพ็กธีมสิบแพ็ก (ตู้เกมย้อนยุค หอศิลป์ น่ารัก วัสดุ นีออนและราตรี เทศกาล ศิลปะพื้นบ้าน แฟนตาซีและไซไฟ ธรรมชาติ หรูหรา) ปลดล็อกได้ด้วยการซื้อครั้งเดียวในราคาเล็กน้อย สกินเปลี่ยนแค่หน้าตา ไม่มีสิ่งใดที่ซื้อได้ส่งผลต่อคะแนน\n\nนอกจากนี้\n• ท็อป 20 ในเครื่องพร้อมชื่อย่อของคุณ และตารางคะแนนใน Game Center\n• ไม่มีโฆษณา ไม่ต้องมีบัญชี ไม่มีการติดตาม เล่นออฟไลน์ได้\n• ปิดเสียงและการสั่นได้\n\nไม่มีเป็ดตัวไหนได้รับบาดเจ็บ พวกมันแค่ตีลังกาหลุดออกจากเฟรมไป",
+    "iapDescription": "สกินเป็ด 10 แบบ แต่ละแบบมีฉากหลังของตัวเอง",
+    "allName": "ทุกแพ็ก",
+    "allDescription": "สกินเป็ดแบบชำระเงินทั้ง 100 แบบจาก 10 แพ็ก",
+    "leaderboard": "คะแนนสูงสุด"
+  },
+  "tr": {
+    "name": "Kačeny: Ördek Avı",
+    "subtitle": "Ördekleri gökten düşür",
+    "promo": "90 saniye, 8 fişek ve ördeklerle dolu bir gökyüzü. Ateş etmek için dokun, doldurmak için aşağı kaydır, rekorunu kır. 13 görünüm ücretsiz, reklam yok.",
+    "keywords": "arcade,avcı,nişancı,atış,kuşlar,dokunma,refleks,hızlı,casual,retro,piksel,görünüm,rekor",
+    "playShort": "90 saniyelik turlarda ördekleri gökten düşür. Hızlı arcade, reklamsız.",
+    "description": "Ördekler ekranda aşağı doğru uçuyor. 90 saniyen ve 8 fişeğin var. Onları gökten düşür.\n\nKačeny (Çekçe \"ördekler\") tek elle oynanan hızlı bir arcade oyunu: otobüs durağında, kahve molasında ya da yatmadan önce bir tur daha. Her dokunuş anında bir atış, parmağını kaldırmanı beklemeden.\n\nNASIL OYNANIR\n• Bir ördeğe dokunarak vur. Küçük ördekler daha uzakta, ıskalaması daha kolay ve daha çok puan değerinde.\n• Tam ortadan vurursan isabet bonusu kazanırsın.\n• Iskalamadan art arda birkaç tane vur, kombo puanlarını ×2’ye kadar katlar.\n• Şarjöre 8 fişek sığar. Doldurmak için aşağı kaydır veya fişeklere dokun, ya da otomatik doldurmayı aç.\n• Kenarlara dikkat: ara sıra büyük bir ördek kafasını uzatıp yeniden saklanır.\n\nGÖRÜNÜMLER\nÖrdekler ve gökyüzü için 113 görünüm: suluboya, 16-bit piksel sanatı, çizgi roman, oyun hamuru, anime ve dahası, çoğu kanat çırpıyor. 13 tanesi ücretsiz. On temalı paketin (Retro atari salonu, Sanat galerisi, Sevimli, Malzemeler, Neon ve gece, Bayramlar, Halk sanatı, Fantastik ve bilimkurgu, Doğa, Lüks) her biri küçük, tek seferlik bir satın alımla açılır. Görünümler yalnızca görüntüyü değiştirir. Satın alabileceğin hiçbir şey skoru değiştirmez.\n\nAYRICA\n• Baş harflerinle yerel ilk 20 ve Game Center sıralaması.\n• Reklam yok, hesap yok, takip yok. Çevrimdışı oynanır.\n• Ses ve titreşim kapatılabilir.\n\nHiçbir ördek zarar görmez: sadece kadrajın dışına yuvarlanırlar.",
+    "iapDescription": "Her biri kendi arka planlı 10 ördek görünümü.",
+    "allName": "Tüm paketler",
+    "allDescription": "10 paketin tamamındaki 100 ücretli ördek görünümü.",
+    "leaderboard": "En iyi skor"
+  },
+  "uk": {
+    "name": "Kačeny: Полювання на качок",
+    "subtitle": "Збивай качок у небі",
+    "promo": "90 секунд, 8 набоїв і небо, повне качок. Торкнися, щоб вистрілити, проведи вниз для перезаряджання і побий свій рекорд. 13 скінів безкоштовно, без реклами.",
+    "keywords": "аркада,мисливець,стрілялка,тир,птахи,реакція,швидка",
+    "playShort": "Збивай качок у небі в раундах по 90 секунд. Швидка аркада без реклами.",
+    "description": "Качки летять униз екраном. У тебе 90 секунд і 8 набоїв. Збий їх з неба.\n\nKačeny (чеською «качки») — швидка аркада для однієї руки: на зупинці, під час кави чи ще один раунд перед сном. Кожен дотик — одразу постріл, не треба чекати, поки піднімеш палець.\n\nЯК ГРАТИ\n• Торкнися качки, щоб вистрілити. Менші качки далі, по них легше схибити, і вони варті більше.\n• Влуч точно в центр, щоб отримати бонус за влучність.\n• Влучай кілька разів поспіль без промахів — і комбо помножить очки до ×2.\n• У магазині 8 набоїв. Проведи вниз або торкнися набоїв, щоб перезарядити, або ввімкни автоперезаряджання.\n• Стеж за краями: час від часу велика качка зазирає в кадр і знову ховається.\n\nСКІНИ\n113 образів для качок і неба: акварель, 16-бітний піксель-арт, комікс, пластилін, аніме та багато іншого, у багатьох крила махають. 13 безкоштовні. Десять тематичних наборів (Ретроаркада, Галерея мистецтв, Милі, Матеріали, Неон і ніч, Свята, Народне мистецтво, Фентезі й фантастика, Природа, Розкіш) відкриваються невеликою разовою покупкою кожен. Скіни змінюють лише вигляд. Ніщо з того, що можна купити, не впливає на рахунок.\n\nА ЩЕ\n• Локальний топ-20 з твоїми ініціалами та рейтинг у Game Center.\n• Без реклами, без акаунта, без стеження. Працює офлайн.\n• Звук і вібрацію можна вимкнути.\n\nЖодна качка не постраждала: вони просто вивалюються з кадру.",
+    "iapDescription": "10 скінів качок, у кожного своє тло.",
+    "allName": "Усі набори",
+    "allDescription": "Усі 100 платних скінів качок з 10 наборів.",
+    "leaderboard": "Найкращий рахунок"
+  },
+  "ur": {
+    "name": "Kačeny: بطخ کا شکار",
+    "subtitle": "آسمان سے بطخیں گرائیں",
+    "promo": "90 سیکنڈ، 8 کارتوس اور بطخوں سے بھرا آسمان۔ ٹیپ کر کے گولی چلائیں، نیچے سوائپ کر کے ری لوڈ کریں اور اپنا ریکارڈ توڑیں۔ 13 لُک مفت، کوئی اشتہار نہیں۔",
+    "keywords": "آرکیڈ,شکار,شکاری,نشانہ بازی,پرندے,ٹیپ,ریفلیکس,تیز",
+    "playShort": "90 سیکنڈ کے راؤنڈز میں آسمان سے بطخیں گرائیں۔ تیز آرکیڈ، بغیر اشتہار۔",
+    "description": "بطخیں اسکرین پر نیچے کی طرف اڑتی ہیں۔ آپ کے پاس 90 سیکنڈ اور 8 کارتوس ہیں۔ انہیں آسمان سے گرائیں۔\n\nKačeny (چیک زبان میں \"بطخیں\") ایک ہاتھ سے کھیلا جانے والا تیز آرکیڈ گیم ہے: بس اسٹاپ پر، چائے کے وقفے میں یا سونے سے پہلے ایک اور راؤنڈ۔ ہر چھونا فوراً ایک گولی ہے، انگلی اٹھانے کا انتظار نہیں۔\n\nکیسے کھیلیں\n• گولی چلانے کے لیے بطخ پر ٹیپ کریں۔ چھوٹی بطخیں دور ہوتی ہیں، ان سے نشانہ آسانی سے چوکتا ہے اور وہ زیادہ پوائنٹس دیتی ہیں۔\n• عین بیچ میں نشانہ لگائیں اور درستگی کا بونس پائیں۔\n• بغیر چوکے لگاتار کئی نشانے لگائیں اور کومبو آپ کے پوائنٹس ×2 تک بڑھا دے گا۔\n• میگزین میں 8 کارتوس آتے ہیں۔ ری لوڈ کے لیے نیچے سوائپ کریں یا کارتوسوں پر ٹیپ کریں، یا خودکار ری لوڈ آن کریں۔\n• کناروں پر نظر رکھیں: کبھی کبھی ایک بڑی بطخ جھانکتی ہے اور پھر چھپ جاتی ہے۔\n\nاسکنز\nبطخوں اور آسمان کے لیے 113 لُک: آبی رنگ، 16 بٹ پکسل آرٹ، کامک، مٹی، اینیمے اور بہت کچھ، کئی کے پر پھڑپھڑاتے ہیں۔ 13 مفت ہیں۔ دس تھیم والے پیکس (ریٹرو آرکیڈ، آرٹ گیلری، پیارے، مواد، نیون اور رات، تہوار اور موسم، لوک فن، فینٹسی اور سائنس فکشن، فطرت، شاہانہ) ہر ایک چھوٹی سی ایک بار کی خریداری سے ان لاک ہوتا ہے۔ اسکنز صرف شکل بدلتی ہیں۔ کچھ بھی خریدنے سے اسکور نہیں بدلتا۔\n\nاور بھی\n• آپ کے ابتدائی حروف کے ساتھ مقامی ٹاپ 20، اور Game Center لیڈر بورڈ۔\n• کوئی اشتہار نہیں، کوئی اکاؤنٹ نہیں، کوئی ٹریکنگ نہیں۔ آف لائن چلتا ہے۔\n• آواز اور وائبریشن بند کی جا سکتی ہیں۔\n\nکسی بطخ کو چوٹ نہیں لگتی: وہ بس لڑھک کر فریم سے باہر چلی جاتی ہیں۔",
+    "iapDescription": "10 بطخ اسکنز، ہر ایک کا اپنا پس منظر۔",
+    "allName": "تمام پیکس",
+    "allDescription": "تمام 10 پیکس کی 100 ادا شدہ بطخ اسکنز۔",
+    "leaderboard": "بہترین اسکور"
+  },
+  "vi": {
+    "name": "Kačeny: Bắn Vịt",
+    "subtitle": "Bắn rơi vịt trên bầu trời",
+    "promo": "90 giây, 8 viên đạn và cả bầu trời vịt. Chạm để bắn, vuốt xuống để nạp đạn, phá kỷ lục của bạn. 13 giao diện miễn phí, không quảng cáo.",
+    "keywords": "arcade,săn bắn,thợ săn,bắn súng,chim,chạm,phản xạ,nhanh,giải trí,retro,pixel",
+    "playShort": "Bắn rơi vịt trên trời trong các vòng 90 giây. Arcade nhanh, không quảng cáo.",
+    "description": "Những chú vịt bay xuống màn hình. Bạn có 90 giây và 8 viên đạn. Hãy bắn rơi chúng khỏi bầu trời.\n\nKačeny (tiếng Séc nghĩa là \"vịt\") là game arcade nhanh chơi bằng một tay: lúc chờ xe buýt, giờ nghỉ uống cà phê hay thêm một vòng trước khi ngủ. Mỗi lần chạm là một phát bắn ngay lập tức, không cần chờ nhấc ngón tay.\n\nCÁCH CHƠI\n• Chạm vào vịt để bắn. Vịt nhỏ hơn ở xa hơn, dễ trượt hơn và được nhiều điểm hơn.\n• Bắn trúng ngay chính giữa để nhận thưởng chính xác.\n• Bắn trúng liên tiếp không trượt và combo sẽ nhân điểm của bạn lên đến ×2.\n• Băng đạn chứa 8 viên. Vuốt xuống hoặc chạm vào băng đạn để nạp, hoặc bật tự động nạp đạn.\n• Để ý các cạnh màn hình: thỉnh thoảng một chú vịt to ló đầu vào rồi lại trốn mất.\n\nGIAO DIỆN\n113 giao diện cho vịt và bầu trời: màu nước, pixel art 16-bit, truyện tranh, đất nặn, anime và nhiều hơn nữa, nhiều cái có cánh vỗ. 13 cái miễn phí. Mười gói chủ đề (Arcade cổ điển, Phòng tranh, Dễ thương, Chất liệu, Neon & đêm, Lễ hội, Nghệ thuật dân gian, Kỳ ảo & viễn tưởng, Thiên nhiên, Sang trọng), mỗi gói mở khóa bằng một lần mua nhỏ. Giao diện chỉ thay đổi vẻ ngoài. Không thứ gì bạn mua làm thay đổi điểm số.\n\nNGOÀI RA\n• Top 20 trên máy với tên viết tắt của bạn, và bảng xếp hạng Game Center.\n• Không quảng cáo, không tài khoản, không theo dõi. Chơi được ngoại tuyến.\n• Có thể tắt âm thanh và rung.\n\nKhông chú vịt nào bị thương: chúng chỉ lộn nhào ra khỏi khung hình.",
+    "iapDescription": "10 giao diện vịt, mỗi cái có nền riêng.",
+    "allName": "Tất cả các gói",
+    "allDescription": "Toàn bộ 100 giao diện vịt trả phí từ 10 gói.",
+    "leaderboard": "Điểm cao nhất"
+  },
+  "zh": {
+    "name": "Kačeny：打鸭子",
+    "subtitle": "点击屏幕，把鸭子打下来",
+    "promo": "90 秒、8 发子弹、满天的鸭子。点击射击，向下滑动装弹，刷新你的最高分。13 款皮肤免费，无广告。",
+    "keywords": "街机,射击,打猎,猎人,鸟,点击,反应,休闲,复古,像素,皮肤,高分,离线,神枪手",
+    "playShort": "在 90 秒的回合里把鸭子从天上打下来。快节奏街机游戏，无广告。",
+    "description": "鸭子从屏幕上方飞下来。你有 90 秒和 8 发子弹，把它们从天上打下来。\n\nKačeny（捷克语“鸭子”）是一款单手就能玩的快节奏街机游戏：等公交时、喝咖啡的间隙，或睡前再来一局。每一次触碰都会立即开火，不用等手指抬起。\n\n玩法\n• 点击鸭子即可射击。越小的鸭子离得越远，越容易打偏，分数也越高。\n• 正中靶心可获得精准加分。\n• 连续命中不失手，连击可让分数最高翻至 ×2。\n• 弹匣可装 8 发子弹。向下滑动或点子弹即可装弹，也可以打开自动装弹。\n• 留意屏幕边缘：时不时会有一只大鸭子探头张望，又躲回去。\n\n皮肤\n鸭子和天空共有 113 种外观：水彩、16 位像素画、漫画、黏土、动漫等等，很多还会扇动翅膀。其中 13 款免费。十个主题皮肤包（复古街机、美术馆、萌系、材质、霓虹与夜晚、节日与季节、世界民间艺术、奇幻与科幻、自然、奢华）各需一次小额购买即可解锁。皮肤只改变外观，任何可购买的内容都不会影响分数。\n\n此外\n• 带姓名缩写的本地前 20 名，以及 Game Center 排行榜。\n• 无广告、无需账号、无追踪。可离线游玩。\n• 声音和振动都可关闭。\n\n没有鸭子会受伤：它们只是翻滚着掉出画面。",
+    "iapDescription": "10 款鸭子皮肤，每款都有专属背景。",
+    "allName": "全部皮肤包",
+    "allDescription": "全部 10 个皮肤包中的 100 款付费鸭子皮肤。",
+    "leaderboard": "最高分"
+  },
+  "zh_Hant": {
+    "name": "Kačeny：打鴨子",
+    "subtitle": "點一下，把鴨子從天上打下來",
+    "promo": "90 秒、8 發子彈、滿天的鴨子。點擊射擊，向下滑裝彈，刷新你的最高分。13 款造型免費，無廣告。",
+    "keywords": "街機,射擊,打獵,獵人,鳥,點擊,反應,休閒,復古,像素,造型,高分,離線,神射手",
+    "playShort": "在 90 秒的回合中把鴨子從天上打下來。快節奏街機遊戲，無廣告。",
+    "description": "鴨子從螢幕上方飛下來。你有 90 秒和 8 發子彈，把牠們從天上打下來。\n\nKačeny（捷克語「鴨子」）是一款單手就能玩的快節奏街機遊戲：等公車時、喝咖啡的空檔，或睡前再來一局。每一次觸碰都會立刻開火，不必等手指抬起。\n\n玩法\n• 點一下鴨子就能射擊。越小的鴨子離得越遠，越容易打偏，分數也越高。\n• 正中紅心可獲得精準加分。\n• 連續命中不失手，連擊最多可讓分數變成 ×2。\n• 彈匣可裝 8 發子彈。向下滑或點子彈即可裝彈，也可以開啟自動裝彈。\n• 注意螢幕邊緣：偶爾會有一隻大鴨子探頭張望，又躲回去。\n\n造型\n鴨子和天空共有 113 種外觀：水彩、16 位元像素畫、漫畫、黏土、動漫等等，很多還會拍動翅膀。其中 13 款免費。十個主題造型包（復古街機、美術館、可愛、材質、霓虹與夜晚、節慶與季節、世界民俗藝術、奇幻與科幻、自然、奢華）各需一次小額購買即可解鎖。造型只改變外觀，任何可購買的內容都不會影響分數。\n\n此外\n• 附姓名縮寫的本機前 20 名，以及 Game Center 排行榜。\n• 無廣告、免帳號、不追蹤。可離線遊玩。\n• 音效和震動都能關閉。\n\n沒有鴨子會受傷：牠們只是翻滾著掉出畫面。",
+    "iapDescription": "10 款鴨子造型，每款都有專屬背景。",
+    "allName": "全部造型包",
+    "allDescription": "全部 10 個造型包中的 100 款付費鴨子造型。",
+    "leaderboard": "最高分"
   }
 }

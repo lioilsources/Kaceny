@@ -32,7 +32,14 @@ from asc_store import ALL_DESCRIPTION, ALL_NAME, IAP_DESCRIPTION, LANGS, LISTING
 PACKAGE = "com.ol1n.kaceny"
 SA_DIR = Path.home() / "Dev/Distribution/Android/_GoogleConsole/GooglePlay"
 SA = json.loads(next(SA_DIR.glob("*.json")).read_text())
+# Languages Play has no listing for (Odia, Punjabi) have null and are skipped.
 PLAY_LOCALE = {lang: LISTING["_locales"][lang][1] for lang in LANGS}
+PLAY_LANGS = [lang for lang in LANGS if PLAY_LOCALE[lang]]
+PLAY_COPIES = LISTING.get("_playCopies", {})
+
+
+def play_locales(lang):
+    return [PLAY_LOCALE[lang], *PLAY_COPIES.get(lang, [])]
 API = "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/" + PACKAGE
 UPLOAD = "https://androidpublisher.googleapis.com/upload/androidpublisher/v3/applications/" + PACKAGE
 _token = None
@@ -86,12 +93,13 @@ def step_listing():
         api("PATCH", f"{edit.base}/details", {"defaultLanguage": PLAY_LOCALE["en"],
                                               "contactWebsite": "https://lioilsources.github.io/Kaceny/",
                                               "contactEmail": "business@olin.now"})
-        for lang in LANGS:
+        for lang in PLAY_LANGS:
             entry = LISTING[lang]
-            api("PUT", f"{edit.base}/listings/{PLAY_LOCALE[lang]}", {
-                "language": PLAY_LOCALE[lang], "title": entry["name"],
-                "shortDescription": entry["playShort"], "fullDescription": entry["description"]})
-            print(f"  listing {PLAY_LOCALE[lang]}")
+            for locale in play_locales(lang):
+                api("PUT", f"{edit.base}/listings/{locale}", {
+                    "language": locale, "title": entry["name"],
+                    "shortDescription": entry["playShort"], "fullDescription": entry["description"]})
+                print(f"  listing {locale}")
 
 
 def _replace_images(edit, locale, kind, files):
@@ -105,14 +113,14 @@ def step_shots():
     icon = ROOT / "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     feature = ROOT / "store/play-feature.png"
     with Edit() as edit:
-        for lang in LANGS:
-            locale = PLAY_LOCALE[lang]
-            if (ROOT / "store/screenshots" / lang).is_dir():
-                shots = shots_for(lang)[:8]
-                _replace_images(edit, locale, "phoneScreenshots", shots)
-                print(f"  {locale}: {len(shots)} screenshots")
-            if feature.exists():
-                _replace_images(edit, locale, "featureGraphic", [feature])
+        for lang in PLAY_LANGS:
+            for locale in play_locales(lang):
+                if (ROOT / "store/screenshots" / lang).is_dir():
+                    shots = shots_for(lang)[:8]
+                    _replace_images(edit, locale, "phoneScreenshots", shots)
+                    print(f"  {locale}: {len(shots)} screenshots")
+                if feature.exists():
+                    _replace_images(edit, locale, "featureGraphic", [feature])
         icon512 = ROOT / "store/play-icon.png"
         if icon512.exists():
             _replace_images(edit, PLAY_LOCALE["en"], "icon", [icon512])
@@ -139,7 +147,7 @@ def step_iap():
     converted by Google for every other region, then activated."""
     packs, cs_titles = _paid_packs()
     names = _dart_map("packNames")
-    items = [(pack, {lang: cs_titles[pack] if lang == "cs" else names[lang][pack] for lang in LANGS},
+    items = [(pack, {lang: cs_titles[pack] if lang == "cs" else names[lang][pack] for lang in PLAY_LANGS},
               IAP_DESCRIPTION, 0) for pack in packs]
     items.append(("all", ALL_NAME, ALL_DESCRIPTION, 4))
     for pack, titles, descriptions, dollars in items:
@@ -150,8 +158,8 @@ def step_iap():
                    for code, p in sorted(converted.items())]
         sku = f"{PACKAGE}.pack.{pack}"
         product = {"packageName": PACKAGE, "productId": sku,
-                   "listings": [{"languageCode": PLAY_LOCALE[lang], "title": titles[lang],
-                                 "description": descriptions[lang]} for lang in LANGS],
+                   "listings": [{"languageCode": locale, "title": titles[lang], "description": descriptions[lang]}
+                                for lang in PLAY_LANGS for locale in play_locales(lang)],
                    "purchaseOptions": [{"purchaseOptionId": "buy", "buyOption": {"legacyCompatible": True},
                                         "regionalPricingAndAvailabilityConfigs": regions}]}
         api("PATCH", f"{API}/onetimeproducts/{sku}?allowMissing=true&updateMask=listings,purchaseOptions"
