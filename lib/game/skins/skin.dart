@@ -23,7 +23,7 @@ class Skin {
   /// Part of the free pack; the rest are sold by pack (see SkinStore).
   final bool free;
 
-  /// Wing-beat frames (`<id>_0.png` …), one full beat in order; 1 = a single
+  /// Wing-beat frames (`<id>_0.webp` …), one full beat in order; 1 = a single
   /// picture that the game squashes to fake the beat.
   final int frames;
 
@@ -52,7 +52,7 @@ class Skin {
 
   /// The sprites the game flies: one beat of frames, or the single picture.
   List<String> get duckFrameAssets =>
-      animated ? [for (var i = 0; i < frames; i++) 'skins/duck/${id}_$i.png'] : [duckAsset];
+      animated ? [for (var i = 0; i < frames; i++) 'skins/duck/${id}_$i.webp'] : [duckAsset];
 
   static Skin byId(String id) => all.firstWhere((s) => s.id == id, orElse: () => vector);
 }

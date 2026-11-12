@@ -1,0 +1,260 @@
+<title>Kačeny mávání</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: a header with the round's tally and filters, then one grid of flapping ducks per pack. */
+:root {
+  --bg: #eef3f1;
+  --panel: #ffffff;
+  --sky: #d6e6ee;
+  --fg: #1d2a26;
+  --muted: #5c6d67;
+  --line: #d3ddd9;
+  --reed: #3f7a4d;
+  --new: #2f6db3;
+  --warn: #b3711a;
+  --redo: #b8433a;
+  --display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121a18; --panel: #1b2522; --sky: #22333a; --fg: #e3ece8; --muted: #9db0a9; --line: #2d3b37;
+    --reed: #79c08a; --new: #7fb0ec; --warn: #e3a957; --redo: #ee8a80; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121a18; --panel: #1b2522; --sky: #22333a; --fg: #e3ece8; --muted: #9db0a9; --line: #2d3b37;
+  --reed: #79c08a; --new: #7fb0ec; --warn: #e3a957; --redo: #ee8a80; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); line-height: 1.45; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 24px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 1.9rem; font-weight: 700; }
+h2 { font-size: 1.2rem; font-weight: 700; display: flex; align-items: baseline; gap: 10px; }
+h2 small { font-family: var(--body); font-weight: 500; font-size: .8rem; color: var(--muted); }
+.lede { color: var(--muted); max-width: 65ch; margin: 6px 0 0; }
+.tally { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 18px 0 14px; font-variant-numeric: tabular-nums; }
+.tally b { font-family: var(--display); font-size: 1.35rem; margin-right: 4px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { font: 500 .85rem var(--body); border: 1px solid var(--line); background: var(--panel); color: var(--fg);
+  border-radius: 99px; padding: 6px 12px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip:focus-visible, .redo:focus-visible { outline: 2px solid var(--new); outline-offset: 2px; }
+.note { font-size: .85rem; color: var(--muted); margin: 10px 0 0; }
+section { margin-top: 30px; display: grid; gap: 12px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px;
+  display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card.is-redo { border-color: var(--redo); box-shadow: inset 0 0 0 1px var(--redo); }
+.stage { background: var(--sky); border-radius: 6px; aspect-ratio: 1; display: grid; place-items: center; max-width: 100%; }
+.sprite { width: 96px; height: 96px; background-repeat: no-repeat; }
+.sprite.anim { animation-name: beat; animation-iteration-count: infinite; }
+.sprite.squash { animation-name: squash; animation-iteration-count: infinite; animation-timing-function: step-end;
+  background-size: 96px 96px; }
+@keyframes squash { 0% { transform: scaleX(.78) } 33.333% { transform: scaleX(1) } 66.667% { transform: scaleX(.9) } }
+body.paused .sprite { animation-play-state: paused; }
+.title { display: flex; justify-content: space-between; gap: 6px; align-items: baseline; }
+.title strong { font-weight: 600; font-size: .92rem; overflow-wrap: anywhere; }
+.pill { font-size: .7rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; border-radius: 99px;
+  padding: 2px 7px; white-space: nowrap; color: var(--panel); }
+.pill.new { background: var(--new); } .pill.shipped { background: var(--reed); } .pill.static { background: var(--muted); }
+.meta { font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.flags { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: .75rem; color: var(--warn); }
+.redo { font: 500 .8rem var(--body); border: 1px solid var(--line); border-radius: 6px; background: transparent;
+  color: var(--fg); padding: 5px 8px; cursor: pointer; text-align: left; }
+.redo[aria-pressed="true"] { border-color: var(--redo); color: var(--redo); font-weight: 600; }
+.redo:disabled { cursor: default; opacity: .55; }
+.empty { color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .sprite { animation-play-state: paused; } body.playing .sprite { animation-play-state: running; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Kačeny: mávání křídel</h1>
+    <p class="lede">Každý skin tak, jak by po tomhle kole létal ve hře, v herní rychlosti (jedno mávnutí <span id="beat"></span> s).
+      Nové animace jsou z Wan 2.2 na L40S; u statických skinů hra obrázek jen vodorovně mačká.
+      U skinu, který se nepovedl, zapni „Předělat“: půjde do dalšího kola.</p>
+    <div class="tally" id="tally"></div>
+    <div class="controls" role="group" aria-label="Filtr">
+      <button class="chip" data-filter="all" aria-pressed="true" id="f-all">Vše</button>
+      <button class="chip" data-filter="new" aria-pressed="false" id="f-new">Nové</button>
+      <button class="chip" data-filter="flags" aria-pressed="false" id="f-flags">S upozorněním</button>
+      <button class="chip" data-filter="static" aria-pressed="false" id="f-static">Statické</button>
+      <button class="chip" data-filter="redo" aria-pressed="false" id="f-redo">Předělat</button>
+      <button class="chip" id="pause" aria-pressed="false">Zastavit animace</button>
+    </div>
+    <p class="note" id="dbnote">Označení „Předělat“ se načítá…</p>
+  </header>
+  <main id="packs"></main>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const marks = {};
+let filter = "all";
+let db = null;
+
+document.getElementById("beat").textContent = DATA.beat.toLocaleString("cs-CZ");
+const label = { new: "nový", shipped: "dodaný", static: "statický" };
+
+function card(s) {
+  const el = document.createElement("article");
+  el.className = "card";
+  el.dataset.id = s.id;
+  const sprite = document.createElement("div");
+  sprite.className = "sprite " + (s.frames > 1 ? "anim" : "squash");
+  sprite.style.backgroundImage = `url(strips/${s.id}.webp)`;
+  if (s.frames > 1) {
+    sprite.style.backgroundSize = `${96 * s.frames}px 96px`;
+    sprite.style.animationTimingFunction = `steps(${s.frames})`;
+    sprite.style.setProperty("--end", `-${96 * s.frames}px`);
+  }
+  sprite.style.animationDuration = `${DATA.beat}s`;
+  sprite.setAttribute("role", "img");
+  sprite.setAttribute("aria-label", `${s.name}, ${s.frames > 1 ? s.frames + " snímků" : "jeden obrázek"}`);
+  const stage = document.createElement("div");
+  stage.className = "stage";
+  stage.append(sprite);
+
+  const title = document.createElement("div");
+  title.className = "title";
+  const name = document.createElement("strong");
+  name.textContent = s.name;
+  const pill = document.createElement("span");
+  pill.className = "pill " + s.status;
+  pill.textContent = label[s.status];
+  title.append(name, pill);
+
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  meta.textContent = s.id + (s.frames > 1 ? ` · ${s.frames} snímků` : "") + (s.clip ? ` · ${s.clip}` : "");
+
+  el.append(stage, title, meta);
+  if (s.flags.length) {
+    const ul = document.createElement("ul");
+    ul.className = "flags";
+    for (const f of s.flags) {
+      const li = document.createElement("li");
+      li.textContent = f;
+      ul.append(li);
+    }
+    el.append(ul);
+  }
+  const btn = document.createElement("button");
+  btn.className = "redo";
+  btn.id = "redo-" + s.id;
+  btn.disabled = true;
+  btn.addEventListener("click", () => toggle(s.id));
+  el.append(btn);
+  return el;
+}
+
+function render() {
+  const root = document.getElementById("packs");
+  root.replaceChildren();
+  const all = DATA.packs.flatMap(p => p.skins);
+  const count = k => all.filter(s => s.status === k).length;
+  const redo = all.filter(s => marks[s.id]).length;
+  const tally = document.getElementById("tally");
+  tally.replaceChildren();
+  for (const [n, t] of [[count("new"), "nových"], [count("shipped"), "dodaných"], [count("static"), "statických"],
+                        [all.filter(s => s.flags.length).length, "s upozorněním"], [redo, "k předělání"]]) {
+    const span = document.createElement("span");
+    const b = document.createElement("b");
+    b.textContent = n;
+    span.append(b, t);
+    tally.append(span);
+  }
+  for (const p of DATA.packs) {
+    const skins = p.skins.filter(s =>
+      filter === "all" || (filter === "flags" ? s.flags.length : filter === "redo" ? marks[s.id] : s.status === filter));
+    if (!skins.length) continue;
+    const sec = document.createElement("section");
+    const h = document.createElement("h2");
+    h.textContent = p.title;
+    const small = document.createElement("small");
+    small.textContent = p.free ? "zdarma" : "balíček";
+    h.append(small);
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    for (const s of skins) grid.append(card(s));
+    sec.append(h, grid);
+    root.append(sec);
+  }
+  if (!root.children.length) {
+    const p = document.createElement("p");
+    p.className = "empty";
+    p.textContent = "Tomuhle filtru nic neodpovídá.";
+    root.append(p);
+  }
+  paintMarks();
+}
+
+function paintMarks() {
+  for (const el of document.querySelectorAll(".card")) {
+    const id = el.dataset.id;
+    const on = !!marks[id];
+    el.classList.toggle("is-redo", on);
+    const btn = el.querySelector(".redo");
+    btn.setAttribute("aria-pressed", String(on));
+    btn.textContent = on ? "Předělat ✓" : "Předělat";
+    btn.disabled = !db;
+  }
+}
+
+async function toggle(id) {
+  if (!db) return;
+  const next = !marks[id];
+  marks[id] = next;
+  paintMarks();
+  try {
+    await db.collection("redo").doc(id).set({ redo: next, at: Date.now() });
+  } catch (e) {
+    marks[id] = !next;
+    paintMarks();
+    document.getElementById("dbnote").textContent = "Označení se neuložilo (" + (e.code || "chyba") + "). Zkus to znovu.";
+  }
+}
+
+for (const b of document.querySelectorAll("[data-filter]")) {
+  b.addEventListener("click", () => {
+    filter = b.dataset.filter;
+    for (const o of document.querySelectorAll("[data-filter]")) o.setAttribute("aria-pressed", String(o === b));
+    render();
+  });
+}
+const pause = document.getElementById("pause");
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function setPaused(p) {
+  document.body.classList.toggle("paused", p);
+  document.body.classList.toggle("playing", !p);
+  pause.setAttribute("aria-pressed", String(p));
+  pause.textContent = p ? "Spustit animace" : "Zastavit animace";
+}
+setPaused(reduced);
+pause.addEventListener("click", () => setPaused(!document.body.classList.contains("paused")));
+
+const style = document.createElement("style");
+style.textContent = "@keyframes beat { from { background-position: 0 0 } to { background-position: var(--end) 0 } }";
+document.head.append(style);
+render();
+
+(async () => {
+  const note = document.getElementById("dbnote");
+  db = window.claude ? await window.claude.use("db") : null;
+  if (!db) {
+    note.textContent = "Označování „Předělat“ funguje v claude.ai po přihlášení.";
+    paintMarks();
+    return;
+  }
+  note.textContent = "Označení „Předělat“ se ukládá a uvidí ho všichni s odkazem.";
+  db.collection("redo").onSnapshot(snap => {
+    for (const d of snap.docs) marks[d.id] = !!(d.data() || {}).redo;
+    render();
+  }, e => { note.textContent = "Označení se nepodařilo načíst (" + (e.code || "chyba") + ")."; });
+  paintMarks();
+})();
+</script>
