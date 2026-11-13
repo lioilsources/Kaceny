@@ -7,8 +7,8 @@ on a mask made by thresholding against the plain background (RMBG is only
 run on the winner, in wan_frames.py) and written to score.json:
 
 - cycle:  frames in the first beat, ending at the frame most like frame 0
-- tilt:   largest angle of the body axis from vertical, in degrees: the bird
-          turned to the side or into profile
+- tilt:   largest turn of the body axis away from where it was in frame 0,
+          in degrees: the bird turned to the side or into profile
 - drift:  largest move of the body's centre, as a share of its length: it
           flew off or wandered
 - motion: largest share of the silhouette that differs from frame 0: under
@@ -22,9 +22,11 @@ the 12 shipped ones and synthwave, deco and naturalist (all three turned).
 
 Masks cannot see everything (a compact bird's wings can look like a tilt),
 so --sheets draws out/wan/sheets/<id>.png, one row per clip, for a person
-or an agent to look at. Their call goes in out/wan/verdicts.json,
-{"<id>": {"<clip>": {"ok": true|false, "note": "..."}}}, and beats the
-numbers: an `ok` clip is picked first, a `false` one never.
+or an agent to look at: the whole clip, the end of the measured beat
+framed in red. Their call goes in out/wan/verdicts.json,
+{"<id>": {"<clip>": {"ok": true|false, "cycle": N, "note": "..."}}}, and
+beats the numbers: an `ok` clip is picked first, a `false` one never, and
+`cycle` replaces the measured beat length (a slow beat can run past 16).
 """
 
 import json
@@ -96,8 +98,8 @@ def cycle_length(clip):
 
 
 def body_tilt(m):
-    """Angle of the body from vertical: main axis of the silhouette in a
-    narrow band through the middle, where the wings are thin and the body long."""
+    """Signed angle of the body from vertical: main axis of the silhouette in
+    a narrow band through the middle, where the wings are thin and the body long."""
     ys, xs = np.nonzero(m)
     cx = int(np.median(xs))
     half = int(m.shape[1] * 0.07)
@@ -107,7 +109,9 @@ def body_tilt(m):
         return 90.0
     _, vecs = np.linalg.eigh(np.cov(np.vstack([bxs, bys])))
     vx, vy = vecs[:, 1]
-    return float(np.degrees(np.arctan(abs(vx) / max(abs(vy), 1e-9))))
+    if vy < 0:
+        vx, vy = -vx, -vy
+    return float(np.degrees(np.arctan2(vx, max(vy, 1e-9))))
 
 
 def body_centre(m):
@@ -122,13 +126,15 @@ def body_centre(m):
 
 def score_clip(clip):
     fs = frames(clip)
-    cyc = cycle_length(clip)
+    cyc = verdicts().get(clip.parent.name, {}).get(clip.name, {}).get("cycle") or cycle_length(clip)
     masks = [mask(f) for f in fs[:cyc + 1]]
     if any(not m.any() for m in masks):
         return {"cycle": int(cyc), "empty": True, "pass": False}
     centre0, length0 = body_centre(masks[0])
     area0 = masks[0].sum()
-    tilt = max(body_tilt(m) for m in masks)
+    # Against frame 0: some ducks are drawn at a slant, only turning counts.
+    tilt0 = body_tilt(masks[0])
+    tilt = max(abs(body_tilt(m) - tilt0) for m in masks)
     drift = max(np.hypot(*(body_centre(m)[0] - centre0)) for m in masks) / length0
     motion = max((masks[0] ^ m).sum() / area0 for m in masks[1:])
     thumbs = [thumb(f) for f in fs[:cyc + 1]]
@@ -143,7 +149,8 @@ def score_clip(clip):
 
 def load_score(clip):
     path = clip / "score.json"
-    if not path.exists() or path.stat().st_mtime < (clip / "f_00.png").stat().st_mtime:
+    newest = max((clip / "f_00.png").stat().st_mtime, VERDICTS.stat().st_mtime if VERDICTS.exists() else 0)
+    if not path.exists() or path.stat().st_mtime < newest:
         path.write_text(json.dumps(score_clip(clip)))
     return json.loads(path.read_text())
 
@@ -162,17 +169,22 @@ def accepted_clip(sid):
     return min(pool, key=lambda c: load_score(c).get("rank", 99), default=None)
 
 
-def sheet(sid, cell=96):
+def sheet(sid, cell=72):
     clips = clip_dirs(sid)
     if not clips:
         return None
-    label_w = 230
-    im = Image.new("RGB", (label_w + cell * (MAX_CYCLE + 1), cell * len(clips)), "white")
+    label_w = 200
+    most = max(len(frames(c)) for c in clips)
+    im = Image.new("RGB", (label_w + cell * most, cell * len(clips)), "white")
     draw = ImageDraw.Draw(im)
     for r, clip in enumerate(clips):
         s = load_score(clip)
-        for i, f in enumerate(frames(clip)[:s["cycle"] + 1]):
+        for i, f in enumerate(frames(clip)):
             im.paste(Image.open(f).convert("RGB").resize((cell, cell)), (label_w + i * cell, r * cell))
+            if i % 4 == 0:
+                draw.text((label_w + i * cell + 2, r * cell + 2), str(i), fill="blue")
+        x = label_w + s["cycle"] * cell
+        draw.rectangle((x, r * cell, x + cell - 1, (r + 1) * cell - 1), outline="red", width=2)
         text = f"{clip.name}\n" + ("EMPTY" if s.get("empty") else
                                    f"tilt {s['tilt']}  drift {s['drift']}\nmotion {s['motion']}  loop {s['loop']}\n"
                                    f"cycle {s['cycle']}  {'PASS' if s['pass'] else 'fail'}")
