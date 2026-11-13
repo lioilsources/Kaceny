@@ -1,6 +1,6 @@
 """Judge Wan flap clips (wan_flap.py) and pick one per skin.
 
-    python3 tool/skins/wan_score.py <ids|all> [--sheets]
+    python3 tool/skins/wan_score.py <ids|pilot|all> [--sheets] [--out DIR]
 
 For each clip in out/wan/<id>/<clip>/ the first wing-beat cycle is measured
 on a mask made by thresholding against the plain background (RMBG is only
@@ -38,10 +38,20 @@ from PIL import Image, ImageDraw, ImageFilter
 HERE = Path(__file__).resolve().parent
 WAN = HERE / "out" / "wan"
 VERDICTS = WAN / "verdicts.json"
+
+
+def set_root(path):
+    """Keep clips somewhere other than out/wan (a GPU job's own folder)."""
+    global WAN, VERDICTS
+    WAN = Path(path).resolve()
+    VERDICTS = WAN / "verdicts.json"
 MIN_CYCLE, MAX_CYCLE = 6, 16
 MAX_TILT = 12.0
 MAX_DRIFT = 0.3
 MIN_MOTION = 0.35
+
+# Three that failed before, and one of each kind of look that could trip Wan up.
+PILOT = ["synthwave", "deco", "naturalist", "cga", "watercolor", "clay", "vector_crt", "neonsign", "diamond", "photo"]
 
 
 def migrate_legacy(sid):
@@ -176,8 +186,12 @@ def sheet(sid, cell=96):
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
-    ids = sorted(d.name for d in WAN.iterdir() if d.is_dir() and d.name != "sheets") if sys.argv[1] == "all" \
-        else sys.argv[1].split(",")
+    if "--out" in sys.argv:
+        set_root(sys.argv[sys.argv.index("--out") + 1])
+    if sys.argv[1] == "all":
+        ids = sorted(d.name for d in WAN.iterdir() if d.is_dir() and d.name != "sheets")
+    else:
+        ids = PILOT if sys.argv[1] == "pilot" else sys.argv[1].split(",")
     v = verdicts()
     for sid in ids:
         migrate_legacy(sid)

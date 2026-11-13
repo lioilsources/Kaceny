@@ -1,8 +1,10 @@
 """Wing-beat clips from a duck sprite with Wan 2.2 image-to-video on ComfyUI.
 
-    COMFYUI_API_URL=http://127.0.0.1:8188 python3 tool/skins/wan_flap.py <ids|pilot|todo> [--seeds N] [--recipe R]
+    COMFYUI_API_URL=http://127.0.0.1:8188 python3 tool/skins/wan_flap.py <ids|pilot|todo> \
+        [--seeds N] [--recipe R] [--src DIR] [--out DIR]
 
-Runs only against the L40S tunnel on this Mac (never SPARK). The generated
+Runs only against a ComfyUI on localhost (never SPARK): on the L40S VM as a
+qctl job, or through a tunnel. The generated
 duck becomes the first frame of a short clip of it flapping in place (14B I2V,
 high/low-noise experts). Each clip lands in out/wan/<id>/<recipe>-<seed>/
 (f_NN.png + meta.json) for wan_score.py to judge and wan_frames.py to cut.
@@ -14,9 +16,14 @@ high/low-noise experts). Each clip lands in out/wan/<id>/<recipe>-<seed>/
   MAX_CLIPS clips in all
 - --recipe: `seko` (I2V with the 4-step Seko LoRAs) or `flf` (the same
   models, first and last frame both the duck, which forces the loop shut)
+- --src: folder with the source ducks <id>.jpg (default out/duck)
+- --out: where clips go (default out/wan); wan_score.py takes the same --out
 
-Prompts in flight are kept in out/wan/pending.json, so an interrupted run
-picks them up again instead of queueing them twice.
+It waits for ComfyUI to come up, queues every clip at once (one model load
+for the whole run) and then collects them. Prompts in flight are kept in
+<out>/pending.json, so a rerun picks them up instead of queueing them twice;
+ones the server no longer knows (it restarted) are queued again, and clips
+already on disk are never redone.
 """
 
 import argparse
@@ -30,7 +37,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from export_to_app import ASSETS, all_styles, frame_count, upload  # noqa: E402
 from generate import DEFAULT_ENV, Comfy, load_env  # noqa: E402
-from wan_score import accepted_clip, clip_dirs, migrate_legacy  # noqa: E402
+import wan_score  # noqa: E402
+from wan_score import PILOT, accepted_clip, clip_dirs, migrate_legacy  # noqa: E402
 
 OUT = HERE / "out"
 WAN = OUT / "wan"
@@ -39,9 +47,6 @@ SIZE = 512
 LENGTH = 33  # 2 s at 16 fps: several beats
 MAX_CLIPS = 5
 RECIPES = ("seko", "flf")
-
-# Three that failed before, and one of each kind of look that could trip Wan up.
-PILOT = ["synthwave", "deco", "naturalist", "cga", "watercolor", "clay", "vector_crt", "neonsign", "diamond", "photo"]
 
 PROMPT = ("The duck flaps its wings up and down in a strong steady rhythm, full wing beats, "
           "seen from directly above. The body stays still in the centre of the frame, "
@@ -101,12 +106,41 @@ def all_images(comfy, pid):
     return [img for node in entry.get("outputs", {}).values() for img in node.get("images", [])]
 
 
+def set_root(path):
+    global WAN, PENDING
+    WAN = path.resolve()
+    PENDING = WAN / "pending.json"
+    wan_score.set_root(WAN)
+
+
 def resolve_ids(arg):
     if arg == "pilot":
         return PILOT
     if arg == "todo":
         return [s[3] for s in all_styles() if frame_count(s[3]) == 1 and (ASSETS / "duck" / f"{s[3]}.png").exists()]
     return arg.split(",")
+
+
+def wait_ready(comfy, tries=90, every=5):
+    """A fresh GPU job starts ComfyUI with it; it needs a while to answer."""
+    for _ in range(tries):
+        try:
+            comfy._req("/system_stats")
+            return
+        except OSError:
+            time.sleep(every)
+    raise SystemExit(f"ComfyUI at {comfy.base} did not come up in {tries * every}s")
+
+
+def drop_lost(comfy, pending):
+    """Forget prompts the server neither runs, queues nor finished: it restarted."""
+    queue = json.loads(comfy._req("/queue"))
+    known = {item[1] for key in ("queue_running", "queue_pending") for item in queue.get(key, [])}
+    for pid in list(pending):
+        if pid not in known and pid not in json.loads(comfy._req(f"/history/{pid}")):
+            job = pending.pop(pid)
+            print(f"  lost {job['id']} {job['recipe']}-{job['seed']}, queueing again", flush=True)
+    save_pending(pending)
 
 
 def load_pending():
@@ -123,11 +157,16 @@ def main():
     ap.add_argument("ids")
     ap.add_argument("--seeds", type=int, default=2)
     ap.add_argument("--recipe", choices=RECIPES, default="seko")
+    ap.add_argument("--src", type=Path, default=OUT / "duck")
+    ap.add_argument("--out", type=Path, default=WAN)
     args = ap.parse_args()
+    set_root(args.out)
     load_env(str(DEFAULT_ENV))
     comfy = Comfy(local_only=True)
+    wait_ready(comfy)
 
     pending = load_pending()
+    drop_lost(comfy, pending)
     for sid in resolve_ids(args.ids):
         migrate_legacy(sid)
         if accepted_clip(sid):
@@ -139,7 +178,11 @@ def main():
         want = min(args.seeds - have, room)
         if want <= 0:
             continue
-        name = upload(comfy, OUT / "duck" / f"{sid}.jpg", name=f"wan_src_{sid}.jpg")
+        src = args.src / f"{sid}.jpg"
+        if not src.exists():
+            print(f"  {sid}: no source duck at {src}", flush=True)
+            continue
+        name = upload(comfy, src, name=f"wan_src_{sid}.jpg")
         for _ in range(want):
             seed = random.randrange(2**32)
             pid = comfy.submit(wan_graph(name, seed, f"kaceny_wan_{sid}_{args.recipe}_{seed}", args.recipe))
