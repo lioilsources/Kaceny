@@ -77,14 +77,14 @@ def stage(sid, clip, n_frames):
         if edge > 24:
             warnings.append(f"frame {n} touches the clip edge (wing cut off?)")
             break
-    rx, ry, rlen = body_axis(frames[0])
+    # Shift only: Wan's camera holds still, so the duck keeps its size, and the
+    # body length measured under a wing that covers it is not worth trusting.
+    rx, ry, _ = body_axis(frames[0])
     aligned = []
     for f in frames:
-        x, y, length = body_axis(f)
-        k = rlen / length
-        scaled = f.resize((round(f.width * k), round(f.height * k)), Image.LANCZOS)
+        x, y, _ = body_axis(f)
         canvas = Image.new("RGBA", f.size, (0, 0, 0, 0))
-        canvas.paste(scaled, (round(rx - x * k), round(ry - y * k)), scaled)
+        canvas.paste(f, (round(rx - x), round(ry - y)), f)
         aligned.append(canvas)
     boxes = [a.getchannel("A").point(lambda v: 255 if v > 24 else 0).getbbox() for a in aligned]
     half = max(max(rx - b[0], b[2] - rx, ry - b[1], b[3] - ry) for b in boxes)
