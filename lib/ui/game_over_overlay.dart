@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../app_services.dart';
 import '../game/kaceny_game.dart';
@@ -77,6 +78,7 @@ class _GameOverOverlayState extends State<GameOverOverlay> {
       if (initials.isEmpty) {
         initials = '???';
       } else {
+        Telemetry.feature('initials');
         widget.services.settings.initials = initials;
       }
       return widget.services.leaderboard.add(

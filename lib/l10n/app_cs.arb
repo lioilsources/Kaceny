@@ -20,6 +20,8 @@
   "settingsDebug": "Debug: hitboxy a výstřely",
   "settingsDebugHint": "Jen v debug buildu.",
   "settingsRestore": "Obnovit nákupy",
+  "settingsStats": "Anonymní statistiky",
+  "settingsStatsHint": "Jaké obrazovky a kola se hrají, nic, co by tě identifikovalo. Pomáhá vylepšit hru.",
   "leaderboardThisPhone": "Tento telefon",
   "leaderboardOnline": "Online",
   "leaderboardEmpty": "Zatím žádné skóre. Jdi střílet!",
