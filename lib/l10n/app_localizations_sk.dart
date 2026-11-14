@@ -69,6 +69,12 @@ class AppLocalizationsSk extends AppLocalizations {
   String get settingsRestore => 'Obnoviť nákupy';
 
   @override
+  String get settingsStats => 'Anonymné štatistiky';
+
+  @override
+  String get settingsStatsHint => 'Aké obrazovky a kolá sa hrajú, nič, čo by ťa identifikovalo. Pomáha vylepšiť hru.';
+
+  @override
   String get leaderboardThisPhone => 'Tento telefón';
 
   @override

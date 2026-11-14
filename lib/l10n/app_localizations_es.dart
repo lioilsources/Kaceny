@@ -69,6 +69,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsRestore => 'Restaurar compras';
 
   @override
+  String get settingsStats => 'Estadísticas anónimas';
+
+  @override
+  String get settingsStatsHint =>
+      'Qué pantallas y rondas se juegan, nada que te identifique. Ayuda a mejorar el juego.';
+
+  @override
   String get leaderboardThisPhone => 'Este teléfono';
 
   @override

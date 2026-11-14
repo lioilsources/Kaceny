@@ -1,10 +1,12 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../app_services.dart';
 import '../config/game_config.dart';
 import '../game/kaceny_game.dart';
 import '../game/skins/skin.dart';
+import '../services/telemetry.dart';
 import 'game_over_overlay.dart';
 import 'hud.dart';
 import 'leaderboard_screen.dart';
@@ -27,7 +29,11 @@ class _GameScreenState extends State<GameScreen> {
   late final KacenyGame game;
   late final AppLifecycleListener _lifecycle;
 
+  /// Where the next round is started from (anonymous statistics).
+  RunFrom _from = RunFrom.menu;
+
   AppServices get services => widget.services;
+  KacenyTelemetry get telemetry => services.telemetry;
 
   @override
   void initState() {
@@ -39,7 +45,12 @@ class _GameScreenState extends State<GameScreen> {
       haptics: services.haptics,
       autoReload: s.autoReload,
       debugOverlay: s.debugOverlay,
-      onRoundFinished: (result) => services.online.submit(result.score),
+      onRoundFinished: (result) {
+        services.online.submit(result.score);
+        telemetry.runEnded(game, RunEnd.death);
+      },
+      onRoundStarted: () => telemetry.runStarted(game, _from),
+      onReload: telemetry.reloaded,
       // A pack can be gone (refunded, another store account): back to the
       // original look rather than flying a skin that isn't owned.
       skin: switch (Skin.byId(s.skin)) {
@@ -49,8 +60,13 @@ class _GameScreenState extends State<GameScreen> {
     );
     s.addListener(_applySettings);
     // Leaving the app mid-round pauses it.
-    _lifecycle = AppLifecycleListener(onInactive: game.pause, onHide: game.pause);
+    _lifecycle = AppLifecycleListener(onInactive: game.pause, onHide: game.pause, onResume: telemetry.resumed);
+    game.phase.addListener(_phaseChanged);
+    final opened = DateTime.now();
+    game.loaded.then((_) => telemetry.gameReady(DateTime.now().difference(opened), game.skin));
   }
+
+  void _phaseChanged() => telemetry.phaseChanged(game.phase.value);
 
   void _applySettings() {
     game.autoReload = services.settings.autoReload;
@@ -59,6 +75,10 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   void dispose() {
+    // Left by the system back gesture mid-round: same as Menu.
+    telemetry.runEnded(game, RunEnd.menu);
+    telemetry.gameClosed();
+    game.phase.removeListener(_phaseChanged);
     services.settings.removeListener(_applySettings);
     _lifecycle.dispose();
     super.dispose();
@@ -66,13 +86,16 @@ class _GameScreenState extends State<GameScreen> {
 
   void _toMenu() {
     services.sfx.ui();
+    telemetry.runEnded(game, RunEnd.menu);
     Navigator.of(context).pop();
   }
 
   void _toLeaderboard(int? rank) {
     services.sfx.ui();
+    Telemetry.feature('leaderboard');
     Navigator.of(context).push(
       MaterialPageRoute<void>(
+        settings: const RouteSettings(name: '/leaderboard'),
         builder: (_) => LeaderboardScreen(services: services, highlightRank: rank),
       ),
     );
@@ -109,6 +132,8 @@ class _GameScreenState extends State<GameScreen> {
                     },
                     onRestart: () {
                       services.sfx.ui();
+                      telemetry.runEnded(game, RunEnd.restart);
+                      _from = RunFrom.pause;
                       game.startRound();
                     },
                     onMenu: _toMenu,
@@ -118,6 +143,7 @@ class _GameScreenState extends State<GameScreen> {
                     services: services,
                     onReplay: () {
                       services.sfx.ui();
+                      _from = RunFrom.result;
                       game.startRound();
                     },
                     onLeaderboard: _toLeaderboard,

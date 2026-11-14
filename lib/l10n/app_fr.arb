@@ -20,6 +20,8 @@
   "settingsDebug": "Debug : hitbox et tirs",
   "settingsDebugHint": "Uniquement en build debug.",
   "settingsRestore": "Restaurer les achats",
+  "settingsStats": "Statistiques anonymes",
+  "settingsStatsHint": "Quels écrans et quelles parties sont joués, rien qui t'identifie. Aide à améliorer le jeu.",
   "leaderboardThisPhone": "Ce téléphone",
   "leaderboardOnline": "En ligne",
   "leaderboardEmpty": "Pas encore de score. Va tirer des canards !",

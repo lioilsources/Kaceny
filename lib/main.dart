@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_services.dart';
@@ -13,12 +14,14 @@ import 'services/leaderboard/local_leaderboard.dart';
 import 'services/settings.dart';
 import 'services/sfx.dart';
 import 'services/skin_store.dart';
+import 'services/telemetry.dart';
 import 'ui/game_screen.dart';
 import 'ui/menu_screen.dart';
 import 'ui/skins_screen.dart';
 import 'ui/theme.dart';
 
 Future<void> main() async {
+  final launchedAt = DateTime.now();
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -31,7 +34,23 @@ Future<void> main() async {
     online: GamesServicesLeaderboard(),
     store: SkinStore(),
   );
-  // Neither may hold up the first frame.
+  // Anonymous statistics (docs/telemetry.md). Not awaited: the game never
+  // waits on it, and a build without TELEMETRY_KEY does nothing at all.
+  final prefs = await SharedPreferences.getInstance();
+  Telemetry.init(
+    app: kTelemetryApp,
+    appVersion: kAppVersion,
+    dictionary: kacenyDictionary,
+    store: PrefsTelemetryStore(prefs),
+    lang: telemetryLang,
+    tester: kTesterBuild,
+    // Settings, the local leaderboard or bought packs saved before this
+    // build: played before measuring began.
+    hadDataBefore: () => prefs.getKeys().any((k) => !k.startsWith('telemetry_')),
+    pauseProps: () => {'runs': services.telemetry.runs},
+    launchedAt: launchedAt,
+  ).ignore();
+  // None of these may hold up the first frame.
   services.sfx.load().ignore();
   services.online.signIn().ignore();
   services.store.init().ignore();
@@ -77,16 +96,8 @@ class KacenyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       // English for any language the game doesn't speak (the default would
       // be the first supported one, alphabetically Czech).
-      localeListResolutionCallback: (locales, supported) {
-        for (final locale in locales ?? const <Locale>[]) {
-          for (final s in supported) {
-            if (s.languageCode == locale.languageCode) {
-              return s;
-            }
-          }
-        }
-        return const Locale('en');
-      },
+      localeListResolutionCallback: (locales, supported) => resolveAppLocale(locales, supported),
+      navigatorObservers: [KacenyNavigatorObserver(services.telemetry)],
       theme: buildTheme(),
       home: switch (start) {
         'game' => GameScreen(services: services),

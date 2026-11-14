@@ -26,6 +26,10 @@ import 'skins/skin.dart';
 
 enum RoundPhase { playing, paused, over }
 
+/// What started a reload: a swipe down, a tap on the ammo belt, or the
+/// automatic reload on an empty magazine.
+enum ReloadTrigger { swipe, tap, auto }
+
 /// What a finished round hands to the menus and leaderboards.
 class RoundResult {
   const RoundResult({required this.score, required this.shots, required this.hits, required this.bestStreak});
@@ -52,6 +56,8 @@ class KacenyGame extends FlameGame {
     this.autoReload = false,
     bool debugOverlay = false,
     this.onRoundFinished,
+    this.onRoundStarted,
+    this.onReload,
     this.skin = Skin.vector,
     math.Random? random,
   }) : random = random ?? math.Random(),
@@ -70,6 +76,12 @@ class KacenyGame extends FlameGame {
   /// The skin's duck pictures (wing-beat frames or one); null for the vector skin.
   List<Image>? _duckSprites;
   void Function(RoundResult result)? onRoundFinished;
+
+  /// A new round is on (the first one, Replay, Start over).
+  void Function()? onRoundStarted;
+
+  /// A reload began (anonymous statistics; the game reads nothing back).
+  void Function(ReloadTrigger trigger)? onReload;
 
   late final hud = HudState(
     timeLeft: config.roundSeconds,
@@ -180,6 +192,7 @@ class KacenyGame extends FlameGame {
     phase.value = RoundPhase.playing;
     _syncHud();
     resumeEngine();
+    onRoundStarted?.call();
   }
 
   void pause() {
@@ -296,7 +309,7 @@ class KacenyGame extends FlameGame {
     }
     if (p.y >= playBottom) {
       // The ammo belt: a tap there reloads, never shoots.
-      requestReload();
+      requestReload(ReloadTrigger.tap);
       return;
     }
     _shoot(p, event.timeStamp);
@@ -304,15 +317,16 @@ class KacenyGame extends FlameGame {
 
   void onPointerMove(PointerMoveEvent event) {
     if (swipe.move(event.pointer, toWorld(event.localPosition)) && phase.value == RoundPhase.playing) {
-      requestReload();
+      requestReload(ReloadTrigger.swipe);
     }
   }
 
   void onPointerUp(PointerEvent event) => swipe.up(event.pointer);
 
-  void requestReload() {
+  void requestReload([ReloadTrigger trigger = ReloadTrigger.auto]) {
     if (magazine.startReload()) {
       sfx.reload();
+      onReload?.call(trigger);
       _syncHud();
     }
   }
