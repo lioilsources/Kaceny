@@ -29,35 +29,96 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: November 6, 2026</p>
+  <p class="updated">Last updated: November 14, 2026</p>
 
   <h2>Overview</h2>
   <p>
     This policy covers <em>Kačeny: Duck Shooter</em>, a game by Oldřich
     Vořechovský (ol1n), on the App Store and Google Play as
     <code>com.ol1n.kaceny</code>. <strong>Kačeny collects no personal
-    data.</strong> The game has no account, no ads, no analytics and no
-    tracking, and it sends nothing to the developer.
+    data.</strong> The game has no account and no ads. To learn where new
+    players get stuck and how the game is played, it sends anonymous gameplay
+    statistics, described below, which you can turn off at any time.
+  </p>
+
+  <h2>Anonymous Gameplay Statistics</h2>
+  <p>
+    <strong>What is sent.</strong> Short records of moments in the game: the
+    app was opened or went to the background, which screen was shown (menu,
+    game, pause, round over, skins, leaderboard, settings) and for how many
+    seconds, how many milliseconds the game took to load, a round started or
+    ended (the skin, whether automatic reload is on, how the round ended,
+    seconds played, the difficulty phase reached, the score, shots, hits and
+    the best streak), which skin you picked, a tap on a locked skin, a pack
+    purchase started and how it ended (which pack, and whether it was bought,
+    cancelled or failed; never any payment details), a store error shown, and
+    the first time in a session you used a part of the game such as the
+    leaderboard or a setting. Each record also carries the app version, the
+    platform (iOS or Android), the app language, and two coarse bands: roughly
+    how many times Kačeny has been played on this device (1, 2, 3–5, 6–10,
+    11+) and roughly how many days ago measuring began (0, 1, 2–6, 7–29, 30+).
+    The initials you type for the leaderboard are never sent. The full list
+    is published in the game's source repository
+    (<a href="https://github.com/lioilsources/Kaceny/blob/master/docs/telemetry.md"><code>docs/telemetry.md</code></a>).
+  </p>
+  <p>
+    <strong>Why.</strong> To see what new players do after the first launch,
+    how rounds and sessions go, when players stop, which skins are liked and
+    which parts of the game nobody finds, so the game can be improved.
+  </p>
+  <p>
+    <strong>No identifiers.</strong> The statistics contain no name, no email,
+    no text of any kind, no account, no device or advertising identifier and no
+    device model. Each play session gets a random number that exists only while
+    the app runs, so two sessions cannot be linked to each other or to you.
+    The statistics are not used for advertising or tracking and are not sold.
+  </p>
+  <p>
+    <strong>Who receives them, and where.</strong> The statistics are received
+    and stored by the developer on its own server in the EU (Czech Republic).
+    Nobody else receives them. Sending them, like any internet connection,
+    shows the server your IP address; it is not stored or logged. The server
+    keeps only the country the connection comes from (approximate location:
+    no city, region or coordinates) with each record.
+  </p>
+  <p>
+    <strong>How long.</strong> Statistics are kept for 12 months and then
+    deleted. Only aggregate counts with no session number are kept longer.
+  </p>
+  <p>
+    <strong>Offline.</strong> The game works fully offline. Without a
+    connection, up to 500 recent records wait on your device and are sent
+    later; older ones are discarded.
+  </p>
+  <p>
+    <strong>How to turn them off.</strong> Open <em>Settings</em> from the
+    menu and switch <em>Anonymous statistics</em> off (the label is translated
+    into your language). This takes effect immediately: records waiting on your
+    device are deleted and nothing more is sent, until you turn it back on.
   </p>
 
   <h2>Data We Do Not Collect</h2>
-  <p>— Personal identifiers (name, email, phone number)</p>
-  <p>— Location data</p>
-  <p>— Device identifiers or the advertising ID</p>
-  <p>— Usage analytics or telemetry</p>
+  <p>— Personal identifiers (name, email, phone number, account)</p>
+  <p>— Precise location (only the country, as above)</p>
+  <p>— Device identifiers, the advertising ID or the device model</p>
+  <p>— Crash reports</p>
 
   <h2>Local Storage</h2>
   <p>
     Your settings, chosen skin, the local top 20 (the initials you type) and
     the list of packs you bought are stored only on your device
     (SharedPreferences / NSUserDefaults). Deleting the app deletes them. We
-    never receive them.
+    never receive them. The statistics keep a few small values there too (the
+    on/off switch, the day measuring began, a play-session counter and the
+    records not sent yet), from which the bands above are worked out on your
+    device.
   </p>
 
   <h2>Third-Party Services</h2>
   <p>
-    Kačeny does not integrate any third-party analytics, advertising or
-    tracking SDKs.
+    The anonymous statistics go to the developer's own server, as described
+    above, not to a third party. Kačeny does not integrate any third-party
+    analytics, advertising or tracking SDKs.
   </p>
   <p>
     <strong>Leaderboard.</strong> If you are signed in to Apple Game Center
@@ -74,7 +135,11 @@
   </p>
 
   <h2>Children</h2>
-  <p>The game collects no data from anyone, children included.</p>
+  <p>
+    The game knowingly collects no personal information from anyone, children
+    included: the anonymous statistics described above contain nothing that
+    identifies a person, and they can be turned off in Settings.
+  </p>
 
   <h2>Changes to This Policy</h2>
   <p>
@@ -86,21 +151,62 @@
   <p>Questions? Write to <a href="mailto:business@olin.now">business@olin.now</a>.</p>
 
   <h1 style="margin-top:64px">Zásady ochrany soukromí</h1>
-  <p class="updated">Aktualizováno: 6. listopadu 2026</p>
+  <p class="updated">Aktualizováno: 14. listopadu 2026</p>
   <p>
-    <strong>Kačeny nesbírají žádné osobní údaje.</strong> Hra nemá účet,
-    reklamy, analytiku ani sledování a vývojáři nic neposílá.
+    <strong>Kačeny nesbírají žádné osobní údaje.</strong> Hra nemá účet ani
+    reklamy. Aby bylo vidět, kde noví hráči váznou a jak se hra hraje, posílá
+    anonymní statistiky hraní, které jdou kdykoli vypnout.
   </p>
   <ul>
+    <li><strong>Co se posílá.</strong> Krátké záznamy o okamžicích ve hře:
+      spuštění a odchod z appky, která obrazovka byla vidět a kolik sekund,
+      za kolik milisekund se hra načetla, začátek a konec kola (skin, zda je
+      zapnuté automatické přebíjení, jak kolo skončilo, odehrané sekundy,
+      dosažená fáze obtížnosti, skóre, výstřely, zásahy a nejdelší série),
+      vybraný skin, klepnutí na zamčený skin, začátek nákupu balíčku a jak
+      skončil (který balíček a zda byl koupen, zrušen nebo selhal; nikdy
+      platební údaje), zobrazená chyba obchodu a první použití části hry v
+      relaci, třeba žebříčku nebo nastavení. Ke každému záznamu verze appky,
+      platforma (iOS nebo Android), jazyk appky a dvě hrubá pásma: kolikrát
+      zhruba se na zařízení hrálo (1, 2, 3–5, 6–10, 11+) a před kolika dny
+      zhruba měření začalo (0, 1, 2–6, 7–29, 30+). Iniciály do žebříčku se
+      nikdy neposílají. Úplný seznam je v repozitáři hry
+      (<a href="https://github.com/lioilsources/Kaceny/blob/master/docs/telemetry.md"><code>docs/telemetry.md</code></a>).</li>
+    <li><strong>Proč.</strong> Aby šlo hru zlepšovat: co noví hráči dělají po
+      prvním spuštění, jak probíhají kola a relace, kdy lidé končí, které skiny
+      se líbí a co nikdo nenajde.</li>
+    <li><strong>Bez identifikátorů.</strong> Žádné jméno, e-mail, text, účet,
+      identifikátor zařízení ani reklamní ID, žádný model zařízení. Každá
+      relace dostane náhodné číslo, které existuje jen po dobu běhu appky, takže
+      dvě relace nejde spojit spolu ani s tebou. Statistiky se nepoužívají k
+      reklamě ani sledování a neprodávají se.</li>
+    <li><strong>Kdo je dostává a kde.</strong> Statistiky přijímá a ukládá
+      vývojář na vlastním serveru v EU (Česko). Nikdo další je nedostane. IP
+      adresa, kterou server při spojení vidí, se neukládá ani neloguje; k
+      záznamu se uloží jen země, odkud spojení přišlo.</li>
+    <li><strong>Jak dlouho.</strong> 12 měsíců, pak se smažou. Déle zůstávají
+      jen souhrnné počty bez čísla relace.</li>
+    <li><strong>Offline.</strong> Bez připojení čeká v zařízení nejvýš 500
+      posledních záznamů a odešlou se později; starší se zahodí.</li>
+    <li><strong>Jak vypnout.</strong> V menu otevři <em>Nastavení</em> a vypni
+      <em>Anonymní statistiky</em>. Platí to hned: záznamy čekající v zařízení
+      se smažou a nic dalšího se neposílá, dokud je znovu nezapneš.</li>
     <li><strong>V zařízení.</strong> Nastavení, zvolený skin, místní top 20
       (zadané iniciály) a seznam koupených balíčků se ukládají jen v telefonu.
-      Smazáním appky zmizí.</li>
+      Smazáním appky zmizí. Statistiky si tam drží pár drobných hodnot
+      (vypínač, den začátku měření, počitadlo relací a neodeslané záznamy),
+      ze kterých se pásma počítají přímo v zařízení.</li>
     <li><strong>Nákupy.</strong> Balíčky skinů se kupují přes App Store nebo
       Google Play. Platbu zpracuje Apple nebo Google podle svých zásad; hra se
       dozví jen to, který balíček byl koupen.</li>
     <li><strong>Žebříček.</strong> Pokud jsi přihlášený do Game Center nebo
       Google Play Games, skóre se odešle do jejich žebříčku pod tvým profilem.</li>
-    <li><strong>Děti.</strong> Hra nesbírá data od nikoho, tedy ani od dětí.</li>
+    <li><strong>Analytika třetích stran.</strong> Žádná: statistiky jdou na
+      vlastní server vývojáře, ne třetí straně. Hra nemá SDK pro analytiku,
+      reklamu ani sledování.</li>
+    <li><strong>Děti.</strong> Hra vědomě nesbírá osobní údaje od nikoho, tedy
+      ani od dětí: anonymní statistiky neobsahují nic, co by identifikovalo
+      člověka, a jdou vypnout v nastavení.</li>
   </ul>
   <p>Kontakt: <a href="mailto:business@olin.now">business@olin.now</a></p>
 
