@@ -52,11 +52,22 @@ def workflow(prompt, w, h, seed, prefix):
     }
 
 
+# The only host behind Cloudflare Access; its service token goes nowhere else.
+ACCESS_HOST = "comfyui.ol1n.com"
+LOCAL_HOSTS = {"127.0.0.1", "localhost", "::1"}
+
+
 class Comfy:
-    def __init__(self):
+    def __init__(self, local_only=False):
+        """local_only: refuse anything but a tunnelled ComfyUI on this Mac
+        (the L40S), e.g. when the env file still points at SPARK."""
         self.base = os.environ["COMFYUI_API_URL"].rstrip("/")
+        host = urllib.parse.urlparse(self.base).hostname
+        if local_only and host not in LOCAL_HOSTS:
+            raise SystemExit(f"COMFYUI_API_URL points at {host}; this run needs the L40S tunnel, "
+                             "e.g. COMFYUI_API_URL=http://127.0.0.1:8188")
         self.headers = {"Content-Type": "application/json", "User-Agent": "kaceny-skins/1.0"}
-        if os.environ.get("CF_ACCESS_CLIENT_ID"):
+        if host == ACCESS_HOST and os.environ.get("CF_ACCESS_CLIENT_ID"):
             self.headers["CF-Access-Client-Id"] = os.environ["CF_ACCESS_CLIENT_ID"]
             self.headers["CF-Access-Client-Secret"] = os.environ.get("CF_ACCESS_CLIENT_SECRET", "")
 

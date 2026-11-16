@@ -98,9 +98,9 @@ def dart_str(s):
 
 
 def frame_count(sid):
-    """Wing-beat frames exported for a skin (<id>_0.png, <id>_1.png, ...); 1 = the single sprite."""
+    """Wing-beat frames exported for a skin (<id>_0.webp, <id>_1.webp, ...); 1 = the single sprite."""
     n = 0
-    while (ASSETS / "duck" / f"{sid}_{n}.png").exists():
+    while (ASSETS / "duck" / f"{sid}_{n}.webp").exists():
         n += 1
     return max(n, 1)
 
