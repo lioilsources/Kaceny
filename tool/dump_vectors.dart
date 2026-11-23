@@ -11,6 +11,7 @@
 // code must give byte-identical files (CI diffs them).
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:kaceny/config/game_config.dart';
 import 'package:kaceny/game/logic/flight_path.dart';
@@ -18,6 +19,7 @@ import 'package:kaceny/game/logic/magazine.dart';
 import 'package:kaceny/game/logic/position_history.dart';
 import 'package:kaceny/game/logic/reload_swipe.dart';
 import 'package:kaceny/game/logic/score_keeper.dart';
+import 'package:kaceny/game/logic/spawner.dart';
 import 'package:vector_math/vector_math.dart';
 
 const goldenDir = 'babylon/test/golden';
@@ -33,6 +35,19 @@ class Lcg {
   }
 
   double unit() => next(1 << 30) / (1 << 30);
+}
+
+/// A math.Random over [Lcg], mirrored by gameRandom(seed) in babylon/src/rules/random.ts.
+/// Lets the rules that take a Random (Spawner, FlightPath.random) be replayed draw for draw.
+class LcgRandom implements math.Random {
+  LcgRandom(int seed) : _lcg = Lcg(seed);
+  final Lcg _lcg;
+  @override
+  int nextInt(int max) => _lcg.next(max);
+  @override
+  double nextDouble() => _lcg.unit();
+  @override
+  bool nextBool() => _lcg.next(2) == 0;
 }
 
 void writeJson(String path, Object json) {
@@ -140,8 +155,7 @@ List<Map<String, Object?>> flightCases() {
           'phase': p.phase,
         },
         'out': [
-          for (var k = 0; k <= 30; k++)
-            [p.positionAt(k * 0.1).x, p.positionAt(k * 0.1).y],
+          for (var k = 0; k <= 30; k++) [p.positionAt(k * 0.1).x, p.positionAt(k * 0.1).y],
         ],
       });
     }
@@ -249,11 +263,98 @@ List<Map<String, Object?>> swipeCases() {
   ];
 }
 
+/// FlightPath.random from a seeded Random: kind, shape and positions over 2 s.
+List<Map<String, Object?>> flightRandomCases() {
+  final r = Lcg(23);
+  final kinds = FlightPathKind.values;
+  return [
+    for (var i = 0; i < 24; i++)
+      () {
+        final seed = 1 + r.next(1 << 30);
+        final allowed = [
+          for (final k in kinds)
+            if (r.next(2) == 0 || k == kinds[i % kinds.length]) k,
+        ];
+        final minX = 10 + r.next(40).toDouble();
+        final maxX = minX + 20 + r.next(380);
+        final startY = -r.next(80).toDouble();
+        final speed = 100 + r.next(350).toDouble();
+        final p = FlightPath.random(
+          random: LcgRandom(seed),
+          allowed: allowed,
+          startY: startY,
+          speed: speed,
+          minX: minX,
+          maxX: maxX,
+        );
+        return {
+          'in': {
+            'seed': seed,
+            'allowed': [for (final k in allowed) k.name],
+            'startY': startY,
+            'speed': speed,
+            'minX': minX,
+            'maxX': maxX,
+          },
+          'out': {
+            'kind': p.kind.name,
+            'positions': [
+              for (var k = 0; k <= 20; k++) [p.positionAt(k * 0.1).x, p.positionAt(k * 0.1).y],
+            ],
+          },
+        };
+      }(),
+  ];
+}
+
+/// Spawner over a whole round: for each step that spawns, its index, the ducks it asks for (each with the speed the game
+/// would draw next), whether an edge duck comes, in the same Random order as KacenyGame.
+List<Map<String, Object?>> spawnerCases() {
+  final c = GameConfig.defaults;
+  final r = Lcg(29);
+  final out = <Map<String, Object?>>[];
+  for (var i = 0; i < 3; i++) {
+    final seed = 1 + r.next(1 << 30);
+    final s = Spawner(config: c, random: LcgRandom(seed));
+    final steps = <List<Object>>[];
+    final plans = <List<Object>>[];
+    var elapsed = 0.0;
+    var flying = 0;
+    var edgeActive = false;
+    while (elapsed < c.roundSeconds) {
+      final dt = (1 + r.next(24)) / 120;
+      elapsed += dt;
+      final plan = s.update(dt, elapsed: elapsed, flying: flying, edgeActive: edgeActive);
+      steps.add([dt, elapsed, flying, edgeActive]);
+      if (plan.ducks.isNotEmpty || plan.edgeDuck) {
+        plans.add([
+          steps.length - 1,
+          [
+            for (final k in plan.ducks) [k.name, s.speedFor(k, elapsed)],
+          ],
+          plan.edgeDuck,
+        ]);
+      }
+      // Fake world: ducks leave at random, the edge duck stays a while.
+      flying = math.max(0, flying + plan.ducks.length - r.next(2));
+      if (plan.edgeDuck) edgeActive = true;
+      if (edgeActive && r.next(60) == 0) edgeActive = false;
+    }
+    out.add({
+      'in': {'seed': seed, 'steps': steps},
+      'out': plans,
+    });
+  }
+  return out;
+}
+
 void main() {
   writeJson('$generatedDir/game-config.json', configJson(GameConfig.defaults));
   writeCases('flight-path.json', flightCases());
+  writeCases('flight-random.json', flightRandomCases());
   writeCases('history.json', historyCases());
   writeCases('magazine.json', magazineCases());
   writeCases('score.json', scoreCases());
+  writeCases('spawner.json', spawnerCases());
   writeCases('swipe.json', swipeCases());
 }

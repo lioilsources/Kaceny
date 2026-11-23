@@ -3,7 +3,7 @@
 Webový klient Kačen v TypeScriptu nad Babylon.js. Zdroj pravdy je Flutter appka v kořeni repa
 (pravidla v `lib/config/` a `lib/game/logic/`). Plán: `DevConventions/Prompts/06-PLAN-babylon-web.md`,
 kostra ze šablony `DevConventions/templates/babylon`, vzor: `ChrestysSkatepark/babylon` (RattleRamp).
-Stav: **F0 (audit a spike)**. Hostování: GitHub Pages repa, hra pod `/play/`, `docs/` (privacy, support) zůstává v kořeni.
+Stav: **F1 (pravidla)**. Hostování: GitHub Pages repa, hra pod `/play/`, `docs/` (privacy, support) zůstává v kořeni.
 
 ## Úrovně parity
 
@@ -26,13 +26,13 @@ Stav: **F0 (audit a spike)**. Hostování: GitHub Pages repa, hra pod `/play/`, 
 | Dart | ř. | TS | Parita | Stav |
 |---|---|---|---|---|
 | `lib/config/game_config.dart` | 255 | `game-config.ts` + `generated/game-config.json` | P0 | F0: hodnoty dumpuje Dart, ne ručně |
-| `lib/game/logic/flight_path.dart` | 147 | `flight-path.ts` | P1 | F0, vektory |
+| `lib/game/logic/flight_path.dart` | 147 | `flight-path.ts` | P1 | F1, vektory pevných tvarů i `FlightPath.random` |
 | `lib/game/logic/position_history.dart` | 77 | `position-history.ts` | P1 | F0, vektory |
 | `lib/game/logic/hit_resolver.dart` | 90 | `hit-resolver.ts` | P0 | F0, testy podle `test/logic/hit_resolver_test.dart` |
 | `lib/game/logic/magazine.dart` | 56 | `magazine.ts` | P0 | F0, vektory |
 | `lib/game/logic/score_keeper.dart` | 62 | `score-keeper.ts` | P0 | F0, vektory |
 | `lib/game/logic/reload_swipe.dart` | 53 | `reload-swipe.ts` | P0 | F0, vektory |
-| `lib/game/logic/spawner.dart` | 94 | `spawner.ts` | P0 | F0; vektory v F1 (potřebují zdroj náhody nezávislý na `dart:math`) |
+| `lib/game/logic/spawner.dart` | 94 | `spawner.ts` | P0 | F1, vektory celého kola včetně rychlostí (`LcgRandom`) |
 | `lib/game/render/palette.dart` | 39 | `ui/generated/palette.ts` | P2 | F0, `npm run gen` čte zdroják (`dart:ui` v Dart VM neběží) |
 | `lib/game/skins/skin.dart`, `skin_catalog.dart` (generovaný) | 176 | `rules/skins.ts` | P0 | F3, jen balíček zdarma |
 
@@ -83,9 +83,11 @@ Stav: **F0 (audit a spike)**. Hostování: GitHub Pages repa, hra pod `/play/`, 
 | Soubor | Co pokrývá |
 |---|---|
 | `flight-path.json` | 24 drah (4 druhy × 6), polohy po 0,1 s do 3 s |
+| `flight-random.json` | 24 drah z `FlightPath.random` se seedem: druh a polohy po 0,1 s do 2 s |
 | `history.json` | 10 historií se stejnými i rostoucími časy, dotazy mimo rozsah i mezi vzorky |
 | `magazine.json` | 10 sekvencí výstřel / přebití / čas, stav po každém kroku |
 | `score.json` | 20 sérií zásahů a minutí: body za každý, skóre, nejdelší série |
+| `spawner.json` | 3 celá kola s náhodným `dt`: v kterém kroku přijde která kachna a s jakou rychlostí, kdy edge kachna |
 | `swipe.json` | 60 vektorů gesta přebití |
 | `generated/game-config.json` | všechny výchozí hodnoty `GameConfig` (TS je importuje) |
 
@@ -147,8 +149,10 @@ Měření na telefonu zbývá.
    zaokrouhlí na float32, aritmetika mezi tím je double. TS to dělá stejně přes `Math.fround` (`rules/vec.ts`); bez toho
    se dráhy rozjely v 7. platné číslici. Našly to zlaté vektory.
 2. **Pevný krok 1/120 s** místo Flame `dt` za snímek (strop 1/20 s zůstává). Výsledek kola tak nezávisí na FPS.
-3. **Náhoda:** `dart:math` `Random` se nekopíruje. Hra bere `GameRandom` (`?seed=` = opakovatelné kolo pro videa),
-   vektory náhodu nepoužívají, dostávají explicitní tvary.
+3. **Náhoda:** `dart:math` `Random` se nekopíruje. Dump má `LcgRandom implements math.Random` nad stejným LCG
+   a `gameRandom(seed)` v TS dává tah po tahu stejné `nextInt`, `nextDouble` a `nextBool`. Díky tomu jdou přehrát
+   pravidla, která berou `Random` (spawner, `FlightPath.random`), a `?seed=` dává opakovatelné kolo pro videa.
+   Hra bez seedu bere `Math.random`.
 4. **Paleta** se čte ze zdrojáku `palette.dart` (`dart:ui` v Dart VM nejde spustit), ne z dumpu. Hlídá ji `config-sync`.
 5. **Kořen repa:** Flutter appka je v kořeni, ne v podsložce. Šablona s tím zatím nepočítá; cesty v `web.yml`
    a `copy-assets.ts` jsou upravené ručně.

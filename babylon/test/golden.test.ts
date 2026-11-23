@@ -6,12 +6,14 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { defaultConfig, reloadS, reloadSwipeMaxAngleRad } from '../src/rules/game-config';
+import { defaultConfig, reloadS, reloadSwipeMaxAngleRad, type FlightPathKind } from '../src/rules/game-config';
 import { FlightPath, type FlightShape } from '../src/rules/flight-path';
 import { Magazine } from '../src/rules/magazine';
 import { PositionHistory } from '../src/rules/position-history';
 import { ReloadSwipeDetector } from '../src/rules/reload-swipe';
+import { gameRandom } from '../src/rules/random';
 import { ScoreKeeper } from '../src/rules/score-keeper';
+import { Spawner } from '../src/rules/spawner';
 
 type Case = { in: unknown; out: unknown };
 
@@ -22,6 +24,14 @@ const REPLAY: Record<string, (input: never) => unknown> = {
       const v = p.positionAt(k * 0.1);
       return [v.x, v.y];
     });
+  },
+  'flight-random.json': (i: { seed: number; allowed: FlightPathKind[]; startY: number; speed: number; minX: number; maxX: number }) => {
+    const p = FlightPath.random(gameRandom(i.seed), i.allowed, i.startY, i.speed, i.minX, i.maxX);
+    const positions = Array.from({ length: 21 }, (_, k) => {
+      const v = p.positionAt(k * 0.1);
+      return [v.x, v.y];
+    });
+    return { kind: p.s.kind, positions };
   },
   'history.json': (i: { capacity: number; samples: [number, number, number][]; queries: number[] }) => {
     const h = new PositionHistory(i.capacity);
@@ -39,6 +49,17 @@ const REPLAY: Record<string, (input: never) => unknown> = {
     const s = new ScoreKeeper(defaultConfig);
     const gained = shots.map((x) => (x.hit ? s.hit(x.points!, x.precise!) : (s.miss(), 0)));
     return { gained, score: s.score, shots: s.shots, hits: s.hits, bestStreak: s.bestStreak };
+  },
+  'spawner.json': (i: { seed: number; steps: [number, number, number, boolean][] }) => {
+    const s = new Spawner(defaultConfig, gameRandom(i.seed));
+    const plans: unknown[] = [];
+    i.steps.forEach(([dt, elapsed, flying, edgeActive], k) => {
+      const plan = s.update(dt, elapsed, flying, edgeActive);
+      if (plan.ducks.length > 0 || plan.edgeDuck) {
+        plans.push([k, plan.ducks.map((d) => [d, s.speedFor(d, elapsed)]), plan.edgeDuck]);
+      }
+    });
+    return plans;
   },
   'swipe.json': ([dx, dy]: [number, number]) =>
     new ReloadSwipeDetector(defaultConfig.reloadSwipeMinPt, reloadSwipeMaxAngleRad(defaultConfig)).isReloadSwipe({ x: dx, y: dy }),
