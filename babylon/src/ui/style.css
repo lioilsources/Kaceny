@@ -1,0 +1,21 @@
+html, body { margin: 0; height: 100%; background: #7EC8F0; color: #fff; overflow: hidden; touch-action: none;
+  user-select: none; -webkit-user-select: none; font-family: system-ui, sans-serif; }
+#game, #fx { position: fixed; inset: 0; width: 100%; height: 100%; display: block; outline: none; }
+#fx { pointer-events: none; }
+.hud { position: fixed; pointer-events: none; font-weight: 800; }
+#top { top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+.pill { background: rgba(0, 0, 0, 0.35); border-radius: 20px; padding: 6px 14px; font-size: 22px; font-variant-numeric: tabular-nums; }
+#time.hurry { background: rgba(229, 57, 53, 0.85); }
+#mult { color: #FFC94D; margin-right: 6px; font-size: 18px; }
+#belt { bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.18); }
+.shells { display: flex; gap: 6px; }
+.shells i { width: 12px; height: 30px; border-radius: 4px 4px 2px 2px; background: linear-gradient(#E53935 60%, #C9A227 60%); }
+.shells i.spent { opacity: 0.2; }
+#reload { position: absolute; left: 20%; right: 20%; bottom: 8px; height: 4px; background: rgba(255,255,255,0.3); }
+#reload::after { content: ''; display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: #fff; }
+#over { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; background: rgba(14, 16, 24, 0.6); }
+#over[hidden], #reload[hidden] { display: none; }
+#over-score { font-size: 64px; font-weight: 900; }
+#again { font: 800 22px system-ui, sans-serif; padding: 12px 32px; border-radius: 28px; border: 0; background: #FFC94D; color: #1b2a33; }
+#fps { bottom: 80px; left: 8px; font-size: 14px; }

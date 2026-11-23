@@ -1,0 +1,1162 @@
+{
+ "cases": [
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     7,
+     3,
+     11,
+     5,
+     18,
+     6,
+     6,
+     10
+    ],
+    "score": 66,
+    "shots": 8,
+    "hits": 8,
+    "bestStreak": 8
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     1,
+     5,
+     8,
+     5,
+     8
+    ],
+    "score": 27,
+    "shots": 5,
+    "hits": 5,
+    "bestStreak": 5
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     3,
+     3,
+     5,
+     8,
+     8,
+     2,
+     20,
+     14,
+     10,
+     6
+    ],
+    "score": 79,
+    "shots": 10,
+    "hits": 10,
+    "bestStreak": 10
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     5,
+     3,
+     2,
+     2,
+     8,
+     10,
+     6,
+     10,
+     14,
+     10,
+     2
+    ],
+    "score": 72,
+    "shots": 12,
+    "hits": 11,
+    "bestStreak": 11
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     3,
+     1,
+     5,
+     15,
+     11,
+     24,
+     6
+    ],
+    "score": 65,
+    "shots": 7,
+    "hits": 7,
+    "bestStreak": 7
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     5,
+     3,
+     5,
+     2
+    ],
+    "score": 15,
+    "shots": 5,
+    "hits": 4,
+    "bestStreak": 4
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     5,
+     5,
+     15,
+     11,
+     11,
+     20
+    ],
+    "score": 67,
+    "shots": 6,
+    "hits": 6,
+    "bestStreak": 6
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     5,
+     5,
+     8,
+     8,
+     15,
+     24,
+     10
+    ],
+    "score": 75,
+    "shots": 8,
+    "hits": 7,
+    "bestStreak": 7
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     5,
+     5,
+     2,
+     8,
+     8,
+     6,
+     10,
+     14,
+     24,
+     6,
+     6,
+     20,
+     10
+    ],
+    "score": 124,
+    "shots": 13,
+    "hits": 13,
+    "bestStreak": 13
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     7,
+     3,
+     5,
+     8
+    ],
+    "score": 23,
+    "shots": 5,
+    "hits": 4,
+    "bestStreak": 4
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     3,
+     3,
+     11,
+     2,
+     8,
+     6,
+     20
+    ],
+    "score": 53,
+    "shots": 7,
+    "hits": 7,
+    "bestStreak": 7
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     7,
+     10,
+     11,
+     18
+    ],
+    "score": 46,
+    "shots": 5,
+    "hits": 4,
+    "bestStreak": 4
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     3,
+     3,
+     2,
+     11,
+     5,
+     2,
+     10,
+     14
+    ],
+    "score": 50,
+    "shots": 8,
+    "hits": 8,
+    "bestStreak": 8
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     3,
+     3,
+     2,
+     2,
+     8,
+     20
+    ],
+    "score": 38,
+    "shots": 7,
+    "hits": 6,
+    "bestStreak": 6
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     7,
+     1,
+     8,
+     5,
+     2,
+     20,
+     10,
+     6
+    ],
+    "score": 59,
+    "shots": 8,
+    "hits": 8,
+    "bestStreak": 8
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     7,
+     10,
+     8,
+     18,
+     5
+    ],
+    "score": 48,
+    "shots": 6,
+    "hits": 5,
+    "bestStreak": 5
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     5,
+     1,
+     8,
+     5,
+     8,
+     24,
+     6,
+     6,
+     20,
+     24
+    ],
+    "score": 107,
+    "shots": 10,
+    "hits": 10,
+    "bestStreak": 10
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     10,
+     3,
+     8,
+     8,
+     8,
+     20,
+     6,
+     20
+    ],
+    "score": 83,
+    "shots": 9,
+    "hits": 8,
+    "bestStreak": 8
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 10,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 1,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     5,
+     1,
+     2,
+     15,
+     15,
+     10,
+     6,
+     6,
+     6,
+     2,
+     2,
+     14
+    ],
+    "score": 84,
+    "shots": 12,
+    "hits": 12,
+    "bestStreak": 12
+   }
+  },
+  {
+   "in": [
+    {
+     "hit": false
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": true
+    },
+    {
+     "hit": true,
+     "points": 3,
+     "precise": false
+    },
+    {
+     "hit": true,
+     "points": 5,
+     "precise": true
+    }
+   ],
+   "out": {
+    "gained": [
+     0,
+     5,
+     5,
+     5,
+     11
+    ],
+    "score": 26,
+    "shots": 5,
+    "hits": 4,
+    "bestStreak": 4
+   }
+  }
+ ]
+}
