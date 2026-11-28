@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:games_services/games_services.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 /// The optional online board: Game Center on iOS, Play Games on Android (§6).
 ///
@@ -83,6 +84,7 @@ class GamesServicesLeaderboard extends ChangeNotifier {
 
   /// Opens the system leaderboard UI, signing in first on Android.
   Future<void> show() async {
+    Telemetry.feature('online_board');
     if (!_available && _android) {
       await _prompt();
       _setAvailable(await GameAuth.isSignedIn);

@@ -1,10 +1,12 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../app_services.dart';
 import '../game/render/duck_painter.dart';
 import '../game/render/palette.dart';
+import '../services/telemetry.dart';
 import 'game_screen.dart';
 import 'leaderboard_screen.dart';
 import 'settings_screen.dart';
@@ -17,9 +19,15 @@ class MenuScreen extends StatelessWidget {
 
   final AppServices services;
 
-  void _open(BuildContext context, Widget screen) {
+  /// [route] names the screen for the anonymous statistics.
+  void _open(BuildContext context, String route, Widget screen) {
     services.sfx.ui();
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        settings: RouteSettings(name: route),
+        builder: (_) => screen,
+      ),
+    );
   }
 
   @override
@@ -72,22 +80,25 @@ class MenuScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   FilledButton(
-                    onPressed: () => _open(context, GameScreen(services: services)),
+                    onPressed: () => _open(context, gameRoute, GameScreen(services: services)),
                     child: Text(context.l10n.menuPlay),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(
-                    onPressed: () => _open(context, SkinsScreen(services: services)),
+                    onPressed: () => _open(context, '/skins', SkinsScreen(services: services)),
                     child: Text(context.l10n.menuSkins),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(
-                    onPressed: () => _open(context, LeaderboardScreen(services: services)),
+                    onPressed: () {
+                      Telemetry.feature('leaderboard');
+                      _open(context, '/leaderboard', LeaderboardScreen(services: services));
+                    },
                     child: Text(context.l10n.menuLeaderboard),
                   ),
                   const SizedBox(height: 14),
                   OutlinedButton(
-                    onPressed: () => _open(context, SettingsScreen(services: services)),
+                    onPressed: () => _open(context, '/settings', SettingsScreen(services: services)),
                     child: Text(context.l10n.menuSettings),
                   ),
                   const Spacer(flex: 3),

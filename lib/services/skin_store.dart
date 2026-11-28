@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../game/skins/skin.dart';
@@ -41,6 +42,9 @@ class SkinStore extends ChangeNotifier {
   String? _pendingPack;
   StreamSubscription<List<PurchaseDetails>>? _sub;
   final _outcomes = StreamController<(String, PurchaseOutcome)>.broadcast();
+
+  /// The purchase on screen, for the anonymous statistics.
+  TelemetryFlow? _flow;
 
   /// Platforms where packs are actually sold.
   bool get supported =>
@@ -99,11 +103,19 @@ class SkinStore extends ChangeNotifier {
   }
 
   /// Opens the store's purchase sheet; false when it could not be shown.
-  Future<bool> buy(String packId) async {
+  /// [from] says where it was asked for (anonymous statistics).
+  Future<bool> buy(String packId, {String from = 'pack'}) async {
     final details = _products[productId(packId)];
-    if (!supported || ownsPack(packId) || _pendingPack != null || details == null) {
+    if (!supported || ownsPack(packId) || _pendingPack != null) {
       return false;
     }
+    final flow = Telemetry.flow('purchase', {'pack': packId, 'from': from});
+    if (details == null) {
+      // The store has not answered (offline, products missing).
+      flow.end('unavailable', {'pack': packId});
+      return false;
+    }
+    _flow = flow;
     _pendingPack = packId;
     notifyListeners();
     try {
@@ -113,9 +125,18 @@ class SkinStore extends ChangeNotifier {
     } catch (error) {
       debugPrint('Kačeny: purchase did not start: $error');
     }
+    _endFlow(packId, 'error');
     _pendingPack = null;
     notifyListeners();
     return false;
+  }
+
+  void _endFlow(String packId, String result) {
+    final flow = _flow;
+    _flow = null;
+    if (flow != null && !flow.ended) {
+      flow.end(result, {'pack': packId});
+    }
   }
 
   /// Re-delivers past purchases (new device, reinstall). App Review wants
@@ -156,6 +177,11 @@ class SkinStore extends ChangeNotifier {
           break;
       }
       if (pack != null && pack == _pendingPack && purchase.status != PurchaseStatus.pending) {
+        _endFlow(pack, switch (purchase.status) {
+          PurchaseStatus.purchased || PurchaseStatus.restored => 'ok',
+          PurchaseStatus.canceled => 'cancel',
+          _ => 'error',
+        });
         _pendingPack = null;
       }
       if (purchase.pendingCompletePurchase) {

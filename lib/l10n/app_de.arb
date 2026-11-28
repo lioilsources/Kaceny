@@ -20,6 +20,8 @@
   "settingsDebug": "Debug: Hitboxen und Schüsse",
   "settingsDebugHint": "Nur im Debug-Build.",
   "settingsRestore": "Käufe wiederherstellen",
+  "settingsStats": "Anonyme Statistik",
+  "settingsStatsHint": "Welche Bildschirme und Runden gespielt werden, nichts, was dich identifiziert. Hilft, das Spiel zu verbessern.",
   "leaderboardThisPhone": "Dieses Handy",
   "leaderboardOnline": "Online",
   "leaderboardEmpty": "Noch keine Punkte. Los, ab auf Entenjagd!",

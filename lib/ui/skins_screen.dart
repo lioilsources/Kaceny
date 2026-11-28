@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:ol1n_telemetry/ol1n_telemetry.dart';
 
 import '../app_services.dart';
 import '../game/render/duck_painter.dart';
@@ -68,6 +69,9 @@ class _SkinsScreenState extends State<SkinsScreen> {
   void _onOutcome((String, PurchaseOutcome) outcome) {
     final (pack, result) = outcome;
     final l10n = context.l10n;
+    if (result == PurchaseOutcome.failed) {
+      Telemetry.errorShown('purchase_failed');
+    }
     final message = switch (result) {
       PurchaseOutcome.bought => l10n.skinsThanks,
       PurchaseOutcome.restored => l10n.skinsRestoreDone,
@@ -78,23 +82,35 @@ class _SkinsScreenState extends State<SkinsScreen> {
       ..showSnackBar(SnackBar(content: Text(message)));
     final wanted = _wanted;
     if (result == PurchaseOutcome.bought && wanted != null && (wanted.packId == pack || pack == SkinStore.allPacks)) {
-      services.settings.skin = wanted.id;
+      _pick(wanted);
       _wanted = null;
     }
   }
 
-  Future<void> _buy(String packId, {Skin? skin}) async {
+  /// [from] is where the purchase began, for the anonymous statistics:
+  /// a locked skin, a pack header or the all-packs card.
+  Future<void> _buy(String packId, {Skin? skin, required String from}) async {
     services.sfx.ui();
     _wanted = skin;
-    if (!await services.store.buy(packId) && mounted) {
+    if (!await services.store.buy(packId, from: from) && mounted) {
+      Telemetry.errorShown('store_unavailable');
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(content: Text(context.l10n.skinsStoreUnavailable)));
     }
   }
 
+  void _pick(Skin skin) {
+    if (services.settings.skin != skin.id) {
+      Telemetry.feature('skins');
+      Telemetry.track('skin_pick', {'skin': skin.id, 'free': skin.free});
+    }
+    services.settings.skin = skin.id;
+  }
+
   void _offer(Skin skin, List<Skin> pack) {
     services.sfx.ui();
+    Telemetry.lockedTap(skin.packId);
     final locale = Localizations.localeOf(context);
     showModalBottomSheet<void>(
       context: context,
@@ -127,7 +143,7 @@ class _SkinsScreenState extends State<SkinsScreen> {
                 packId: skin.packId,
                 onPressed: () {
                   Navigator.of(context).pop();
-                  _buy(skin.packId, skin: skin);
+                  _buy(skin.packId, skin: skin, from: 'skin');
                 },
               ),
             ],
@@ -157,6 +173,7 @@ class _SkinsScreenState extends State<SkinsScreen> {
               icon: const Icon(Icons.restore),
               onPressed: () {
                 services.sfx.ui();
+                Telemetry.feature('restore');
                 store.restore();
               },
             ),
@@ -171,7 +188,10 @@ class _SkinsScreenState extends State<SkinsScreen> {
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(12, 16, 12, 0),
                 sliver: SliverToBoxAdapter(
-                  child: _AllPacksCard(store: store, onBuy: () => _buy(SkinStore.allPacks)),
+                  child: _AllPacksCard(
+                    store: store,
+                    onBuy: () => _buy(SkinStore.allPacks, from: 'bundle'),
+                  ),
                 ),
               ),
             for (final MapEntry(key: packId, value: skins) in packs.entries) ...[
@@ -194,7 +214,12 @@ class _SkinsScreenState extends State<SkinsScreen> {
                         _Tag(l10n.skinsOwned, KColors.orange)
                       else ...[
                         const Spacer(),
-                        _BuyButton(store: store, packId: packId, compact: true, onPressed: () => _buy(packId)),
+                        _BuyButton(
+                          store: store,
+                          packId: packId,
+                          compact: true,
+                          onPressed: () => _buy(packId, from: 'pack'),
+                        ),
                       ],
                     ],
                   ),
@@ -224,7 +249,7 @@ class _SkinsScreenState extends State<SkinsScreen> {
                           return;
                         }
                         services.sfx.ui();
-                        settings.skin = skin.id;
+                        _pick(skin);
                       },
                     );
                   },

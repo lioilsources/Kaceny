@@ -227,6 +227,18 @@ abstract class AppLocalizations {
   /// **'Restore purchases'**
   String get settingsRestore;
 
+  /// Settings switch: anonymous usage statistics on or off. Shown only in builds that can send them.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous statistics'**
+  String get settingsStats;
+
+  /// No description provided for @settingsStatsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Which screens and rounds are played, nothing that identifies you. Helps improve the game.'**
+  String get settingsStatsHint;
+
   /// No description provided for @leaderboardThisPhone.
   ///
   /// In en, this message translates to:

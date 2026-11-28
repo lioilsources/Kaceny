@@ -20,6 +20,8 @@
   "settingsDebug": "Debug: hitbox e colpi",
   "settingsDebugHint": "Solo nella build di debug.",
   "settingsRestore": "Ripristina acquisti",
+  "settingsStats": "Statistiche anonime",
+  "settingsStatsHint": "Quali schermate e partite vengono giocate, niente che ti identifichi. Aiuta a migliorare il gioco.",
   "leaderboardThisPhone": "Questo telefono",
   "leaderboardOnline": "Online",
   "leaderboardEmpty": "Ancora nessun punteggio. Vai a sparare!",

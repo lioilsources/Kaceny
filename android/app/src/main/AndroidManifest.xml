@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Anonymous statistics (docs/telemetry.md); store and Play Games also need it. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="Kačeny"
         android:name=".KacenyApplication"

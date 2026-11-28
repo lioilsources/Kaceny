@@ -20,6 +20,8 @@
   "settingsDebug": "Debug: hitboxes y disparos",
   "settingsDebugHint": "Solo en la build de debug.",
   "settingsRestore": "Restaurar compras",
+  "settingsStats": "Estadísticas anónimas",
+  "settingsStatsHint": "Qué pantallas y rondas se juegan, nada que te identifique. Ayuda a mejorar el juego.",
   "leaderboardThisPhone": "Este teléfono",
   "leaderboardOnline": "Online",
   "leaderboardEmpty": "Aún no hay puntuaciones. ¡A cazar patos!",

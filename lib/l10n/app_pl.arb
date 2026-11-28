@@ -20,6 +20,8 @@
   "settingsDebug": "Debug: hitboxy i strzały",
   "settingsDebugHint": "Tylko w wersji debug.",
   "settingsRestore": "Przywróć zakupy",
+  "settingsStats": "Anonimowe statystyki",
+  "settingsStatsHint": "Jakie ekrany i rundy są grane, nic, co by cię identyfikowało. Pomaga ulepszać grę.",
   "leaderboardThisPhone": "Ten telefon",
   "leaderboardOnline": "Online",
   "leaderboardEmpty": "Brak wyników. Idź postrzelać!",
