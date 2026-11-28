@@ -1,0 +1,158 @@
+{
+ "roundSeconds": 90,
+ "countdownSeconds": 10,
+ "shotCooldownMs": 80,
+ "hitboxScale": 1.3,
+ "minHitRadiusPt": 22.0,
+ "inputLatencyMs": 60,
+ "historySize": 10,
+ "magazineSize": 8,
+ "reloadMs": 400,
+ "reloadSwipeMinPt": 40.0,
+ "reloadSwipeMaxAngleDeg": 30.0,
+ "bottomSafeZonePt": 72.0,
+ "topHudPt": 52.0,
+ "maxOnScreen": 6,
+ "precisionBonus": 2,
+ "comboEnabled": true,
+ "comboTiers": [
+  {
+   "hits": 3,
+   "multiplier": 1.5
+  },
+  {
+   "hits": 6,
+   "multiplier": 2.0
+  }
+ ],
+ "fallDurationS": 0.6,
+ "fallGravity": 1500.0,
+ "escapeFadeS": 0.22,
+ "ducks": {
+  "tiny": {
+   "heightPt": 24.0,
+   "minSpeed": 120.0,
+   "maxSpeed": 160.0,
+   "points": 10,
+   "paths": [
+    "straight",
+    "sine"
+   ]
+  },
+  "small": {
+   "heightPt": 36.0,
+   "minSpeed": 160.0,
+   "maxSpeed": 220.0,
+   "points": 5,
+   "paths": [
+    "straight",
+    "diagonal",
+    "sine"
+   ]
+  },
+  "medium": {
+   "heightPt": 52.0,
+   "minSpeed": 220.0,
+   "maxSpeed": 300.0,
+   "points": 3,
+   "paths": [
+    "diagonal",
+    "sine",
+    "dive"
+   ]
+  },
+  "big": {
+   "heightPt": 80.0,
+   "minSpeed": 300.0,
+   "maxSpeed": 400.0,
+   "points": 1,
+   "paths": [
+    "straight",
+    "diagonal",
+    "dive"
+   ]
+  }
+ },
+ "phases": [
+  {
+   "startS": 0.0,
+   "spawnIntervalS": 1.1,
+   "weights": [
+    [
+     "tiny",
+     1.0
+    ],
+    [
+     "small",
+     2.0
+    ],
+    [
+     "medium",
+     3.0
+    ],
+    [
+     "big",
+     4.0
+    ]
+   ],
+   "speedScale": 1.0
+  },
+  {
+   "startS": 30.0,
+   "spawnIntervalS": 0.8,
+   "weights": [
+    [
+     "tiny",
+     2.0
+    ],
+    [
+     "small",
+     3.0
+    ],
+    [
+     "medium",
+     3.0
+    ],
+    [
+     "big",
+     2.0
+    ]
+   ],
+   "speedScale": 1.1
+  },
+  {
+   "startS": 60.0,
+   "spawnIntervalS": 0.55,
+   "weights": [
+    [
+     "tiny",
+     3.0
+    ],
+    [
+     "small",
+     4.0
+    ],
+    [
+     "medium",
+     2.0
+    ],
+    [
+     "big",
+     1.0
+    ]
+   ],
+   "speedScale": 1.2
+  }
+ ],
+ "edge": {
+  "heightPt": 128.0,
+  "points": 5,
+  "minShowS": 0.8,
+  "maxShowS": 1.5,
+  "slideS": 0.22,
+  "minIntervalS": 8.0,
+  "maxIntervalS": 12.0,
+  "firstDelayS": 5.0,
+  "revealFraction": 0.62
+ }
+}
